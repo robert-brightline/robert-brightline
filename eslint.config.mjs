@@ -1,11 +1,42 @@
 import nx from '@nx/eslint-plugin';
 
 export default [
+  {
+    files: ['**/*.json'],
+    rules: {},
+    languageOptions: {
+      parser: await import('jsonc-eslint-parser'),
+    },
+  },
   ...nx.configs['flat/base'],
   ...nx.configs['flat/typescript'],
   ...nx.configs['flat/javascript'],
   {
-    ignores: ['**/dist', '**/out-tsc'],
+    ignores: [
+      '**/dist',
+      '**/out-tsc',
+      '**/vitest.config.*.timestamp*',
+      '**/vite.config.ts',
+      '**/vitest.config.mts',
+    ],
+  },
+  {
+    files: ['**/*.json'],
+    rules: {
+      '@nx/dependency-checks': [
+        'error',
+        {
+          ignoredFiles: [
+            '{projectRoot}/eslint.config.mts',
+            '{projectRoot}/vite.config.ts',
+            '{projectRoot}/vitest.config.mts',
+          ],
+        },
+      ],
+    },
+    languageOptions: {
+      parser: await import('jsonc-eslint-parser'),
+    },
   },
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
@@ -21,6 +52,29 @@ export default [
               onlyDependOnLibsWithTags: ['*'],
             },
           ],
+        },
+      ],
+    },
+  },
+  {
+    files: ['**/*.ts', '**/*.cts', '**/*.mts'],
+    rules: {
+      '@typescript-eslint/consistent-type-imports': [
+        'error',
+        {
+          prefer: 'type-imports',
+          fixStyle: 'separate-type-imports',
+          disallowTypeAnnotations: false,
+        },
+      ],
+    },
+  },
+  {
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: ['src/*'],
         },
       ],
     },

@@ -1,0 +1,66 @@
+{
+  "name": "@robert-brightline/errors",
+  "description": "A standardized collection of custom error classes designed to unify exception handling and improve error traceability across the distributed system",
+  "version": "0.0.99",
+  "author": {
+    "email": "robert.brightline+errors@gmail.com",
+    "name": "Robert Brightline",
+    "url": "https://robert.brightline.github.io"
+  },
+  "homepage": "https://robert.brightline.github.io/libs/errors",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "keywords": [
+    "errors"
+  ],
+  "funding": [
+    {
+      "type": "cashapp",
+      "url": "https://cash.app/$puqlib"
+    }
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@beemood/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "assets",
+    "!**/*.tsbuildinfo"
+  ],
+  "nx": {
+    "sourceRoot": "libs/errors/src",
+    "targets": {
+      "build": {
+        "executor": "@nx/js:swc",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "outputPath": "libs/errors/dist",
+          "main": "libs/errors/src/index.ts",
+          "tsConfig": "libs/errors/tsconfig.lib.json",
+          "skipTypeCheck": true,
+          "stripLeadingPaths": true
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "@swc/helpers": "~0.5.11"
+  },
+  "devDependencies": {
+    "vitest": "^4.0.8"
+  }
+}

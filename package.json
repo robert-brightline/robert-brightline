@@ -1,10 +1,29 @@
 {
   "name": "@robert-brightline/source",
-  "version": "0.0.0",
+  "description": "Common libraries and services",
+  "version": "0.0.1",
   "license": "MIT",
-  "scripts": {},
-  "private": true,
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "author": {
+    "email": "robert.brightline@gmail.com",
+    "name": "Robert Brightline",
+    "url": "https://robert-brightline.github.io/profile"
+  },
+  "funding": [
+    {
+      "type": "cashapp",
+      "url": "https://cash.app/$puqlib"
+    }
+  ],
+  "homepage": "https://robert-brightline.github.io",
+  "scripts": {
+    "prepare": "husky"
+  },
   "dependencies": {
+    "@nx/devkit": "22.3.3",
     "axios": "^1.6.0"
   },
   "devDependencies": {
@@ -14,18 +33,42 @@
     "@nx/eslint-plugin": "22.3.3",
     "@nx/js": "22.3.3",
     "@nx/node": "22.3.3",
+    "@nx/plugin": "^22.3.3",
+    "@nx/vitest": "22.3.3",
     "@nx/workspace": "22.3.3",
     "@swc-node/register": "~1.9.1",
+    "@swc/cli": "~0.6.0",
     "@swc/core": "~1.5.7",
     "@swc/helpers": "~0.5.11",
     "@types/node": "20.19.9",
+    "@vitest/coverage-v8": "^4.0.0",
     "esbuild": "^0.19.2",
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^10.0.0",
+    "husky": "^9.1.7",
+    "jsdom": "^27.1.0",
+    "jsonc-eslint-parser": "^2.4.2",
     "nx": "22.3.3",
     "prettier": "~3.6.2",
     "tslib": "^2.3.0",
+    "typedoc": "^0.28.15",
     "typescript": "~5.9.2",
-    "typescript-eslint": "^8.40.0"
+    "typescript-eslint": "^8.40.0",
+    "verdaccio": "^6.0.5",
+    "vite": "^7.0.0",
+    "vitest": "^4.0.8"
+  },
+  "nx": {
+    "includedScripts": [],
+    "targets": {
+      "local-registry": {
+        "executor": "@nx/js:verdaccio",
+        "options": {
+          "port": 4873,
+          "config": ".verdaccio/config.yml",
+          "storage": "tmp/local-registry/storage"
+        }
+      }
+    }
   }
 }

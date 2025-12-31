@@ -1,0 +1,11 @@
+{
+    "$schema": "https://typedoc.org/schema.json",
+    "entryPointStrategy": "packages",
+    "entryPoints": [
+        "libs/*",
+        "plugins/*"
+    ],
+    "out": "docs",
+    "excludeInternal": true,
+    "skipErrorChecking": true
+}
