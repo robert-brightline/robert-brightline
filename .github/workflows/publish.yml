@@ -1,22 +1,66 @@
 name: Publish Packages
+
 on:
   push:
     branches:
       - main
 
 jobs:
-  publish:
-    needs: ci
+  build-test-lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4 # Updated to v4
+        with:
+          fetch-depth: 0
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8 # Specify your pnpm version
+
+      - name: Setup Node
+        uses: actions/setup-node@v4 # Updated to v4
+        with:
+          node-version: 18
+          cache: 'pnpm' # Enables automatic caching for pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Nx Lint, Test, Build, Typecheck
+        run: pnpm nx run-many -t lint test build typecheck --all
+
+  publish:
+    needs: build-test-lint
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # Required for some provenance-based publishing
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Nx Release needs history to determine versions
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 18
           registry-url: https://registry.npmjs.org/
+          cache: 'pnpm'
 
-      - run: npm ci
-      - run: npx nx run-many --target=build --all
-      - run: npx nx release publish
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # No need to rebuild if Nx Cloud is enabled, but kept for local safety
+      - name: Build All
+        run: pnpm nx run-many -t build --all
+
+      - name: Publish to NPM
+        run: pnpm nx release publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
