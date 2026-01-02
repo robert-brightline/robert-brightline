@@ -65,5 +65,6 @@
     "version": {
       "preVersionCommand": "pnpm dlx nx run-many -t build"
     }
-  }
+  },
+  "nxCloudId": "69581a32d0a7246a282c5056"
 }
