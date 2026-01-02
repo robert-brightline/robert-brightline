@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build-test-lint:
+  lint-test-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4 # Updated to v4
@@ -14,24 +14,25 @@ jobs:
           fetch-depth: 0
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v4
         with:
-          version: 8 # Specify your pnpm version
+          version: 9.8.0
+          run_install: false
 
       - name: Setup Node
-        uses: actions/setup-node@v4 # Updated to v4
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
-          cache: 'pnpm' # Enables automatic caching for pnpm
+          node-version: 20
+          cache: 'pnpm'
 
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
-      - name: Nx Lint, Test, Build, Typecheck
+      - name: Lint, test, and build all projects
         run: npx nx run-many -t lint test build
 
   publish:
-    needs: build-test-lint
+    needs: lint-test-build
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -61,6 +62,6 @@ jobs:
         run: npx nx run-many -t build --all
 
       - name: Publish to NPM
-        run: npx release publish
+        run: npx nx release publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

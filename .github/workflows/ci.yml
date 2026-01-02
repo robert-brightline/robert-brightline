@@ -26,16 +26,19 @@ jobs:
           run_install: false
 
       - uses: actions/setup-node@v4
+        name: Setup Node
         with:
           node-version: 20
           cache: 'pnpm'
 
-      - run: pnpm install --no-frozen-lockfile
-      - uses: nrwl/nx-set-shas@v4
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
 
-      # Prepend any command with "nx-cloud record --" to record its logs to Nx Cloud
-      # - run: pnpm exec nx-cloud record -- echo Hello World
-      - run: npx nx affected -t lint test build
+      - uses: nrwl/nx-set-shas@v4
+        name: Set Nx shas for affected commands
+
+      - name: Nx Affected Lint, Test, Build
+        run: npx nx affected -t lint test build
 
       # Nx Cloud recommends fixes for failures to help you get CI green faster. Learn more: https://nx.dev/ci/features/self-healing-ci
       - run: npx nx fix-ci
