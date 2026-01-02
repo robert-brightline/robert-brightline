@@ -13,16 +13,16 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
         with:
-          version: 9.8.0
+          version: 10.24.0
           run_install: false
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
+        name: Setup Node
         with:
-          node-version: 20
+          node-version: 22.19.0
           cache: 'pnpm'
 
       - name: Install dependencies
@@ -35,24 +35,25 @@ jobs:
     needs: lint-test-build
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      id-token: write # Required for some provenance-based publishing
+      contents: write
+      id-token: write
+
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Nx Release needs history to determine versions
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
         with:
-          version: 8
+          version: 10.24.0
+          run_install: false
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
+        name: Setup Node
         with:
-          node-version: 18
-          registry-url: https://registry.npmjs.org/
+          node-version: 22.19.0
           cache: 'pnpm'
+          registry-url: 'https://registry.npmjs.org/'
 
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
@@ -65,3 +66,4 @@ jobs:
         run: npx nx release publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
