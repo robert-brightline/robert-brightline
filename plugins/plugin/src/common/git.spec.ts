@@ -3,8 +3,13 @@ import {
   gitEmail,
   githubPage,
   githubPageForDoc,
+  gitRepoName,
+  gitRepoUrl,
 } from './git.js';
 describe('git', () => {
+  const url = gitRepoUrl();
+  const repoName = gitRepoName(url);
+
   it('should get the your username', () => {
     expect(gitCurrentUsername()).toEqual('robert-brightline');
   });
@@ -13,14 +18,14 @@ describe('git', () => {
   });
 
   it('should get the github page url', () => {
-    expect(githubPage()).toEqual(
+    expect(githubPage(repoName)).toEqual(
       `https://${gitCurrentUsername()}.github.io`,
     );
   });
 
   it('should get the github doc page url', () => {
-    expect(githubPageForDoc('libs/some')).toEqual(
-      `${githubPage()}/libs/some`,
+    expect(githubPageForDoc(githubPage(repoName), 'libs/some')).toEqual(
+      `${githubPage(repoName)}/libs/some`,
     );
   });
 

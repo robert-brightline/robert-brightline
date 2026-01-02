@@ -2,9 +2,9 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig(() => ({
   root: __dirname,
-  cacheDir: '../../node_modules/.vite/<%- directory %>',
+  cacheDir: '../../node_modules/.vite/libs/names',
   test: {
-    name: '<%- fullProjectName %>',
+    name: '@robert-brightline/names',
     watch: false,
     globals: true,
     environment: 'node',

@@ -20,7 +20,8 @@
   ],
   "homepage": "https://robert-brightline.github.io",
   "scripts": {
-    "prepare": "husky"
+    "prepare": "husky",
+    "gen:lib": "npx nx g @robert-brightline/plugin:project library "
   },
   "dependencies": {
     "@nx/devkit": "22.3.3",

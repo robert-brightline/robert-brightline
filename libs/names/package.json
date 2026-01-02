@@ -1,20 +1,25 @@
 {
-  "name": "<%- fullProjectName %>",
+  "name": "@robert-brightline/names",
   "description": "- [ ] add project description",
-  "version": "<%- version %>",
-  "author": { 
-    "name": "<%- currentUsername %>", 
-    "email": "<%- email %>"
+  "version": "0.0.1",
+  "author": {
+    "name": "robert-brightline",
+    "email": "robert.brightline+names@gmail.com"
   },
-  "homepage": "<%- homepage %>",
+  "homepage": "https://github.com/robert-brightline/robert-brightline.git/libs/names",
   "publishConfig": {
     "access": "public",
     "tag": "latest"
   },
   "keywords": [
-    "<% shortProjectName %>"
+    ""
   ],
-  "funding": <%- JSON.stringify(funding) %>,
+  "funding": [
+    {
+      "type": "cashapp",
+      "url": "https://cash.app/$puqlib"
+    }
+  ],
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -22,7 +27,7 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "@<%- repositoryName %>/source": "./src/index.ts",
+      "@robert-brightline/source": "./src/index.ts",
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.js"
@@ -34,7 +39,7 @@
     "!**/*.tsbuildinfo"
   ],
   "nx": {
-    "sourceRoot": "<%- directory %>/src",
+    "sourceRoot": "libs/names/src",
     "targets": {
       "build": {
         "executor": "@nx/js:swc",
@@ -42,9 +47,9 @@
           "{options.outputPath}"
         ],
         "options": {
-          "outputPath": "<%- directory %>/dist",
-          "main": "<%- directory %>/src/index.ts",
-          "tsConfig": "<%- directory %>/tsconfig.lib.json",
+          "outputPath": "libs/names/dist",
+          "main": "libs/names/src/index.ts",
+          "tsConfig": "libs/names/tsconfig.lib.json",
           "skipTypeCheck": true,
           "stripLeadingPaths": true
         }

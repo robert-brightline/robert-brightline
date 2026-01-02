@@ -6,7 +6,7 @@ export default defineConfig(() => ({
   cacheDir: '../../node_modules/.vite/<%- directory %>',
   plugins: [],
   test: {
-    name: '<%- projectName %>',
+    name: '<%- fullProjectName %>',
     watch: false,
     globals: true,
     environment: 'node',

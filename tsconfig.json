@@ -8,6 +8,9 @@
     },
     {
       "path": "./libs/errors"
+    },
+    {
+      "path": "./libs/names"
     }
   ]
 }

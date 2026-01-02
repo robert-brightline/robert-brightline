@@ -1,10 +1,12 @@
-import { defineConfig } from 'vitest/config';
+/// <reference types='vitest' />
+import { defineConfig } from 'vite';
 
 export default defineConfig(() => ({
-  root: __dirname,
-  cacheDir: '../../node_modules/.vite/<%- directory %>',
+  root: import.meta.dirname,
+  cacheDir: '../../node_modules/.vite/libs/names',
+  plugins: [],
   test: {
-    name: '<%- fullProjectName %>',
+    name: '@robert-brightline/names',
     watch: false,
     globals: true,
     environment: 'node',
