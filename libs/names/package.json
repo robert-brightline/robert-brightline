@@ -9,7 +9,8 @@
   "homepage": "https://github.com/robert-brightline/robert-brightline.git/libs/names",
   "publishConfig": {
     "access": "public",
-    "tag": "latest"
+    "tag": "latest",
+    "provenance": true
   },
   "keywords": [
     ""

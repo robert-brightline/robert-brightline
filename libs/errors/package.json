@@ -10,7 +10,8 @@
   "homepage": "https://robert.brightline.github.io/libs/errors",
   "publishConfig": {
     "access": "public",
-    "tag": "latest"
+    "tag": "latest",
+    "provenance": true
   },
   "keywords": [
     "errors"

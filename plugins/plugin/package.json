@@ -1,6 +1,28 @@
 {
   "name": "@robert-brightline/plugin",
+  "description": "Utility function to create name variants.",
   "version": "0.0.1",
+  "author": {
+    "name": "robert-brightline",
+    "email": "robert.brightline+names@gmail.com"
+  },
+  "homepage": "https://github.com/robert-brightline/robert-brightline.git/libs/names",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest",
+    "provenance": true
+  },
+  "keywords": [
+    "nx",
+    "plugin",
+    "generators"
+  ],
+  "funding": [
+    {
+      "type": "cashapp",
+      "url": "https://cash.app/$puqlib"
+    }
+  ],
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
