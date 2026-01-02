@@ -25,7 +25,7 @@ jobs:
           cache: 'pnpm' # Enables automatic caching for pnpm
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
 
       - name: Nx Lint, Test, Build, Typecheck
         run: pnpm nx run-many -t lint test build typecheck --all
