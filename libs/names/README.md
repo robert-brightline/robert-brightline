@@ -9,7 +9,7 @@
 
 ## @robert-brightline/names
 
-- [ ] add description for @robert-brightline/names
+Utility function to create name variants
 
 ## Installation
 

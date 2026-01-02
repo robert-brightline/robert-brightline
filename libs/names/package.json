@@ -1,6 +1,6 @@
 {
   "name": "@robert-brightline/names",
-  "description": "- [ ] add project description",
+  "description": "Utility function to create name variants.",
   "version": "0.0.1",
   "author": {
     "name": "robert-brightline",
