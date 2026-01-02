@@ -28,7 +28,7 @@ jobs:
         run: pnpm install --no-frozen-lockfile
 
       - name: Nx Lint, Test, Build, Typecheck
-        run: pnpm nx run-many -t lint test build typecheck --all
+        run: npx nx run-many -t lint test build typecheck --all
 
   publish:
     needs: build-test-lint
@@ -58,9 +58,9 @@ jobs:
 
       # No need to rebuild if Nx Cloud is enabled, but kept for local safety
       - name: Build All
-        run: pnpm nx run-many -t build --all
+        run: npx nx run-many -t build --all
 
       - name: Publish to NPM
-        run: pnpm nx release publish
+        run: npx release publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
