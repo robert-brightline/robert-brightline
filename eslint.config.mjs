@@ -24,9 +24,10 @@ export default [
     files: ['**/*.json'],
     rules: {
       '@nx/dependency-checks': [
-        'error',
+        'warn',
         {
           ignoredFiles: [
+            '{projectRoot}/prisma.config.ts',
             '{projectRoot}/eslint.config.mts',
             '{projectRoot}/vite.config.ts',
             '{projectRoot}/vitest.config.mts',

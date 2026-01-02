@@ -1,6 +1,7 @@
 packages:
-  - 'apps/*'
+  - 'apis/*'
   - 'plugins/*'
+  - 'dbs/*'
   - 'libs/*'
 onlyBuiltDependencies:
   - '@swc/core'
