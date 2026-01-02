@@ -2,6 +2,7 @@
   "name": "@robert-brightline/plugin",
   "description": "Utility function to create name variants.",
   "version": "0.0.1",
+  "private": false,
   "author": {
     "name": "robert-brightline",
     "email": "robert.brightline+names@gmail.com"
@@ -9,8 +10,7 @@
   "homepage": "https://github.com/robert-brightline/robert-brightline.git/libs/names",
   "publishConfig": {
     "access": "public",
-    "tag": "latest",
-    "provenance": true
+    "tag": "latest"
   },
   "keywords": [
     "nx",
