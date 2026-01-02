@@ -11,6 +11,12 @@
     },
     {
       "path": "./libs/names"
+    },
+    {
+      "path": "./libs/types"
+    },
+    {
+      "path": "./libs/checks"
     }
   ]
 }

@@ -2,7 +2,6 @@ packages:
   - 'apps/*'
   - 'plugins/*'
   - 'libs/*'
-autoInstallPeers: true
 onlyBuiltDependencies:
   - '@swc/core'
   - 'esbuild'

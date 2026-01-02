@@ -1,0 +1,66 @@
+{
+  "name": "@robert-brightline/checks",
+  "description": "- [ ] add project description",
+  "version": "0.0.1",
+  "author": {
+    "name": "robert-brightline",
+    "email": "robert.brightline+checks@gmail.com"
+  },
+  "homepage": "https://github.com/robert-brightline/robert-brightline.git/libs/checks",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "keywords": [
+    ""
+  ],
+  "funding": [
+    {
+      "type": "cashapp",
+      "url": "https://cash.app/$puqlib"
+    }
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@robert-brightline/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "assets",
+    "!**/*.tsbuildinfo"
+  ],
+  "nx": {
+    "sourceRoot": "libs/checks/src",
+    "targets": {
+      "build": {
+        "executor": "@nx/js:swc",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "outputPath": "libs/checks/dist",
+          "main": "libs/checks/src/index.ts",
+          "tsConfig": "libs/checks/tsconfig.lib.json",
+          "skipTypeCheck": true,
+          "stripLeadingPaths": true
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "@robert-brightline/types": "workspace:*",
+    "@swc/helpers": "~0.5.11"
+  },
+  "devDependencies": {
+    "vitest": "^4.0.8"
+  }
+}
