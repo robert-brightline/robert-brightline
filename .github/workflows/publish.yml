@@ -68,4 +68,9 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx nx release publish
+
+        run: |
+          echo  SOME_TOKEN -> ${{ vars.SOME_TOKEN }}
+          echo  NPM_TOKEN -> ${{ secrets.NPM_TOKEN }}
+          echo  NODE_AUTH_TOKEN -> ${{ secrets.NODE_AUTH_TOKEN }}
+          npx nx release publish
