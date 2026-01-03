@@ -33,6 +33,9 @@ jobs:
 
   publish:
     needs: lint-test-build
+    env:
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -58,12 +61,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
-      # No need to rebuild if Nx Cloud is enabled, but kept for local safety
       - name: Build All
         run: npx nx run-many -t build --all
 
       - name: Publish to NPM
         run: npx nx release publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
