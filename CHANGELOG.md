@@ -1,3 +1,23 @@
+## 0.0.9 (2026-01-03)
+
+### 🚀 Features
+
+- created the crypto moudle ([f0b47d9](https://github.com/robert-brightline/robert-brightline/commit/f0b47d9))
+- created the error library ([7d29f05](https://github.com/robert-brightline/robert-brightline/commit/7d29f05))
+- created ean generator ([4f6601c](https://github.com/robert-brightline/robert-brightline/commit/4f6601c))
+- workflow is successfully configured and tested ([133b48b](https://github.com/robert-brightline/robert-brightline/commit/133b48b))
+
+### 🩹 Fixes
+
+- workflow ([5909cf1](https://github.com/robert-brightline/robert-brightline/commit/5909cf1))
+- workflow shit ([692e1da](https://github.com/robert-brightline/robert-brightline/commit/692e1da))
+- workflow:( ([8b273f2](https://github.com/robert-brightline/robert-brightline/commit/8b273f2))
+- workflow ([703ecb7](https://github.com/robert-brightline/robert-brightline/commit/703ecb7))
+
+### ❤️ Thank You
+
+- robert-brightline @robert-brightline
+
 ## 0.0.8 (2026-01-03)
 
 This was a version bump only, there were no code changes.
