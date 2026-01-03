@@ -23,6 +23,9 @@
     },
     {
       "path": "./apis/ims"
+    },
+    {
+      "path": "./libs/crypto"
     }
   ]
 }
