@@ -9,7 +9,7 @@
 
 ## @robert-brightline/ean
 
-- [ ] add description for @robert-brightline/ean
+Ean barcode generator
 
 ## Installation
 

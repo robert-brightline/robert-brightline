@@ -1,6 +1,6 @@
 {
   "name": "@robert-brightline/ean",
-  "description": "- [ ] add project description",
+  "description": "Ean barcode generator",
   "version": "0.0.9",
   "author": {
     "name": "robert-brightline",

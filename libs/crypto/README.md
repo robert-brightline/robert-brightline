@@ -10,7 +10,7 @@
 ## @robert-brightline/crypto
 
 
-Nodejs crypto module 
+Hasing and encription utilities
 
 
 ## Installation

@@ -1,6 +1,6 @@
 {
   "name": "@robert-brightline/crypto",
-  "description": "- [ ] add project description",
+  "description": "Hasing and encription utilities",
   "version": "0.0.9",
   "author": {
     "name": "robert-brightline",
@@ -61,6 +61,7 @@
     "bcrypt": "^6.0.0"
   },
   "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
     "vitest": "^4.0.8"
   }
 }

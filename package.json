@@ -21,6 +21,7 @@
   "homepage": "https://robert-brightline.github.io",
   "scripts": {
     "prepare": "husky",
+    "gen:doc": "npx typedoc",
     "gen:lib": "npx nx g @robert-brightline/plugin:project library "
   },
   "dependencies": {

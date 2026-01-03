@@ -3,7 +3,9 @@
     "entryPointStrategy": "packages",
     "entryPoints": [
         "libs/*",
-        "plugins/*"
+        "plugins/*",
+        "dbs",
+        "apis"
     ],
     "out": "docs",
     "excludeInternal": true,
