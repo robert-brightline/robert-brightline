@@ -1,9 +1,11 @@
 packages:
-  - 'apis/*'
-  - 'plugins/*'
-  - 'dbs/*'
-  - 'libs/*'
+  - apis/*
+  - plugins/*
+  - dbs/*
+  - libs/*
+
 onlyBuiltDependencies:
   - '@swc/core'
-  - 'esbuild'
-  - 'nx'
+  - bcrypt
+  - esbuild
+  - nx

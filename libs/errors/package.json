@@ -53,6 +53,24 @@
           "tsConfig": "libs/errors/tsconfig.lib.json",
           "skipTypeCheck": false,
           "stripLeadingPaths": true
+        },
+        "dependsOn": [
+          "prebuild"
+        ]
+      },
+      "prebuild": {
+        "executor": "nx:run-commands",
+        "inputs": [
+          "default"
+        ],
+        "outputs": [
+          "{projectRoot}/src/lib/errors.ts"
+        ],
+        "options": {
+          "commands": [
+            "node ./scripts/build.mjs"
+          ],
+          "cwd": "{projectRoot}"
         }
       }
     }
