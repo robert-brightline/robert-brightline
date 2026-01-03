@@ -26,6 +26,9 @@
     },
     {
       "path": "./libs/crypto"
+    },
+    {
+      "path": "./libs/ean"
     }
   ]
 }
