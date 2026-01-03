@@ -2,9 +2,6 @@
 
 
 
-# Tokesn
-.npmrc
-
 # compiled output
 dist
 tmp
