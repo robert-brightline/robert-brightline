@@ -9,7 +9,7 @@
 
 ## @robert-brightline/types
 
-- [ ] add description for @robert-brightline/types
+Common types
 
 ## Installation
 

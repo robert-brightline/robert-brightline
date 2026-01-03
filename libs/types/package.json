@@ -1,6 +1,6 @@
 {
   "name": "@robert-brightline/types",
-  "description": "- [ ] add project description",
+  "description": "Common types",
   "version": "0.0.1",
   "author": {
     "name": "robert-brightline",
@@ -50,7 +50,7 @@
           "outputPath": "libs/types/dist",
           "main": "libs/types/src/index.ts",
           "tsConfig": "libs/types/tsconfig.lib.json",
-             "skipTypeCheck": false,
+          "skipTypeCheck": false,
           "stripLeadingPaths": true
         }
       }
