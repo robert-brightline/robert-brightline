@@ -63,8 +63,7 @@ jobs:
         run: npx nx run-many -t build --all
 
       - name: Publish to NPM
-        run: npx nx release publish --verbose
+        run: npx nx release publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_CONFIG_PROVENANCE: true
