@@ -1,7 +1,7 @@
 {
   "name": "@robert-brightline/crypto",
   "description": "Hasing and encription utilities",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "author": {
     "name": "robert-brightline",
     "email": "robert.brightline+crypto@gmail.com"

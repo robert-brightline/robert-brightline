@@ -1,3 +1,17 @@
+## 0.0.10 (2026-01-03)
+
+### 🚀 Features
+
+- generated the project structures ([17afac2](https://github.com/robert-brightline/robert-brightline/commit/17afac2))
+
+### 🩹 Fixes
+
+- fixed readme.mds ([14b9245](https://github.com/robert-brightline/robert-brightline/commit/14b9245))
+
+### ❤️ Thank You
+
+- robert-brightline @robert-brightline
+
 ## 0.0.9 (2026-01-03)
 
 ### 🚀 Features
