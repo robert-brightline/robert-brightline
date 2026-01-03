@@ -1,3 +1,13 @@
+## 0.0.4 (2026-01-03)
+
+### 🩹 Fixes
+
+- fixed the generated prisma and zod code ([192be95](https://github.com/robert-brightline/robert-brightline/commit/192be95))
+
+### ❤️ Thank You
+
+- robert-brightline @robert-brightline
+
 ## 0.0.3 (2026-01-03)
 
 ### 🩹 Fixes

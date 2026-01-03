@@ -1,7 +1,7 @@
 {
   "name": "@robert-brightline/errors",
   "description": "A standardized collection of custom error classes designed to unify exception handling and improve error traceability across the distributed system",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": {
     "email": "robert.brightline+errors@gmail.com",
     "name": "Robert Brightline",
