@@ -1,3 +1,14 @@
+## 0.0.3 (2026-01-03)
+
+### 🩹 Fixes
+
+- pre-push script ([c248d6b](https://github.com/robert-brightline/robert-brightline/commit/c248d6b))
+- pre-push script ([1fb6799](https://github.com/robert-brightline/robert-brightline/commit/1fb6799))
+
+### ❤️ Thank You
+
+- robert-brightline @robert-brightline
+
 ## 0.0.2 (2026-01-03)
 
 This was a version bump only, there were no code changes.
