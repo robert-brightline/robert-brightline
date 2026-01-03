@@ -48,7 +48,7 @@
         ],
         "options": {
           "outputPath": "apis/ims/dist",
-          "main": "apis/ims/src/index.ts",
+          "main": "apis/ims/src/main.ts",
           "tsConfig": "apis/ims/tsconfig.lib.json",
           "skipTypeCheck": false,
           "stripLeadingPaths": true
