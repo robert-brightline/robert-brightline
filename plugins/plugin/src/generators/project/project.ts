@@ -1,4 +1,8 @@
-import { formatFiles, generateFiles, type Tree } from '@nx/devkit';
+import {
+  formatFiles,
+  generateFiles,
+  type Tree
+} from '@nx/devkit';
 import { projectOptions } from './project-options';
 import type { ProjectGeneratorSchema } from './schema';
 import { updateTsconfigReferences } from './update-tsconfig';
@@ -17,6 +21,7 @@ export async function projectGenerator(
   );
 
   updateTsconfigReferences(tree, normalizedProjectOptions);
+
   await formatFiles(tree);
 }
 

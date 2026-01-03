@@ -1,0 +1,87 @@
+{
+  "name": "@robert-brightline/hr",
+  "description": "- [ ] add project description",
+  "version": "0.0.1",
+  "author": {
+    "name": "robert-brightline",
+    "email": "robert.brightline+hr@gmail.com"
+  },
+  "homepage": "https://github.com/robert-brightline/robert-brightline.git/apis/hr",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "keywords": [
+    ""
+  ],
+  "funding": [
+    {
+      "type": "cashapp",
+      "url": "https://cash.app/$puqlib"
+    }
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@robert-brightline/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "assets",
+    "!**/*.tsbuildinfo"
+  ],
+  "nx": {
+    "sourceRoot": "apis/hr/src",
+    "targets": {
+      "build": {
+        "executor": "@nx/js:swc",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "outputPath": "apis/hr/dist",
+          "main": "apis/hr/src/index.ts",
+          "tsConfig": "apis/hr/tsconfig.lib.json",
+          "skipTypeCheck": false,
+          "stripLeadingPaths": true
+        }
+      },
+      "serve": {
+        "executor": "@nx/js:node",
+        "options": {
+          "buildTarget": "@robert-brightline/hr:build",
+          "watch": true
+        },
+        "configurations": {
+          "production": {
+            "buildTarget": "@robert-brightline/hr:build:production",
+            "watch": false
+          }
+        }
+      }
+    }
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^11.1.11",
+    "@nestjs/config": "^4.0.2",
+    "@nestjs/core": "^11.1.11",
+    "@nestjs/platform-express": "^11.1.11",
+    "@nestjs/swagger": "^11.2.3",
+    "helmet": "^8.1.0",
+    "@robert-brightline/hr-db": "workspace:*"
+  },
+  "dependencies": {
+    "@swc/helpers": "~0.5.11"
+  },
+  "devDependencies": {
+    "vitest": "^4.0.8"
+  }
+}

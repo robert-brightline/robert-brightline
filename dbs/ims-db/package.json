@@ -1,7 +1,7 @@
 {
   "name": "@robert-brightline/ims-db",
-  "description": "Inventory management database",
-  "version": "0.0.9",
+  "description": "- [ ] add project description",
+  "version": "0.0.1",
   "author": {
     "name": "robert-brightline",
     "email": "robert.brightline+ims-db@gmail.com"
@@ -12,8 +12,7 @@
     "tag": "latest"
   },
   "keywords": [
-    "database",
-    "prisma"
+    ""
   ],
   "funding": [
     {
@@ -47,6 +46,7 @@
   "files": [
     "dist",
     "assets",
+    "prisma",
     "!**/*.tsbuildinfo"
   ],
   "nx": {
@@ -64,6 +64,13 @@
           "skipTypeCheck": false,
           "stripLeadingPaths": true
         }
+      },
+      "prisma-generate": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "npx prisma generate",
+          "cwd": "{projectRoot}"
+        }
       }
     }
   },
@@ -72,6 +79,7 @@
     "zod": "4.3.4"
   },
   "dependencies": {
+    "@prisma/adapter-pg": "^7.2.0",
     "@swc/helpers": "~0.5.11"
   },
   "devDependencies": {

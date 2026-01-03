@@ -1,0 +1,92 @@
+{
+  "name": "@robert-brightline/auth-db",
+  "description": "- [ ] add project description",
+  "version": "0.0.1",
+  "author": {
+    "name": "robert-brightline",
+    "email": "robert.brightline+auth-db@gmail.com"
+  },
+  "homepage": "https://github.com/robert-brightline/robert-brightline.git/dbs/auth-db",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "keywords": [
+    ""
+  ],
+  "funding": [
+    {
+      "type": "cashapp",
+      "url": "https://cash.app/$puqlib"
+    }
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@robert-brightline/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./prisma": {
+      "types": "./dist/generated/prisma/client.d.ts",
+      "import": "./dist/generated/prisma/client.js",
+      "default": "./dist/generated/prisma/client.js"
+    },
+    "./zod": {
+      "types": "./dist/generated/zod/index.d.ts",
+      "import": "./dist/generated/zod/index.js",
+      "default": "./dist/generated/zod/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "assets",
+    "prisma",
+    "!**/*.tsbuildinfo"
+  ],
+  "nx": {
+    "sourceRoot": "dbs/auth-db/src",
+    "targets": {
+      "build": {
+        "executor": "@nx/js:swc",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "outputPath": "dbs/auth-db/dist",
+          "main": "dbs/auth-db/src/index.ts",
+          "tsConfig": "dbs/auth-db/tsconfig.lib.json",
+          "skipTypeCheck": false,
+          "stripLeadingPaths": true
+        }
+      },
+      "prisma-generate": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "npx prisma generate",
+          "cwd": "{projectRoot}"
+        }
+      }
+    }
+  },
+  "peerDependencies": {
+    "@prisma/client": "7.2.0",
+    "zod": "4.3.4"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.2.0",
+    "@swc/helpers": "~0.5.11"
+  },
+  "devDependencies": {
+    "dotenv": "^17.2.3",
+    "prisma": "^7.2.0",
+    "prisma-zod-generator": "^2.1.2",
+    "vitest": "^4.0.8",
+    "zod-prisma-types": "^3.3.10"
+  }
+}

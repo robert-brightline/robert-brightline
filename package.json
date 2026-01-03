@@ -22,7 +22,9 @@
   "scripts": {
     "prepare": "husky",
     "gen:doc": "npx typedoc",
-    "gen:lib": "npx nx g @robert-brightline/plugin:project library "
+    "gen:lib": "npx nx g @robert-brightline/plugin:project library ",
+    "gen:prisma": "npx nx g @robert-brightline/plugin:project prisma ",
+    "gen:api": "npx nx g @robert-brightline/plugin:project api "
   },
   "dependencies": {
     "@nx/devkit": "22.3.3",

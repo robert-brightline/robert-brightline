@@ -29,6 +29,33 @@
     },
     {
       "path": "./libs/ean"
+    },
+    {
+      "path": "./dbs/auth-db"
+    },
+    {
+      "path": "./dbs/crm-db"
+    },
+    {
+      "path": "./dbs/pms-db"
+    },
+    {
+      "path": "./dbs/hr-db"
+    },
+    {
+      "path": "./apis/hr"
+    },
+    {
+      "path": "./apis/auth"
+    },
+    {
+      "path": "./apis/crm"
+    },
+    {
+      "path": "./apis/pms"
+    },
+    {
+      "path": "./apis/auth-db"
     }
   ]
 }

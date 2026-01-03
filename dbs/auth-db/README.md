@@ -1,0 +1,34 @@
+![npm version](https://img.shields.io/npm/v/@robert-brightline/auth-db)
+![npm downloads](https://img.shields.io/npm/dm/@robert-brightline/auth-db)
+![Build Status](https://img.shields.io/github/actions/workflow/status/robert-brightline/robert-brightline/ci.yml)
+![bundle size](https://img.shields.io/bundlephobia/min/@robert-brightline/auth-db)
+
+<p align="center">
+  <img src="./assets/favicon.png" alt="Logo"  width="200" height="200" style="border-radius: 100%"/>
+</p>
+
+## @robert-brightline/auth-db
+
+- [ ] add description for @robert-brightline/auth-db
+
+## Installation
+
+```bash
+pnpm add @robert-brightline/auth-db
+```
+
+## 💖 Support My Work
+
+If you find my open-source contributions or the **@robert-brightline/auth-db** project helpful, consider supporting my work. Your sponsorship helps me maintain these projects and explore new enterprise patterns.
+
+![CashApp](https://img.shields.io/badge/Sponsor%20me-%23EA4AAA.svg?style=for-the-badge&logo=github-sponsors&logoColor=white)(https://cash.app/$puqlib)
+
+---
+
+## 🤝 Connect with Me
+
+<p align="left">
+<a href="mailto:robert.brightline+auth-db@gmail.com?subject=@robert-brightline/auth-db">
+<img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
+</a>
+</p>

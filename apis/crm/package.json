@@ -1,0 +1,87 @@
+{
+  "name": "@robert-brightline/crm",
+  "description": "- [ ] add project description",
+  "version": "0.0.1",
+  "author": {
+    "name": "robert-brightline",
+    "email": "robert.brightline+crm@gmail.com"
+  },
+  "homepage": "https://github.com/robert-brightline/robert-brightline.git/apis/crm",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "keywords": [
+    ""
+  ],
+  "funding": [
+    {
+      "type": "cashapp",
+      "url": "https://cash.app/$puqlib"
+    }
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@robert-brightline/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "assets",
+    "!**/*.tsbuildinfo"
+  ],
+  "nx": {
+    "sourceRoot": "apis/crm/src",
+    "targets": {
+      "build": {
+        "executor": "@nx/js:swc",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "outputPath": "apis/crm/dist",
+          "main": "apis/crm/src/index.ts",
+          "tsConfig": "apis/crm/tsconfig.lib.json",
+          "skipTypeCheck": false,
+          "stripLeadingPaths": true
+        }
+      },
+      "serve": {
+        "executor": "@nx/js:node",
+        "options": {
+          "buildTarget": "@robert-brightline/crm:build",
+          "watch": true
+        },
+        "configurations": {
+          "production": {
+            "buildTarget": "@robert-brightline/crm:build:production",
+            "watch": false
+          }
+        }
+      }
+    }
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^11.1.11",
+    "@nestjs/config": "^4.0.2",
+    "@nestjs/core": "^11.1.11",
+    "@nestjs/platform-express": "^11.1.11",
+    "@nestjs/swagger": "^11.2.3",
+    "helmet": "^8.1.0",
+    "@robert-brightline/crm-db": "workspace:*"
+  },
+  "dependencies": {
+    "@swc/helpers": "~0.5.11"
+  },
+  "devDependencies": {
+    "vitest": "^4.0.8"
+  }
+}

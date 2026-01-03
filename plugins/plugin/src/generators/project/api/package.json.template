@@ -1,0 +1,82 @@
+{
+  "name": "<%- fullProjectName %>",
+  "description": "- [ ] add project description",
+  "version": "<%- version %>",
+  "author": { 
+    "name": "<%- currentUsername %>", 
+    "email": "<%- email %>"
+  },
+  "homepage": "<%- homepage %>",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "keywords": [
+    "<% shortProjectName %>"
+  ],
+  "funding": <%- JSON.stringify(funding) %>,
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@<%- repositoryName %>/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "assets",
+    "!**/*.tsbuildinfo"
+  ],
+  "nx": {
+    "sourceRoot": "<%- directory %>/src",
+    "targets": {
+      "build": {
+        "executor": "@nx/js:swc",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "outputPath": "<%- directory %>/dist",
+          "main": "<%- directory %>/src/index.ts",
+          "tsConfig": "<%- directory %>/tsconfig.lib.json",
+          "skipTypeCheck": false,
+          "stripLeadingPaths": true
+        }
+      },
+      "serve": {
+        "executor": "@nx/js:node",
+        "options": {
+          "buildTarget": "<%- fullProjectName %>:build",
+          "watch": true
+        },
+        "configurations": {
+          "production": {
+            "buildTarget": "<%- fullProjectName %>:build:production",
+            "watch": false
+          }
+        }
+      }
+    }
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^11.1.11",
+    "@nestjs/config": "^4.0.2",
+    "@nestjs/core": "^11.1.11",
+    "@nestjs/platform-express": "^11.1.11",
+    "@nestjs/swagger": "^11.2.3",
+    "helmet": "^8.1.0",
+    "<%- fullProjectName %>-db": "workspace:*",
+  },
+  "dependencies": {
+    "@swc/helpers": "~0.5.11"
+  },
+  "devDependencies": {
+    "vitest": "^4.0.8"
+  }
+}

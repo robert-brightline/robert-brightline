@@ -1,7 +1,7 @@
 {
   "name": "@robert-brightline/ims",
-  "description": "Inventory management system module",
-  "version": "0.0.9",
+  "description": "- [ ] add project description",
+  "version": "0.0.1",
   "author": {
     "name": "robert-brightline",
     "email": "robert.brightline+ims@gmail.com"
@@ -12,7 +12,7 @@
     "tag": "latest"
   },
   "keywords": [
-    "inventory"
+    ""
   ],
   "funding": [
     {
@@ -48,7 +48,7 @@
         ],
         "options": {
           "outputPath": "apis/ims/dist",
-          "main": "apis/ims/src/main.ts",
+          "main": "apis/ims/src/index.ts",
           "tsConfig": "apis/ims/tsconfig.lib.json",
           "skipTypeCheck": false,
           "stripLeadingPaths": true
@@ -75,7 +75,8 @@
     "@nestjs/core": "^11.1.11",
     "@nestjs/platform-express": "^11.1.11",
     "@nestjs/swagger": "^11.2.3",
-    "helmet": "^8.1.0"
+    "helmet": "^8.1.0",
+    "@robert-brightline/ims-db": "workspace:*"
   },
   "dependencies": {
     "@swc/helpers": "~0.5.11"
