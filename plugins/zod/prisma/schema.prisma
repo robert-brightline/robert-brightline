@@ -1,0 +1,97 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator zod {
+  provider = "zod"
+  output   = "../generated/zod"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Status {
+  ACTIVE
+  PASSIVE
+}
+
+model Category {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  name String @unique @db.VarChar(255)
+
+  parent   Category? @relation("children", fields: [parentId], references: [id])
+  parentId Int?
+
+  children Category[] @relation("children")
+  products Product[]
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  uuid      String    @default(uuid(7)) @db.Uuid
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  /// @email
+  username String
+
+  /// @password
+  password String
+
+  /// @internal 
+  updatedProducts Product[] @relation("Updater")
+
+  /// @internal 
+  createdProducts Product[] @relation("Creater")
+}
+
+model Product {
+  id        Int       @id @default(autoincrement())
+  uuid      String    @default(uuid(7)) @db.Uuid
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  name        String  @unique @db.VarChar(255)
+  description String?
+
+  /// @upc
+  upc String @unique
+
+  /// @min(6) @max(13)
+  sku String @unique
+
+  attributes Json?
+
+  quantity Int
+
+  price Decimal @db.Decimal(8, 6)
+
+  /// @lessThan(price)
+  cost Decimal @db.Decimal(8, 6)
+
+  active Boolean?
+
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
+
+  /// @internal
+  createdBy User @relation("Creater", fields: [createdById], references: [id])
+
+  /// @internal
+  createdById Int
+
+  /// @internal
+  updatedBy User @relation("Updater", fields: [updatedById], references: [id])
+
+  /// @internal
+  updatedById Int
+}

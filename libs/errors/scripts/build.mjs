@@ -105,6 +105,7 @@ const listOfErrors = new Set([
   'KeyError',
   'NotCallable',
   'Assertion',
+  'Unsupported',
 ]);
 
 const generatedErrors = [...listOfErrors].map(printErrorClass).join('\n');

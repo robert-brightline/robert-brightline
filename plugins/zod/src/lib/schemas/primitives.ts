@@ -1,13 +1,15 @@
 import z from 'zod';
 
 export const str = () => z.string();
+
+export const jwt = () => z.jwt();
+export const url = () => z.url();
+
 export const uuid = () => z.uuid();
 export const uuid4 = () => z.uuidv4();
 export const uuid6 = () => z.uuidv6();
 export const uuid7 = () => z.uuidv7();
 export const ulid = () => z.ulid();
-export const jwt = () => z.jwt();
-export const url = () => z.url();
 
 export const name = () => str().max(255);
 export const desc = () => str();
@@ -52,6 +54,7 @@ export const sha512 = () => z.hash('sha512');
 export const dir = () => z.enum(['ASC', 'DESC']);
 
 export const binary = () => int().min(0).max(1);
+export const percent = () => num().min(0).max(100);
 
 export const nrange = (min: number, max: number) => num().min(min).max(max);
 export const irange = (min: number, max: number) => int().min(min).max(max);

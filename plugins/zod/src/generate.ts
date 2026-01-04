@@ -1,10 +1,21 @@
 import helper from '@prisma/generator-helper';
+import { mkdir, writeFile } from 'fs/promises';
+import { join } from 'path';
 
 helper.generatorHandler({
   onGenerate: async (options) => {
-    // - [ ] implement the zod schema generators
-    console.log(options.dmmf.datamodel.models.map((e) => e.name));
-    console.log(options.dmmf.datamodel.enums.map((e) => e.name));
+    // const datamodel = options.dmmf.datamodel;
+    // const models = datamodel.models;
+    // const enums = datamodel.enums;
+    const output = options.generator.output?.value ?? '../src/zod';
+
+    try {
+      await mkdir(output, { recursive: true });
+    } catch {
+      // Directory already exist.
+    }
+
+    await writeFile(join(output, 'zod.ts'), '/// Generated zod');
   },
 
   onManifest: () => ({

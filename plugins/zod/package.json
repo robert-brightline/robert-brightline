@@ -1,6 +1,7 @@
+
 {
   "name": "@robert-brightline/zod",
-  "description": "- [ ] add project description",
+  "description": "Common zod schemas and prisma zod schema generator",
   "version": "0.0.1",
   "author": {
     "name": "robert-brightline",
@@ -63,6 +64,9 @@
   "dependencies": {
     "@prisma/client": "^7.2.0",
     "@prisma/generator-helper": "^7.2.0",
+    "@robert-brightline/errors": "workspace:*",
+    "@robert-brightline/types": "workspace:*",
+    "@robert-brightline/zod": "workspace:*",
     "@swc/helpers": "~0.5.11",
     "zod": "^4.3.4"
   },

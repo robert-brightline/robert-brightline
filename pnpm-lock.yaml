@@ -506,6 +506,15 @@ importers:
       '@prisma/generator-helper':
         specifier: ^7.2.0
         version: 7.2.0
+      '@robert-brightline/errors':
+        specifier: workspace:*
+        version: link:../../libs/errors
+      '@robert-brightline/types':
+        specifier: workspace:*
+        version: link:../../libs/types
+      '@robert-brightline/zod':
+        specifier: workspace:*
+        version: 'link:'
       '@swc/helpers':
         specifier: ~0.5.11
         version: 0.5.18

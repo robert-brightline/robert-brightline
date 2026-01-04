@@ -2,10 +2,10 @@
   "editor.codeActionsOnSave": {
     "source.addMissingImports.ts": "always",
     "source.fixAll.ts": "always",
-    "source.fixAll.eslint": true,
-    "source.organizeImports": "always",
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit",
     "source.removeUnusedImports": "always",
-    "source.sortImports": "always",
+    "source.sortImports": "always"
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "eslint.validate": [

@@ -9,7 +9,7 @@
 
 ## @robert-brightline/zod
 
-- [ ] add description for @robert-brightline/zod
+- Common zod schemas and prisma-zod schema generator
 
 ## Installation
 

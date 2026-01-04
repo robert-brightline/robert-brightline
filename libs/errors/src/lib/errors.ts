@@ -411,3 +411,8 @@ export class AssertionError extends BaseError {
        super(`AssertionError: ${message}`, 'AssertionError');
    }
 }
+export class UnsupportedError extends BaseError {
+   constructor(message = '') {
+       super(`UnsupportedError: ${message}`, 'UnsupportedError');
+   }
+}
