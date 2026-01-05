@@ -7,17 +7,45 @@ generator client {
   output   = "../src/prisma"
 }
 
+
 generator zod {
   provider = "zod"
   output   = "../src/zod"
 }
 
+model Category {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  /// @internal
+  sampleCategories Sample[] @relation("Categories")
+
+  /// @internal
+  sampleCategory Sample[] @relation("Category")
+}
+
 model Sample {
-  id        Int       @id @default(autoincrement())
-  uuid      String    @unique @default(uuid(7))
+  id   Int    @id @default(autoincrement())
+  uuid String @unique @default(uuid(7))
+
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  name String @unique
+  name String @unique @db.VarChar(255)
+
+  price Decimal @db.Decimal(8, 6)
+
+  quantity Int
+
+  active Boolean
+
+  extras Json
+
+  tags String[]
+
+  category   Category @relation("Category", fields: [categoryId], references: [id])
+  categoryId Int
+
+  categories Category[] @relation("Categories")
 }

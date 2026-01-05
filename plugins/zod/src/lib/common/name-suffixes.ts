@@ -1,18 +1,21 @@
 export const nameSuffixes = {
   Create: 'Create',
   Update: 'Update',
-  Select: 'Select',
-  Omit: 'Omit',
-  Include: 'Include',
+  Projection: 'Projection',
+
   Field: 'Field',
   Enum: 'Enum',
   Where: 'Where',
   Order: 'Order',
+
+  // Prisma filter for the enum tyeps
+  EnumFilter: 'EnumFilter',
+  EnumArrayFilter: 'EnumArrayFilter',
+
   //
   OwnCreate: 'OwnCreate',
   OwnUpdate: 'OwnUpdate',
-  OwnSelect: 'OwnSelect',
-  OwnOmit: 'OwnOmit',
+  OwnProjection: 'OwnProjection',
   OwnWhere: 'OwnWhere',
   OwnOrder: 'OwnOrder',
 
@@ -22,8 +25,8 @@ export const nameSuffixes = {
   RelationUpdate: 'RelationUpdate',
   RelationManyUpdate: 'RelationManyUpdate',
 
-  RelationSelect: 'RelationSelect',
-  RelationInclude: 'RelationInclude',
+  RelationProjection: 'RelationProjection',
+  RelationManyProjection: 'RelationManyProjection',
 };
 
 export type NameSuffixes = typeof nameSuffixes;

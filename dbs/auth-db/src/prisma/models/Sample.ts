@@ -28,10 +28,16 @@ export type AggregateSample = {
 
 export type SampleAvgAggregateOutputType = {
   id: number | null
+  price: runtime.Decimal | null
+  quantity: number | null
+  categoryId: number | null
 }
 
 export type SampleSumAggregateOutputType = {
   id: number | null
+  price: runtime.Decimal | null
+  quantity: number | null
+  categoryId: number | null
 }
 
 export type SampleMinAggregateOutputType = {
@@ -41,6 +47,10 @@ export type SampleMinAggregateOutputType = {
   updatedAt: Date | null
   deletedAt: Date | null
   name: string | null
+  price: runtime.Decimal | null
+  quantity: number | null
+  active: boolean | null
+  categoryId: number | null
 }
 
 export type SampleMaxAggregateOutputType = {
@@ -50,6 +60,10 @@ export type SampleMaxAggregateOutputType = {
   updatedAt: Date | null
   deletedAt: Date | null
   name: string | null
+  price: runtime.Decimal | null
+  quantity: number | null
+  active: boolean | null
+  categoryId: number | null
 }
 
 export type SampleCountAggregateOutputType = {
@@ -59,16 +73,28 @@ export type SampleCountAggregateOutputType = {
   updatedAt: number
   deletedAt: number
   name: number
+  price: number
+  quantity: number
+  active: number
+  extras: number
+  tags: number
+  categoryId: number
   _all: number
 }
 
 
 export type SampleAvgAggregateInputType = {
   id?: true
+  price?: true
+  quantity?: true
+  categoryId?: true
 }
 
 export type SampleSumAggregateInputType = {
   id?: true
+  price?: true
+  quantity?: true
+  categoryId?: true
 }
 
 export type SampleMinAggregateInputType = {
@@ -78,6 +104,10 @@ export type SampleMinAggregateInputType = {
   updatedAt?: true
   deletedAt?: true
   name?: true
+  price?: true
+  quantity?: true
+  active?: true
+  categoryId?: true
 }
 
 export type SampleMaxAggregateInputType = {
@@ -87,6 +117,10 @@ export type SampleMaxAggregateInputType = {
   updatedAt?: true
   deletedAt?: true
   name?: true
+  price?: true
+  quantity?: true
+  active?: true
+  categoryId?: true
 }
 
 export type SampleCountAggregateInputType = {
@@ -96,6 +130,12 @@ export type SampleCountAggregateInputType = {
   updatedAt?: true
   deletedAt?: true
   name?: true
+  price?: true
+  quantity?: true
+  active?: true
+  extras?: true
+  tags?: true
+  categoryId?: true
   _all?: true
 }
 
@@ -192,6 +232,12 @@ export type SampleGroupByOutputType = {
   updatedAt: Date
   deletedAt: Date | null
   name: string
+  price: runtime.Decimal
+  quantity: number
+  active: boolean
+  extras: runtime.JsonValue
+  tags: string[]
+  categoryId: number
   _count: SampleCountAggregateOutputType | null
   _avg: SampleAvgAggregateOutputType | null
   _sum: SampleSumAggregateOutputType | null
@@ -224,6 +270,14 @@ export type SampleWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Sample"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Sample"> | Date | string | null
   name?: Prisma.StringFilter<"Sample"> | string
+  price?: Prisma.DecimalFilter<"Sample"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quantity?: Prisma.IntFilter<"Sample"> | number
+  active?: Prisma.BoolFilter<"Sample"> | boolean
+  extras?: Prisma.JsonFilter<"Sample">
+  tags?: Prisma.StringNullableListFilter<"Sample">
+  categoryId?: Prisma.IntFilter<"Sample"> | number
+  category?: Prisma.XOR<Prisma.CategoryScalarRelationFilter, Prisma.CategoryWhereInput>
+  categories?: Prisma.CategoryListRelationFilter
 }
 
 export type SampleOrderByWithRelationInput = {
@@ -233,6 +287,14 @@ export type SampleOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
+  price?: Prisma.SortOrder
+  quantity?: Prisma.SortOrder
+  active?: Prisma.SortOrder
+  extras?: Prisma.SortOrder
+  tags?: Prisma.SortOrder
+  categoryId?: Prisma.SortOrder
+  category?: Prisma.CategoryOrderByWithRelationInput
+  categories?: Prisma.CategoryOrderByRelationAggregateInput
 }
 
 export type SampleWhereUniqueInput = Prisma.AtLeast<{
@@ -245,6 +307,14 @@ export type SampleWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Sample"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Sample"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Sample"> | Date | string | null
+  price?: Prisma.DecimalFilter<"Sample"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quantity?: Prisma.IntFilter<"Sample"> | number
+  active?: Prisma.BoolFilter<"Sample"> | boolean
+  extras?: Prisma.JsonFilter<"Sample">
+  tags?: Prisma.StringNullableListFilter<"Sample">
+  categoryId?: Prisma.IntFilter<"Sample"> | number
+  category?: Prisma.XOR<Prisma.CategoryScalarRelationFilter, Prisma.CategoryWhereInput>
+  categories?: Prisma.CategoryListRelationFilter
 }, "id" | "uuid" | "name">
 
 export type SampleOrderByWithAggregationInput = {
@@ -254,6 +324,12 @@ export type SampleOrderByWithAggregationInput = {
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
+  price?: Prisma.SortOrder
+  quantity?: Prisma.SortOrder
+  active?: Prisma.SortOrder
+  extras?: Prisma.SortOrder
+  tags?: Prisma.SortOrder
+  categoryId?: Prisma.SortOrder
   _count?: Prisma.SampleCountOrderByAggregateInput
   _avg?: Prisma.SampleAvgOrderByAggregateInput
   _max?: Prisma.SampleMaxOrderByAggregateInput
@@ -271,6 +347,12 @@ export type SampleScalarWhereWithAggregatesInput = {
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Sample"> | Date | string
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Sample"> | Date | string | null
   name?: Prisma.StringWithAggregatesFilter<"Sample"> | string
+  price?: Prisma.DecimalWithAggregatesFilter<"Sample"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quantity?: Prisma.IntWithAggregatesFilter<"Sample"> | number
+  active?: Prisma.BoolWithAggregatesFilter<"Sample"> | boolean
+  extras?: Prisma.JsonWithAggregatesFilter<"Sample">
+  tags?: Prisma.StringNullableListFilter<"Sample">
+  categoryId?: Prisma.IntWithAggregatesFilter<"Sample"> | number
 }
 
 export type SampleCreateInput = {
@@ -279,6 +361,13 @@ export type SampleCreateInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   name: string
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  quantity: number
+  active: boolean
+  extras: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  tags?: Prisma.SampleCreatetagsInput | string[]
+  category: Prisma.CategoryCreateNestedOneWithoutSampleCategoryInput
+  categories?: Prisma.CategoryCreateNestedManyWithoutSampleCategoriesInput
 }
 
 export type SampleUncheckedCreateInput = {
@@ -288,6 +377,13 @@ export type SampleUncheckedCreateInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   name: string
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  quantity: number
+  active: boolean
+  extras: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  tags?: Prisma.SampleCreatetagsInput | string[]
+  categoryId: number
+  categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutSampleCategoriesInput
 }
 
 export type SampleUpdateInput = {
@@ -296,6 +392,13 @@ export type SampleUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  extras?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  tags?: Prisma.SampleUpdatetagsInput | string[]
+  category?: Prisma.CategoryUpdateOneRequiredWithoutSampleCategoryNestedInput
+  categories?: Prisma.CategoryUpdateManyWithoutSampleCategoriesNestedInput
 }
 
 export type SampleUncheckedUpdateInput = {
@@ -305,6 +408,13 @@ export type SampleUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  extras?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  tags?: Prisma.SampleUpdatetagsInput | string[]
+  categoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  categories?: Prisma.CategoryUncheckedUpdateManyWithoutSampleCategoriesNestedInput
 }
 
 export type SampleCreateManyInput = {
@@ -314,6 +424,12 @@ export type SampleCreateManyInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   name: string
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  quantity: number
+  active: boolean
+  extras: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  tags?: Prisma.SampleCreatetagsInput | string[]
+  categoryId: number
 }
 
 export type SampleUpdateManyMutationInput = {
@@ -322,6 +438,11 @@ export type SampleUpdateManyMutationInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  extras?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  tags?: Prisma.SampleUpdatetagsInput | string[]
 }
 
 export type SampleUncheckedUpdateManyInput = {
@@ -331,6 +452,30 @@ export type SampleUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  extras?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  tags?: Prisma.SampleUpdatetagsInput | string[]
+  categoryId?: Prisma.IntFieldUpdateOperationsInput | number
+}
+
+export type SampleListRelationFilter = {
+  every?: Prisma.SampleWhereInput
+  some?: Prisma.SampleWhereInput
+  none?: Prisma.SampleWhereInput
+}
+
+export type SampleOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
+export type StringNullableListFilter<$PrismaModel = never> = {
+  equals?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
+  has?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
+  hasEvery?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  hasSome?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  isEmpty?: boolean
 }
 
 export type SampleCountOrderByAggregateInput = {
@@ -340,10 +485,19 @@ export type SampleCountOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  price?: Prisma.SortOrder
+  quantity?: Prisma.SortOrder
+  active?: Prisma.SortOrder
+  extras?: Prisma.SortOrder
+  tags?: Prisma.SortOrder
+  categoryId?: Prisma.SortOrder
 }
 
 export type SampleAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  price?: Prisma.SortOrder
+  quantity?: Prisma.SortOrder
+  categoryId?: Prisma.SortOrder
 }
 
 export type SampleMaxOrderByAggregateInput = {
@@ -353,6 +507,10 @@ export type SampleMaxOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  price?: Prisma.SortOrder
+  quantity?: Prisma.SortOrder
+  active?: Prisma.SortOrder
+  categoryId?: Prisma.SortOrder
 }
 
 export type SampleMinOrderByAggregateInput = {
@@ -362,14 +520,101 @@ export type SampleMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  price?: Prisma.SortOrder
+  quantity?: Prisma.SortOrder
+  active?: Prisma.SortOrder
+  categoryId?: Prisma.SortOrder
 }
 
 export type SampleSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  price?: Prisma.SortOrder
+  quantity?: Prisma.SortOrder
+  categoryId?: Prisma.SortOrder
 }
 
-export type StringFieldUpdateOperationsInput = {
-  set?: string
+export type SampleCreateNestedManyWithoutCategoriesInput = {
+  create?: Prisma.XOR<Prisma.SampleCreateWithoutCategoriesInput, Prisma.SampleUncheckedCreateWithoutCategoriesInput> | Prisma.SampleCreateWithoutCategoriesInput[] | Prisma.SampleUncheckedCreateWithoutCategoriesInput[]
+  connectOrCreate?: Prisma.SampleCreateOrConnectWithoutCategoriesInput | Prisma.SampleCreateOrConnectWithoutCategoriesInput[]
+  connect?: Prisma.SampleWhereUniqueInput | Prisma.SampleWhereUniqueInput[]
+}
+
+export type SampleCreateNestedManyWithoutCategoryInput = {
+  create?: Prisma.XOR<Prisma.SampleCreateWithoutCategoryInput, Prisma.SampleUncheckedCreateWithoutCategoryInput> | Prisma.SampleCreateWithoutCategoryInput[] | Prisma.SampleUncheckedCreateWithoutCategoryInput[]
+  connectOrCreate?: Prisma.SampleCreateOrConnectWithoutCategoryInput | Prisma.SampleCreateOrConnectWithoutCategoryInput[]
+  createMany?: Prisma.SampleCreateManyCategoryInputEnvelope
+  connect?: Prisma.SampleWhereUniqueInput | Prisma.SampleWhereUniqueInput[]
+}
+
+export type SampleUncheckedCreateNestedManyWithoutCategoriesInput = {
+  create?: Prisma.XOR<Prisma.SampleCreateWithoutCategoriesInput, Prisma.SampleUncheckedCreateWithoutCategoriesInput> | Prisma.SampleCreateWithoutCategoriesInput[] | Prisma.SampleUncheckedCreateWithoutCategoriesInput[]
+  connectOrCreate?: Prisma.SampleCreateOrConnectWithoutCategoriesInput | Prisma.SampleCreateOrConnectWithoutCategoriesInput[]
+  connect?: Prisma.SampleWhereUniqueInput | Prisma.SampleWhereUniqueInput[]
+}
+
+export type SampleUncheckedCreateNestedManyWithoutCategoryInput = {
+  create?: Prisma.XOR<Prisma.SampleCreateWithoutCategoryInput, Prisma.SampleUncheckedCreateWithoutCategoryInput> | Prisma.SampleCreateWithoutCategoryInput[] | Prisma.SampleUncheckedCreateWithoutCategoryInput[]
+  connectOrCreate?: Prisma.SampleCreateOrConnectWithoutCategoryInput | Prisma.SampleCreateOrConnectWithoutCategoryInput[]
+  createMany?: Prisma.SampleCreateManyCategoryInputEnvelope
+  connect?: Prisma.SampleWhereUniqueInput | Prisma.SampleWhereUniqueInput[]
+}
+
+export type SampleUpdateManyWithoutCategoriesNestedInput = {
+  create?: Prisma.XOR<Prisma.SampleCreateWithoutCategoriesInput, Prisma.SampleUncheckedCreateWithoutCategoriesInput> | Prisma.SampleCreateWithoutCategoriesInput[] | Prisma.SampleUncheckedCreateWithoutCategoriesInput[]
+  connectOrCreate?: Prisma.SampleCreateOrConnectWithoutCategoriesInput | Prisma.SampleCreateOrConnectWithoutCategoriesInput[]
+  upsert?: Prisma.SampleUpsertWithWhereUniqueWithoutCategoriesInput | Prisma.SampleUpsertWithWhereUniqueWithoutCategoriesInput[]
+  set?: Prisma.SampleWhereUniqueInput | Prisma.SampleWhereUniqueInput[]
+  disconnect?: Prisma.SampleWhereUniqueInput | Prisma.SampleWhereUniqueInput[]
+  delete?: Prisma.SampleWhereUniqueInput | Prisma.SampleWhereUniqueInput[]
+  connect?: Prisma.SampleWhereUniqueInput | Prisma.SampleWhereUniqueInput[]
+  update?: Prisma.SampleUpdateWithWhereUniqueWithoutCategoriesInput | Prisma.SampleUpdateWithWhereUniqueWithoutCategoriesInput[]
+  updateMany?: Prisma.SampleUpdateManyWithWhereWithoutCategoriesInput | Prisma.SampleUpdateManyWithWhereWithoutCategoriesInput[]
+  deleteMany?: Prisma.SampleScalarWhereInput | Prisma.SampleScalarWhereInput[]
+}
+
+export type SampleUpdateManyWithoutCategoryNestedInput = {
+  create?: Prisma.XOR<Prisma.SampleCreateWithoutCategoryInput, Prisma.SampleUncheckedCreateWithoutCategoryInput> | Prisma.SampleCreateWithoutCategoryInput[] | Prisma.SampleUncheckedCreateWithoutCategoryInput[]
+  connectOrCreate?: Prisma.SampleCreateOrConnectWithoutCategoryInput | Prisma.SampleCreateOrConnectWithoutCategoryInput[]
+  upsert?: Prisma.SampleUpsertWithWhereUniqueWithoutCategoryInput | Prisma.SampleUpsertWithWhereUniqueWithoutCategoryInput[]
+  createMany?: Prisma.SampleCreateManyCategoryInputEnvelope
+  set?: Prisma.SampleWhereUniqueInput | Prisma.SampleWhereUniqueInput[]
+  disconnect?: Prisma.SampleWhereUniqueInput | Prisma.SampleWhereUniqueInput[]
+  delete?: Prisma.SampleWhereUniqueInput | Prisma.SampleWhereUniqueInput[]
+  connect?: Prisma.SampleWhereUniqueInput | Prisma.SampleWhereUniqueInput[]
+  update?: Prisma.SampleUpdateWithWhereUniqueWithoutCategoryInput | Prisma.SampleUpdateWithWhereUniqueWithoutCategoryInput[]
+  updateMany?: Prisma.SampleUpdateManyWithWhereWithoutCategoryInput | Prisma.SampleUpdateManyWithWhereWithoutCategoryInput[]
+  deleteMany?: Prisma.SampleScalarWhereInput | Prisma.SampleScalarWhereInput[]
+}
+
+export type SampleUncheckedUpdateManyWithoutCategoriesNestedInput = {
+  create?: Prisma.XOR<Prisma.SampleCreateWithoutCategoriesInput, Prisma.SampleUncheckedCreateWithoutCategoriesInput> | Prisma.SampleCreateWithoutCategoriesInput[] | Prisma.SampleUncheckedCreateWithoutCategoriesInput[]
+  connectOrCreate?: Prisma.SampleCreateOrConnectWithoutCategoriesInput | Prisma.SampleCreateOrConnectWithoutCategoriesInput[]
+  upsert?: Prisma.SampleUpsertWithWhereUniqueWithoutCategoriesInput | Prisma.SampleUpsertWithWhereUniqueWithoutCategoriesInput[]
+  set?: Prisma.SampleWhereUniqueInput | Prisma.SampleWhereUniqueInput[]
+  disconnect?: Prisma.SampleWhereUniqueInput | Prisma.SampleWhereUniqueInput[]
+  delete?: Prisma.SampleWhereUniqueInput | Prisma.SampleWhereUniqueInput[]
+  connect?: Prisma.SampleWhereUniqueInput | Prisma.SampleWhereUniqueInput[]
+  update?: Prisma.SampleUpdateWithWhereUniqueWithoutCategoriesInput | Prisma.SampleUpdateWithWhereUniqueWithoutCategoriesInput[]
+  updateMany?: Prisma.SampleUpdateManyWithWhereWithoutCategoriesInput | Prisma.SampleUpdateManyWithWhereWithoutCategoriesInput[]
+  deleteMany?: Prisma.SampleScalarWhereInput | Prisma.SampleScalarWhereInput[]
+}
+
+export type SampleUncheckedUpdateManyWithoutCategoryNestedInput = {
+  create?: Prisma.XOR<Prisma.SampleCreateWithoutCategoryInput, Prisma.SampleUncheckedCreateWithoutCategoryInput> | Prisma.SampleCreateWithoutCategoryInput[] | Prisma.SampleUncheckedCreateWithoutCategoryInput[]
+  connectOrCreate?: Prisma.SampleCreateOrConnectWithoutCategoryInput | Prisma.SampleCreateOrConnectWithoutCategoryInput[]
+  upsert?: Prisma.SampleUpsertWithWhereUniqueWithoutCategoryInput | Prisma.SampleUpsertWithWhereUniqueWithoutCategoryInput[]
+  createMany?: Prisma.SampleCreateManyCategoryInputEnvelope
+  set?: Prisma.SampleWhereUniqueInput | Prisma.SampleWhereUniqueInput[]
+  disconnect?: Prisma.SampleWhereUniqueInput | Prisma.SampleWhereUniqueInput[]
+  delete?: Prisma.SampleWhereUniqueInput | Prisma.SampleWhereUniqueInput[]
+  connect?: Prisma.SampleWhereUniqueInput | Prisma.SampleWhereUniqueInput[]
+  update?: Prisma.SampleUpdateWithWhereUniqueWithoutCategoryInput | Prisma.SampleUpdateWithWhereUniqueWithoutCategoryInput[]
+  updateMany?: Prisma.SampleUpdateManyWithWhereWithoutCategoryInput | Prisma.SampleUpdateManyWithWhereWithoutCategoryInput[]
+  deleteMany?: Prisma.SampleScalarWhereInput | Prisma.SampleScalarWhereInput[]
+}
+
+export type SampleCreatetagsInput = {
+  set: string[]
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
@@ -380,14 +625,276 @@ export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
 }
 
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
+export type DecimalFieldUpdateOperationsInput = {
+  set?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
+}
+
+export type SampleUpdatetagsInput = {
+  set?: string[]
+  push?: string | string[]
+}
+
+export type SampleCreateWithoutCategoriesInput = {
+  uuid?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  name: string
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  quantity: number
+  active: boolean
+  extras: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  tags?: Prisma.SampleCreatetagsInput | string[]
+  category: Prisma.CategoryCreateNestedOneWithoutSampleCategoryInput
+}
+
+export type SampleUncheckedCreateWithoutCategoriesInput = {
+  id?: number
+  uuid?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  name: string
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  quantity: number
+  active: boolean
+  extras: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  tags?: Prisma.SampleCreatetagsInput | string[]
+  categoryId: number
+}
+
+export type SampleCreateOrConnectWithoutCategoriesInput = {
+  where: Prisma.SampleWhereUniqueInput
+  create: Prisma.XOR<Prisma.SampleCreateWithoutCategoriesInput, Prisma.SampleUncheckedCreateWithoutCategoriesInput>
+}
+
+export type SampleCreateWithoutCategoryInput = {
+  uuid?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  name: string
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  quantity: number
+  active: boolean
+  extras: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  tags?: Prisma.SampleCreatetagsInput | string[]
+  categories?: Prisma.CategoryCreateNestedManyWithoutSampleCategoriesInput
+}
+
+export type SampleUncheckedCreateWithoutCategoryInput = {
+  id?: number
+  uuid?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  name: string
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  quantity: number
+  active: boolean
+  extras: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  tags?: Prisma.SampleCreatetagsInput | string[]
+  categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutSampleCategoriesInput
+}
+
+export type SampleCreateOrConnectWithoutCategoryInput = {
+  where: Prisma.SampleWhereUniqueInput
+  create: Prisma.XOR<Prisma.SampleCreateWithoutCategoryInput, Prisma.SampleUncheckedCreateWithoutCategoryInput>
+}
+
+export type SampleCreateManyCategoryInputEnvelope = {
+  data: Prisma.SampleCreateManyCategoryInput | Prisma.SampleCreateManyCategoryInput[]
+  skipDuplicates?: boolean
+}
+
+export type SampleUpsertWithWhereUniqueWithoutCategoriesInput = {
+  where: Prisma.SampleWhereUniqueInput
+  update: Prisma.XOR<Prisma.SampleUpdateWithoutCategoriesInput, Prisma.SampleUncheckedUpdateWithoutCategoriesInput>
+  create: Prisma.XOR<Prisma.SampleCreateWithoutCategoriesInput, Prisma.SampleUncheckedCreateWithoutCategoriesInput>
+}
+
+export type SampleUpdateWithWhereUniqueWithoutCategoriesInput = {
+  where: Prisma.SampleWhereUniqueInput
+  data: Prisma.XOR<Prisma.SampleUpdateWithoutCategoriesInput, Prisma.SampleUncheckedUpdateWithoutCategoriesInput>
+}
+
+export type SampleUpdateManyWithWhereWithoutCategoriesInput = {
+  where: Prisma.SampleScalarWhereInput
+  data: Prisma.XOR<Prisma.SampleUpdateManyMutationInput, Prisma.SampleUncheckedUpdateManyWithoutCategoriesInput>
+}
+
+export type SampleScalarWhereInput = {
+  AND?: Prisma.SampleScalarWhereInput | Prisma.SampleScalarWhereInput[]
+  OR?: Prisma.SampleScalarWhereInput[]
+  NOT?: Prisma.SampleScalarWhereInput | Prisma.SampleScalarWhereInput[]
+  id?: Prisma.IntFilter<"Sample"> | number
+  uuid?: Prisma.StringFilter<"Sample"> | string
+  createdAt?: Prisma.DateTimeFilter<"Sample"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Sample"> | Date | string
+  deletedAt?: Prisma.DateTimeNullableFilter<"Sample"> | Date | string | null
+  name?: Prisma.StringFilter<"Sample"> | string
+  price?: Prisma.DecimalFilter<"Sample"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quantity?: Prisma.IntFilter<"Sample"> | number
+  active?: Prisma.BoolFilter<"Sample"> | boolean
+  extras?: Prisma.JsonFilter<"Sample">
+  tags?: Prisma.StringNullableListFilter<"Sample">
+  categoryId?: Prisma.IntFilter<"Sample"> | number
+}
+
+export type SampleUpsertWithWhereUniqueWithoutCategoryInput = {
+  where: Prisma.SampleWhereUniqueInput
+  update: Prisma.XOR<Prisma.SampleUpdateWithoutCategoryInput, Prisma.SampleUncheckedUpdateWithoutCategoryInput>
+  create: Prisma.XOR<Prisma.SampleCreateWithoutCategoryInput, Prisma.SampleUncheckedCreateWithoutCategoryInput>
+}
+
+export type SampleUpdateWithWhereUniqueWithoutCategoryInput = {
+  where: Prisma.SampleWhereUniqueInput
+  data: Prisma.XOR<Prisma.SampleUpdateWithoutCategoryInput, Prisma.SampleUncheckedUpdateWithoutCategoryInput>
+}
+
+export type SampleUpdateManyWithWhereWithoutCategoryInput = {
+  where: Prisma.SampleScalarWhereInput
+  data: Prisma.XOR<Prisma.SampleUpdateManyMutationInput, Prisma.SampleUncheckedUpdateManyWithoutCategoryInput>
+}
+
+export type SampleCreateManyCategoryInput = {
+  id?: number
+  uuid?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  name: string
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  quantity: number
+  active: boolean
+  extras: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  tags?: Prisma.SampleCreatetagsInput | string[]
+}
+
+export type SampleUpdateWithoutCategoriesInput = {
+  uuid?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  extras?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  tags?: Prisma.SampleUpdatetagsInput | string[]
+  category?: Prisma.CategoryUpdateOneRequiredWithoutSampleCategoryNestedInput
+}
+
+export type SampleUncheckedUpdateWithoutCategoriesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  uuid?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  extras?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  tags?: Prisma.SampleUpdatetagsInput | string[]
+  categoryId?: Prisma.IntFieldUpdateOperationsInput | number
+}
+
+export type SampleUncheckedUpdateManyWithoutCategoriesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  uuid?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  extras?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  tags?: Prisma.SampleUpdatetagsInput | string[]
+  categoryId?: Prisma.IntFieldUpdateOperationsInput | number
+}
+
+export type SampleUpdateWithoutCategoryInput = {
+  uuid?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  extras?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  tags?: Prisma.SampleUpdatetagsInput | string[]
+  categories?: Prisma.CategoryUpdateManyWithoutSampleCategoriesNestedInput
+}
+
+export type SampleUncheckedUpdateWithoutCategoryInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  uuid?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  extras?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  tags?: Prisma.SampleUpdatetagsInput | string[]
+  categories?: Prisma.CategoryUncheckedUpdateManyWithoutSampleCategoriesNestedInput
+}
+
+export type SampleUncheckedUpdateManyWithoutCategoryInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  uuid?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  extras?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  tags?: Prisma.SampleUpdatetagsInput | string[]
+}
+
+
+/**
+ * Count Type SampleCountOutputType
+ */
+
+export type SampleCountOutputType = {
+  categories: number
+}
+
+export type SampleCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  categories?: boolean | SampleCountOutputTypeCountCategoriesArgs
+}
+
+/**
+ * SampleCountOutputType without action
+ */
+export type SampleCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SampleCountOutputType
+   */
+  select?: Prisma.SampleCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * SampleCountOutputType without action
+ */
+export type SampleCountOutputTypeCountCategoriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CategoryWhereInput
+}
 
 
 export type SampleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -397,6 +904,15 @@ export type SampleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   updatedAt?: boolean
   deletedAt?: boolean
   name?: boolean
+  price?: boolean
+  quantity?: boolean
+  active?: boolean
+  extras?: boolean
+  tags?: boolean
+  categoryId?: boolean
+  category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
+  categories?: boolean | Prisma.Sample$categoriesArgs<ExtArgs>
+  _count?: boolean | Prisma.SampleCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["sample"]>
 
 export type SampleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -406,6 +922,13 @@ export type SampleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   updatedAt?: boolean
   deletedAt?: boolean
   name?: boolean
+  price?: boolean
+  quantity?: boolean
+  active?: boolean
+  extras?: boolean
+  tags?: boolean
+  categoryId?: boolean
+  category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["sample"]>
 
 export type SampleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -415,6 +938,13 @@ export type SampleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   updatedAt?: boolean
   deletedAt?: boolean
   name?: boolean
+  price?: boolean
+  quantity?: boolean
+  active?: boolean
+  extras?: boolean
+  tags?: boolean
+  categoryId?: boolean
+  category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["sample"]>
 
 export type SampleSelectScalar = {
@@ -424,13 +954,33 @@ export type SampleSelectScalar = {
   updatedAt?: boolean
   deletedAt?: boolean
   name?: boolean
+  price?: boolean
+  quantity?: boolean
+  active?: boolean
+  extras?: boolean
+  tags?: boolean
+  categoryId?: boolean
 }
 
-export type SampleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "uuid" | "createdAt" | "updatedAt" | "deletedAt" | "name", ExtArgs["result"]["sample"]>
+export type SampleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "uuid" | "createdAt" | "updatedAt" | "deletedAt" | "name" | "price" | "quantity" | "active" | "extras" | "tags" | "categoryId", ExtArgs["result"]["sample"]>
+export type SampleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
+  categories?: boolean | Prisma.Sample$categoriesArgs<ExtArgs>
+  _count?: boolean | Prisma.SampleCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type SampleIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
+}
+export type SampleIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
+}
 
 export type $SamplePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Sample"
-  objects: {}
+  objects: {
+    category: Prisma.$CategoryPayload<ExtArgs>
+    categories: Prisma.$CategoryPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     uuid: string
@@ -438,6 +988,12 @@ export type $SamplePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     updatedAt: Date
     deletedAt: Date | null
     name: string
+    price: runtime.Decimal
+    quantity: number
+    active: boolean
+    extras: runtime.JsonValue
+    tags: string[]
+    categoryId: number
   }, ExtArgs["result"]["sample"]>
   composites: {}
 }
@@ -832,6 +1388,8 @@ readonly fields: SampleFieldRefs;
  */
 export interface Prisma__SampleClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  category<T extends Prisma.CategoryDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CategoryDefaultArgs<ExtArgs>>): Prisma.Prisma__CategoryClient<runtime.Types.Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  categories<T extends Prisma.Sample$categoriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Sample$categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -867,6 +1425,12 @@ export interface SampleFieldRefs {
   readonly updatedAt: Prisma.FieldRef<"Sample", 'DateTime'>
   readonly deletedAt: Prisma.FieldRef<"Sample", 'DateTime'>
   readonly name: Prisma.FieldRef<"Sample", 'String'>
+  readonly price: Prisma.FieldRef<"Sample", 'Decimal'>
+  readonly quantity: Prisma.FieldRef<"Sample", 'Int'>
+  readonly active: Prisma.FieldRef<"Sample", 'Boolean'>
+  readonly extras: Prisma.FieldRef<"Sample", 'Json'>
+  readonly tags: Prisma.FieldRef<"Sample", 'String[]'>
+  readonly categoryId: Prisma.FieldRef<"Sample", 'Int'>
 }
     
 
@@ -883,6 +1447,10 @@ export type SampleFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Omit specific fields from the Sample
    */
   omit?: Prisma.SampleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SampleInclude<ExtArgs> | null
   /**
    * Filter, which Sample to fetch.
    */
@@ -902,6 +1470,10 @@ export type SampleFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions
    */
   omit?: Prisma.SampleOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SampleInclude<ExtArgs> | null
+  /**
    * Filter, which Sample to fetch.
    */
   where: Prisma.SampleWhereUniqueInput
@@ -919,6 +1491,10 @@ export type SampleFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Omit specific fields from the Sample
    */
   omit?: Prisma.SampleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SampleInclude<ExtArgs> | null
   /**
    * Filter, which Sample to fetch.
    */
@@ -968,6 +1544,10 @@ export type SampleFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.
    */
   omit?: Prisma.SampleOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SampleInclude<ExtArgs> | null
+  /**
    * Filter, which Sample to fetch.
    */
   where?: Prisma.SampleWhereInput
@@ -1016,6 +1596,10 @@ export type SampleFindManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    */
   omit?: Prisma.SampleOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SampleInclude<ExtArgs> | null
+  /**
    * Filter, which Samples to fetch.
    */
   where?: Prisma.SampleWhereInput
@@ -1059,6 +1643,10 @@ export type SampleCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   omit?: Prisma.SampleOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SampleInclude<ExtArgs> | null
+  /**
    * The data needed to create a Sample.
    */
   data: Prisma.XOR<Prisma.SampleCreateInput, Prisma.SampleUncheckedCreateInput>
@@ -1092,6 +1680,10 @@ export type SampleCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    */
   data: Prisma.SampleCreateManyInput | Prisma.SampleCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SampleIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1106,6 +1698,10 @@ export type SampleUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the Sample
    */
   omit?: Prisma.SampleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SampleInclude<ExtArgs> | null
   /**
    * The data needed to update a Sample.
    */
@@ -1158,6 +1754,10 @@ export type SampleUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    * Limit how many Samples to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SampleIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1172,6 +1772,10 @@ export type SampleUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the Sample
    */
   omit?: Prisma.SampleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SampleInclude<ExtArgs> | null
   /**
    * The filter to search for the Sample to update in case it exists.
    */
@@ -1199,6 +1803,10 @@ export type SampleDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   omit?: Prisma.SampleOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SampleInclude<ExtArgs> | null
+  /**
    * Filter which Sample to delete.
    */
   where: Prisma.SampleWhereUniqueInput
@@ -1219,6 +1827,30 @@ export type SampleDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
+ * Sample.categories
+ */
+export type Sample$categoriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Category
+   */
+  select?: Prisma.CategorySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Category
+   */
+  omit?: Prisma.CategoryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CategoryInclude<ExtArgs> | null
+  where?: Prisma.CategoryWhereInput
+  orderBy?: Prisma.CategoryOrderByWithRelationInput | Prisma.CategoryOrderByWithRelationInput[]
+  cursor?: Prisma.CategoryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CategoryScalarFieldEnum | Prisma.CategoryScalarFieldEnum[]
+}
+
+/**
  * Sample without action
  */
 export type SampleDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1230,4 +1862,8 @@ export type SampleDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the Sample
    */
   omit?: Prisma.SampleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SampleInclude<ExtArgs> | null
 }

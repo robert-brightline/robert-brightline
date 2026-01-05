@@ -1,80 +1,103 @@
 import type { Any } from '@robert-brightline/types';
 import { z } from 'zod';
+import { bool, date, datetime, int, num, str } from './primitives.js';
 
 // String filters
-export const StringFilterSchema: z.ZodType<Any> = z.object({
-  equals: z.string().optional(),
+export const StringFilter: z.ZodType<Any> = z.object({
+  equals: str().optional(),
   in: z.array(z.string()).optional(),
   notIn: z.array(z.string()).optional(),
-  lt: z.string().optional(),
-  lte: z.string().optional(),
-  gt: z.string().optional(),
-  gte: z.string().optional(),
-  contains: z.string().optional(),
-  startsWith: z.string().optional(),
-  endsWith: z.string().optional(),
+  lt: str().optional(),
+  lte: str().optional(),
+  gt: str().optional(),
+  gte: str().optional(),
+  contains: str().optional(),
+  startsWith: str().optional(),
+  endsWith: str().optional(),
   mode: z.enum(['default', 'insensitive']).optional(),
-  not: z.lazy((): z.ZodType<Any> => StringFilterSchema).optional(),
+  not: z.lazy((): z.ZodType<Any> => StringFilter).optional(),
+});
+
+// Number filters
+export const NumberFilter: z.ZodType<Any> = z.object({
+  equals: num().optional(),
+  in: z.array(num()).optional(),
+  notIn: z.array(num()).optional(),
+  lt: num().optional(),
+  lte: num().optional(),
+  gt: num().optional(),
+  gte: num().optional(),
+  not: z.lazy((): z.ZodType<Any> => NumberFilter).optional(),
 });
 
 // Int filters
-export const IntFilterSchema: z.ZodType<Any> = z.object({
-  equals: z.number().int().optional(),
-  in: z.array(z.number().int()).optional(),
-  notIn: z.array(z.number().int()).optional(),
-  lt: z.number().int().optional(),
-  lte: z.number().int().optional(),
-  gt: z.number().int().optional(),
-  gte: z.number().int().optional(),
-  not: z.lazy((): z.ZodType<Any> => IntFilterSchema).optional(),
+export const IntegerFilter: z.ZodType<Any> = z.object({
+  equals: int().optional(),
+  in: z.array(int()).optional(),
+  notIn: z.array(int()).optional(),
+  lt: int().optional(),
+  lte: int().optional(),
+  gt: int().optional(),
+  gte: int().optional(),
+  not: z.lazy((): z.ZodType<Any> => IntegerFilter).optional(),
 });
 
 // Boolean filters
-export const BooleanFilterSchema: z.ZodType<Any> = z.object({
-  equals: z.boolean().optional(),
-  not: z.lazy((): z.ZodType<Any> => BooleanFilterSchema).optional(),
+export const BooleanFilter: z.ZodType<Any> = z.object({
+  equals: bool().optional(),
+  not: z.lazy((): z.ZodType<Any> => BooleanFilter).optional(),
 });
 
 // DateTime filters
-export const DateTimeFilterSchema: z.ZodType<Any> = z.object({
-  equals: z.coerce.date().optional(),
-  in: z.array(z.coerce.date()).optional(),
-  notIn: z.array(z.coerce.date()).optional(),
-  lt: z.coerce.date().optional(),
-  lte: z.coerce.date().optional(),
-  gt: z.coerce.date().optional(),
-  gte: z.coerce.date().optional(),
-  not: z.lazy((): z.ZodType<Any> => DateTimeFilterSchema).optional(),
+export const DateTimeFilter: z.ZodType<Any> = z.object({
+  equals: datetime().optional(),
+  in: z.array(datetime()).optional(),
+  notIn: z.array(datetime()).optional(),
+  lt: datetime().optional(),
+  lte: datetime().optional(),
+  gt: datetime().optional(),
+  gte: datetime().optional(),
+  not: z.lazy((): z.ZodType<Any> => DateTimeFilter).optional(),
 });
 
-// Float filters
-export const FloatFilterSchema: z.ZodType<Any> = z.object({
-  equals: z.number().optional(),
-  in: z.array(z.number()).optional(),
-  notIn: z.array(z.number()).optional(),
-  lt: z.number().optional(),
-  lte: z.number().optional(),
-  gt: z.number().optional(),
-  gte: z.number().optional(),
-  not: z.lazy((): z.ZodType<Any> => FloatFilterSchema).optional(),
+// DateTime filters
+export const DateFilter: z.ZodType<Any> = z.object({
+  equals: date().optional(),
+  in: z.array(date()).optional(),
+  notIn: z.array(date()).optional(),
+  lt: date().optional(),
+  lte: date().optional(),
+  gt: date().optional(),
+  gte: date().optional(),
+  not: z.lazy((): z.ZodType<Any> => DateFilter).optional(),
 });
 
-// Null filters
-export const NullableStringFilterSchema: z.ZodType<Any> = z.object({
-  equals: z.string().nullable().optional(),
-  in: z.array(z.string()).nullable().optional(),
-  notIn: z.array(z.string()).nullable().optional(),
-  lt: z.string().optional(),
-  lte: z.string().optional(),
-  gt: z.string().optional(),
-  gte: z.string().optional(),
-  contains: z.string().optional(),
-  startsWith: z.string().optional(),
-  endsWith: z.string().optional(),
-  mode: z.enum(['default', 'insensitive']).optional(),
-  not: z
-    .lazy((): z.ZodType<Any> => NullableStringFilterSchema)
-    .nullable()
-    .optional(),
-  isSet: z.boolean().optional(),
+export const ArrayStringFilter = z.object({
+  equals: str().array().optional(),
+  has: str().optional(),
+  hasEvery: str().array().optional(),
+  hasSome: str().array().optional(),
+  isEmpty: bool(),
 });
+
+export const ArrayNumberFilter = z.object({
+  equals: num().array().optional(),
+  has: num().optional(),
+  hasEvery: num().array().optional(),
+  hasSome: num().array().optional(),
+  isEmpty: bool(),
+});
+
+export const ArrayIntegerFilter = z.object({
+  equals: int().array().optional(),
+  has: int().optional(),
+  hasEvery: int().array().optional(),
+  hasSome: int().array().optional(),
+  isEmpty: bool(),
+});
+
+// equals: ['APP'],
+//       has: 'APP',
+//       hasEvery: ['APP'],
+//       hasSome: ['APP'],
+//       isEmpty: true,

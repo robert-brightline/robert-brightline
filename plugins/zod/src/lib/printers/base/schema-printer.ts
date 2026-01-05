@@ -1,8 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { NotImplementedError } from '@robert-brightline/errors';
-import type { Printable } from '../common/printable.js';
+import type { Printable } from '../../common/printable.js';
 
-export class SchemaPrinter<T extends { name: string }> implements Printable {
+/**
+ *
+ */
+export abstract class SchemaPrinter<T extends { name: string }>
+  implements Printable
+{
   constructor(protected readonly model: T) {}
 
   /**
@@ -30,7 +35,7 @@ export class SchemaPrinter<T extends { name: string }> implements Printable {
    * @param suffix name suffix such as Create, Update, Where, Query
    * @returns string
    */
-  protected schemaName(suffix: string) {
+  protected schemaName(suffix: string): string {
     return `${this.model.name}${suffix}`;
   }
 
@@ -39,8 +44,8 @@ export class SchemaPrinter<T extends { name: string }> implements Printable {
    *
    * @returns string
    */
-  protected schemaNameSuffix() {
-    return '';
+  protected schemaNameSuffix(): string {
+    throw new NotImplementedError();
   }
 
   /**
@@ -49,7 +54,7 @@ export class SchemaPrinter<T extends { name: string }> implements Printable {
    * @param name schemae Name
    * @returns
    */
-  protected declare(name: string) {
+  protected declare(name: string): string {
     return `export const ${name}`;
   }
 

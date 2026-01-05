@@ -26,6 +26,8 @@ export const int = () => num().int();
 export const uint = () => int().min(0);
 export const unum = () => num().min(0);
 
+export const bool = () => z.coerce.boolean();
+
 export const datetime = () => z.iso.datetime();
 export const date = () => z.iso.date();
 
@@ -52,6 +54,8 @@ export const sha384 = () => z.hash('sha384');
 export const sha512 = () => z.hash('sha512');
 
 export const dir = () => z.enum(['ASC', 'DESC']);
+
+export const orderByCount = () => z.object({ _count: dir() });
 
 export const binary = () => int().min(0).max(1);
 export const percent = () => num().min(0).max(100);
