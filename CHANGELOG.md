@@ -1,3 +1,18 @@
+## 0.0.13 (2026-01-06)
+
+### 🚀 Features
+
+- analized the database project and compatilibty with the service applications. ([39d46cd](https://github.com/robert-brightline/robert-brightline/commit/39d46cd))
+- working on zod ([85be493](https://github.com/robert-brightline/robert-brightline/commit/85be493))
+- created some own schem printers in zod project ([983e5c4](https://github.com/robert-brightline/robert-brightline/commit/983e5c4))
+- created the zod schema generator ([3854909](https://github.com/robert-brightline/robert-brightline/commit/3854909))
+- updated husky ([5580352](https://github.com/robert-brightline/robert-brightline/commit/5580352))
+- regenerated the base db projects ([72544d1](https://github.com/robert-brightline/robert-brightline/commit/72544d1))
+
+### ❤️ Thank You
+
+- robert-brightline @robert-brightline
+
 ## 0.0.10 (2026-01-03)
 
 ### 🚀 Features
