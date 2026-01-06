@@ -1,5 +1,5 @@
 import type { DMMF } from '@prisma/generator-helper';
-import { External } from '../../common/imports-as.js';
+import { External } from '../../common/imports.js';
 import { nameSuffixes } from '../../common/name-suffixes.js';
 import { SchemaPrinter } from '../base/schema-printer.js';
 

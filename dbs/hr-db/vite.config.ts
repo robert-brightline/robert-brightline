@@ -6,7 +6,7 @@ export default defineConfig(() => ({
   cacheDir: '../../node_modules/.vite/dbs/hr-db',
   plugins: [],
   test: {
-    name: '@robert-brightline/ims-db',
+    name: '@robert-brightline/hr-db',
     watch: false,
     globals: true,
     environment: 'node',

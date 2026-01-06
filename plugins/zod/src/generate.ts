@@ -1,9 +1,18 @@
 import helper from '@prisma/generator-helper';
 import { mkdir, writeFile } from 'fs/promises';
 import { join } from 'path';
+import { format } from 'prettier';
 import { generateEnums } from './generate-enums.js';
 import { generateInternals } from './generate-internals.js';
 import { generateModels } from './generate-models.js';
+
+const frm = (code: string) => {
+  return format(code, {
+    parser: 'typescript',
+    singleAttributePerLine: true,
+    singleQuote: true,
+  });
+};
 
 helper.generatorHandler({
   onGenerate: async (options) => {
@@ -20,8 +29,8 @@ helper.generatorHandler({
       // Ignore
     }
 
-    await writeFile(join(output, 'enums.ts'), enums);
-    await writeFile(join(output, 'internals.ts'), internals);
+    await writeFile(join(output, 'enums.ts'), await frm(enums));
+    await writeFile(join(output, 'internals.ts'), await frm(internals));
 
     for (const [filePath, schema] of models) {
       try {
@@ -29,7 +38,7 @@ helper.generatorHandler({
       } catch {
         // Ignore
       }
-      await writeFile(join(output, filePath), schema);
+      await writeFile(join(output, filePath), await frm(schema));
     }
   },
 

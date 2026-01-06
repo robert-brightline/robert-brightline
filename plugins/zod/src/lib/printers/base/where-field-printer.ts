@@ -1,4 +1,4 @@
-import { Enums, External, Internal } from '../../common/imports-as.js';
+import { Enums, External, Internal } from '../../common/imports.js';
 import { nameSuffixes } from '../../common/name-suffixes.js';
 import type { ScalarType } from '../../common/scalar-type.js';
 import { InputFieldPrinter } from './input-field-printer.js';

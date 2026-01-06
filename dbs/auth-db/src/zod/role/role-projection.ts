@@ -1,7 +1,6 @@
-import * as External from '@robert-brightline/zod';
 import { z } from 'zod';
 import * as Internal from '../internals.js';
-
+import * as External from '@robert-brightline/zod';
 export const RoleProjection = z.object({
   id: External.bool().optional(),
   createdAt: External.bool().optional(),

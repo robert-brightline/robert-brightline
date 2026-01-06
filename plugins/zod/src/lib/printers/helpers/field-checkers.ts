@@ -12,6 +12,13 @@ export function isIdField(field: DMMF.Field) {
   return field.name === 'id';
 }
 
+export function isGenerated(field: DMMF.Field) {
+  if ((field.default as DMMF.FieldDefault)?.name) {
+    return true;
+  }
+  return false;
+}
+
 export function isReadonlyField(field: DMMF.Field) {
   return field.documentation?.match(/@readonly/);
 }
@@ -33,7 +40,8 @@ export function isInputField(field: DMMF.Field) {
     isTimestampField(field) ||
     isHidden(field) ||
     isIdField(field) ||
-    isRelationKey(field)
+    isRelationKey(field) ||
+    isGenerated(field)
   ) {
     return false;
   }

@@ -1,9 +1,9 @@
-import * as External from '@robert-brightline/zod';
 import z from 'zod';
+import * as External from '@robert-brightline/zod';
 import { UserField } from '../enums.js';
 import { UserOrder } from './user-order.js';
-import { UserProjection } from './user-projection.js';
 import { UserWhere } from './user-where.js';
+import { UserProjection } from './user-projection.js';
 
 export const UserQuery = z.object({
   distinct: UserField.array().optional(),

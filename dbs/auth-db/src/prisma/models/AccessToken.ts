@@ -563,9 +563,6 @@ export type $AccessTokenPayload<ExtArgs extends runtime.Types.Extensions.Interna
     updatedAt: Date
     deletedAt: Date | null
     name: string
-    /**
-     * @generated 
-     */
     token: string
   }, ExtArgs["result"]["accessToken"]>
   composites: {}

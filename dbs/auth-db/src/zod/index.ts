@@ -1,4 +1,4 @@
-// @index(['./**/*.ts', '!./**/*.{test,spec}.ts', '!./**/generate.ts'], f => `export * from '${f.path}.js'`)
+// @index(['./**/*.ts', '!./**/*.{test,spec}.ts', '!./**/generate.ts'], f => `export * from '${f.path}.js';`)
 export * from './access-token-permissions/access-token-permissions-create.js';
 export * from './access-token-permissions/access-token-permissions-order.js';
 export * from './access-token-permissions/access-token-permissions-projection.js';

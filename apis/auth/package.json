@@ -1,6 +1,6 @@
 {
   "name": "@robert-brightline/auth",
-  "description": "- [ ] add project description",
+  "description": "Auth service",
   "version": "0.0.10",
   "author": {
     "name": "robert-brightline",

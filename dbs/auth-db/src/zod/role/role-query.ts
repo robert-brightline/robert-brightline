@@ -1,9 +1,9 @@
-import * as External from '@robert-brightline/zod';
 import z from 'zod';
+import * as External from '@robert-brightline/zod';
 import { RoleField } from '../enums.js';
 import { RoleOrder } from './role-order.js';
-import { RoleProjection } from './role-projection.js';
 import { RoleWhere } from './role-where.js';
+import { RoleProjection } from './role-projection.js';
 
 export const RoleQuery = z.object({
   distinct: RoleField.array().optional(),

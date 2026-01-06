@@ -1,7 +1,6 @@
-import * as External from '@robert-brightline/zod';
 import { z } from 'zod';
 import * as Internal from '../internals.js';
-
+import * as External from '@robert-brightline/zod';
 export const RoleWhere = z.object({
   id: External.IntegerFilter.optional(),
   createdAt: External.DateTimeFilter.optional(),

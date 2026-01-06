@@ -1,4 +1,9 @@
 import type { DMMF } from '@prisma/generator-helper';
+import {
+  importEnums,
+  importExternal,
+  importZod,
+} from './lib/common/imports.js';
 import { OwnCreatePrinter } from './lib/printers/internal-printers/own-create-printer.js';
 import { OwnOrderPrinter } from './lib/printers/internal-printers/own-order-printer.js';
 import { OwnProjectionPrinter } from './lib/printers/internal-printers/own-projection-printer.js';
@@ -12,27 +17,34 @@ import { RelationWhereManyPrinter } from './lib/printers/internal-printers/relat
 
 export function generateInternals(datamodel: DMMF.Datamodel) {
   const models = datamodel.models;
-  const internals: string[] = [];
-
-  internals.push(`import * as External from '@robert-brightline/zod';`);
-  internals.push(`import * as Enums from './enums.js'`);
-  internals.push(`import { z } from 'zod';`);
+  const internalSchemaList: string[] = [];
+  const importList: string[] = [];
 
   for (const model of models) {
-    internals.push(new OwnProjectionPrinter(model).print());
-    internals.push(new OwnOrderPrinter(model).print());
-    internals.push(new OwnWherePrinter(model).print());
+    internalSchemaList.push(new OwnProjectionPrinter(model).print());
+    internalSchemaList.push(new OwnOrderPrinter(model).print());
+    internalSchemaList.push(new OwnWherePrinter(model).print());
 
-    internals.push(new OwnCreatePrinter(model).print());
-    internals.push(new OwnUpdatePrinter(model).print());
+    internalSchemaList.push(new OwnCreatePrinter(model).print());
+    internalSchemaList.push(new OwnUpdatePrinter(model).print());
 
-    internals.push(new RelationProjectionPrinter(model).print());
-    internals.push(new RelationProjectionManyPrinter(model).print());
+    internalSchemaList.push(new RelationProjectionPrinter(model).print());
+    internalSchemaList.push(new RelationProjectionManyPrinter(model).print());
 
-    internals.push(new RelationWhereManyPrinter(model).print());
-    internals.push(new RelationCreatePrinter(model).print());
-    internals.push(new RelationCreateManyPrinter(model).print());
+    internalSchemaList.push(new RelationWhereManyPrinter(model).print());
+    internalSchemaList.push(new RelationCreatePrinter(model).print());
+    internalSchemaList.push(new RelationCreateManyPrinter(model).print());
   }
 
-  return internals.join('\n');
+  const internalSchemaCode = internalSchemaList.join('\n');
+
+  importList.push(importExternal(internalSchemaCode));
+  importList.push(importZod(internalSchemaCode));
+  importList.push(importEnums(internalSchemaCode, './'));
+
+  const importCode = importList.filter((e) => e && e.trim()).join('\n');
+
+  return [importCode, internalSchemaCode]
+    .filter((e) => e && e.trim())
+    .join('\n');
 }

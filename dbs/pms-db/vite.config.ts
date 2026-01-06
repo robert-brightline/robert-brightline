@@ -6,7 +6,7 @@ export default defineConfig(() => ({
   cacheDir: '../../node_modules/.vite/dbs/pms-db',
   plugins: [],
   test: {
-    name: '@robert-brightline/ims-db',
+    name: '@robert-brightline/pms-db',
     watch: false,
     globals: true,
     environment: 'node',

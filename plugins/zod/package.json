@@ -12,7 +12,11 @@
     "tag": "latest"
   },
   "keywords": [
-    ""
+    "zod",
+    "prisma",
+    "generator",
+    "plugin",
+    "extention"
   ],
   "funding": [
     {
@@ -64,8 +68,10 @@
     "@prisma/client": "^7.2.0",
     "@prisma/generator-helper": "^7.2.0",
     "@robert-brightline/errors": "workspace:*",
+    "@robert-brightline/names": "workspace:*",
     "@robert-brightline/types": "workspace:*",
     "@swc/helpers": "~0.5.11",
+    "prettier": "~3.6.2",
     "zod": "^4.3.4"
   },
   "devDependencies": {

@@ -16,8 +16,37 @@ enum Operation {
   READ
   WRITE
   UPDATE
-  DELTE
+  DELETE
   MANAGE
+  TRIGGER
+  NOTIFY
+  APPROVE
+  START
+  STOP
+  RESTART
+
+  REJECT
+  SUBMIT
+  ARCHIVE
+  RESTORE
+  EXPORT
+  IMPORT
+  GRANT
+  REVOKE
+  LOCK
+  UNLOCK
+  SYNC
+  DEPLOY
+  ROLLBACK
+}
+
+model AuditLog {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  subject   String
+  message   String?
+  operation Operation
+  operator  String    @db.Uuid
 }
 
 model App {
@@ -131,9 +160,8 @@ model AccessToken {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  name String @unique
+  name String @unique @db.VarChar(255)
 
-  /// @generated 
   token String @unique
 
   accessTokenPermissions AccessTokenPermissions[]

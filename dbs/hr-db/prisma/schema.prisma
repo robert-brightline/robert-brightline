@@ -1,24 +1,49 @@
-generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
-}
-
 datasource db {
   provider = "postgresql"
 }
 
-generator zod {
-  provider = "zod-prisma-types"
-  output   = "../src/generated/zod"
-  prismaClientPath = "../prisma/client.js"
+generator client {
+  provider = "prisma-client"
+  output   = "../src/prisma"
 }
 
-model Sample {
-  id        Int       @id @default(autoincrement())
-  uuid      String    @unique @default(uuid(7))
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
+generator zod {
+  provider = "zod"
+  output   = "../src/zod"
+}
 
-  name String @unique
+enum Operation {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+  MANAGE
+  TRIGGER
+  NOTIFY
+  APPROVE
+  START
+  STOP
+  RESTART
+  REJECT
+  SUBMIT
+  ARCHIVE
+  RESTORE
+  EXPORT
+  IMPORT
+  GRANT
+  REVOKE
+  LOCK
+  UNLOCK
+  SYNC
+  DEPLOY
+  ROLLBACK
+}
+
+model AuditLog {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  subject   String
+  message   String?
+  operation Operation
+  operator  String    @db.Uuid
 }

@@ -1,6 +1,5 @@
-import * as External from '@robert-brightline/zod';
 import { z } from 'zod';
-
+import * as External from '@robert-brightline/zod';
 export const RoleOrder = z.object({
   id: External.dir().optional(),
   createdAt: External.dir().optional(),

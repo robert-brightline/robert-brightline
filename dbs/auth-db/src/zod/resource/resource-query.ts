@@ -1,4 +1,3 @@
-
 import z from 'zod';
 import * as External from '@robert-brightline/zod';
 import { ResourceField } from '../enums.js';
@@ -14,4 +13,3 @@ export const ResourceQuery = z.object({
   take: External.int().min(0).optional(),
   skip: External.int().min(0).optional(),
 });
-        

@@ -34,15 +34,6 @@
       "path": "./dbs/auth-db"
     },
     {
-      "path": "./dbs/crm-db"
-    },
-    {
-      "path": "./dbs/pms-db"
-    },
-    {
-      "path": "./dbs/hr-db"
-    },
-    {
       "path": "./apis/hr"
     },
     {
@@ -56,6 +47,15 @@
     },
     {
       "path": "./plugins/zod"
+    },
+    {
+      "path": "./dbs/hr-db"
+    },
+    {
+      "path": "./dbs/pms-db"
+    },
+    {
+      "path": "./dbs/crm-db"
     }
   ]
 }

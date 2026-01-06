@@ -1,4 +1,4 @@
-import { External } from '../../common/imports-as.js';
+import { External } from '../../common/imports.js';
 import { nameSuffixes } from '../../common/name-suffixes.js';
 import { InputPrinter } from '../base/input-printer.js';
 

@@ -90,16 +90,17 @@
     }
   },
   "peerDependencies": {
-    "@prisma/client": "7.2.0"
+    "@prisma/client": "7.2.0",
+    "zod": "4.3.4",
+    "@robert-brightline/zod": "workspace:*"
   },
   "dependencies": {
     "@swc/helpers": "~0.5.11"
   },
   "devDependencies": {
-    "@types/better-sqlite3": "^7.6.13",
+    "@robert-brightline/zod": "workspace:*",
     "dotenv": "^17.2.3",
     "prisma": "^7.2.0",
-    "vitest": "^4.0.8",
-    "@robert-brightline/zod": "workspace:*"
+    "vitest": "^4.0.8"
   }
 }

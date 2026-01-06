@@ -1,6 +1,6 @@
 import type { DMMF } from '@prisma/generator-helper';
 import { UnsupportedError } from '@robert-brightline/errors';
-import { Enums, External, Internal } from '../../common/imports-as.js';
+import { Enums, External, Internal } from '../../common/imports.js';
 import { nameSuffixes } from '../../common/name-suffixes.js';
 import type { Printable } from '../../common/printable.js';
 import type { ScalarType } from '../../common/scalar-type.js';
@@ -26,6 +26,7 @@ export class InputFieldPrinter implements Printable {
 
     if (
       this.field.isRequired !== true ||
+      this.field.hasDefaultValue ||
       (isRelationField(this.field) && this.field.isList)
     ) {
       parts.push('optional()');

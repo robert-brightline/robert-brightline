@@ -1,7 +1,7 @@
 {
   "name": "@robert-brightline/pms-db",
   "description": "- [ ] add project description",
-  "version": "0.0.10",
+  "version": "0.0.1",
   "author": {
     "name": "robert-brightline",
     "email": "robert.brightline+pms-db@gmail.com"
@@ -32,15 +32,30 @@
       "import": "./dist/index.js",
       "default": "./dist/index.js"
     },
-    "./prisma": {
-      "types": "./dist/generated/prisma/client.d.ts",
-      "import": "./dist/generated/prisma/client.js",
-      "default": "./dist/generated/prisma/client.js"
+    "./client": {
+      "types": "./dist/prisma/client.d.ts",
+      "import": "./dist/prisma/client.js",
+      "default": "./dist/prisma/client.js"
+    },
+    "./browser": {
+      "types": "./dist/prisma/browser.d.ts",
+      "import": "./dist/prisma/browser.js",
+      "default": "./dist/prisma/browser.js"
+    },
+    "./models": {
+      "types": "./dist/prisma/models.d.ts",
+      "import": "./dist/prisma/models.js",
+      "default": "./dist/prisma/models.js"
+    },
+    "./enums": {
+      "types": "./dist/prisma/enums.d.ts",
+      "import": "./dist/prisma/enums.js",
+      "default": "./dist/prisma/enums.js"
     },
     "./zod": {
-      "types": "./dist/generated/zod/index.d.ts",
-      "import": "./dist/generated/zod/index.js",
-      "default": "./dist/generated/zod/index.js"
+      "types": "./dist/zod/index.d.ts",
+      "import": "./dist/zod/index.js",
+      "default": "./dist/zod/index.js"
     }
   },
   "files": [
@@ -76,16 +91,16 @@
   },
   "peerDependencies": {
     "@prisma/client": "7.2.0",
-    "zod": "4.3.4"
+    "zod": "4.3.4",
+    "@robert-brightline/zod": "workspace:*"
   },
   "dependencies": {
     "@swc/helpers": "~0.5.11"
   },
   "devDependencies": {
+    "@robert-brightline/zod": "workspace:*",
     "dotenv": "^17.2.3",
     "prisma": "^7.2.0",
-    "prisma-zod-generator": "^2.1.2",
-    "vitest": "^4.0.8",
-    "zod-prisma-types": "^3.3.10"
+    "vitest": "^4.0.8"
   }
 }
