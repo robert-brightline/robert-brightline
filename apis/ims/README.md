@@ -9,7 +9,7 @@
 
 ## @robert-brightline/ims
 
-- [ ] add description for @robert-brightline/ims
+IMS(Inventory management) service
 
 ## Installation
 

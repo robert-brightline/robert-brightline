@@ -9,7 +9,7 @@
 
 ## @robert-brightline/pms
 
-- [ ] add description for @robert-brightline/pms
+Project management service
 
 ## Installation
 

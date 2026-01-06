@@ -9,7 +9,7 @@
 
 ## @robert-brightline/crm
 
-- [ ] add description for @robert-brightline/crm
+Customer service 
 
 ## Installation
 

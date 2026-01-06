@@ -9,7 +9,7 @@
 
 ## @robert-brightline/hr
 
-- [ ] add description for @robert-brightline/hr
+HR Service
 
 ## Installation
 

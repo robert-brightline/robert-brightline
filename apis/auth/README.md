@@ -9,7 +9,7 @@
 
 ## @robert-brightline/auth
 
-- [ ] add description for @robert-brightline/auth
+Auth service 
 
 ## Installation
 
