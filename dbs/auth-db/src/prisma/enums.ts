@@ -9,7 +9,12 @@
 * 🟢 You can import this file directly.
 */
 
+export const Operation = {
+  READ: 'READ',
+  WRITE: 'WRITE',
+  UPDATE: 'UPDATE',
+  DELTE: 'DELTE',
+  MANAGE: 'MANAGE'
+} as const
 
-
-// This file is empty because there are no enums in the schema.
-export {}
+export type Operation = (typeof Operation)[keyof typeof Operation]

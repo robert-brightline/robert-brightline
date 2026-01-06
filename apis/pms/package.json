@@ -73,10 +73,8 @@
     "@nestjs/common": "^11.1.11",
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.1.11",
-    "@nestjs/platform-express": "^11.1.11",
     "@nestjs/swagger": "^11.2.3",
-    "helmet": "^8.1.0",
-    "@robert-brightline/pms-db": "workspace:*"
+    "helmet": "^8.1.0"
   },
   "dependencies": {
     "@swc/helpers": "~0.5.11"

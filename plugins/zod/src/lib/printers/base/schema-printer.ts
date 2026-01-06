@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+ 
 import { NotImplementedError } from '@robert-brightline/errors';
 import type { Printable } from '../../common/printable.js';
 

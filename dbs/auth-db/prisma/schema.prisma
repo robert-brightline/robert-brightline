@@ -7,45 +7,152 @@ generator client {
   output   = "../src/prisma"
 }
 
-
 generator zod {
   provider = "zod"
   output   = "../src/zod"
 }
 
-model Category {
-  id   Int    @id @default(autoincrement())
-  name String
-
-  /// @internal
-  sampleCategories Sample[] @relation("Categories")
-
-  /// @internal
-  sampleCategory Sample[] @relation("Category")
+enum Operation {
+  READ
+  WRITE
+  UPDATE
+  DELTE
+  MANAGE
 }
 
-model Sample {
-  id   Int    @id @default(autoincrement())
-  uuid String @unique @default(uuid(7))
+model App {
+  id          Int          @id @default(autoincrement())
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  deletedAt   DateTime?
+  name        String       @unique @db.VarChar(255)
+  permissions Permission[]
+}
 
+model Resource {
+  id          Int          @id @default(autoincrement())
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  deletedAt   DateTime?
+  name        String       @unique @db.VarChar(255)
+  permissions Permission[]
+}
+
+model Role {
+  id        Int       @id @default(autoincrement())
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
   name String @unique @db.VarChar(255)
 
-  price Decimal @db.Decimal(8, 6)
+  rolePermissions RolePermissions[]
+  userRoles       UserRole[]
+}
 
-  quantity Int
+model RolePermissions {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
 
-  active Boolean
+  role   Role @relation(fields: [roleId], references: [id])
+  roleId Int
 
-  extras Json
+  permission   Permission @relation(fields: [permissionId], references: [id])
+  permissionId Int
 
-  tags String[]
+  @@unique([roleId, permissionId])
+  @@index([roleId])
+  @@index([permissionId])
+}
 
-  category   Category @relation("Category", fields: [categoryId], references: [id])
-  categoryId Int
+model Permission {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
 
-  categories Category[] @relation("Categories")
+  operation Operation
+
+  app   App @relation(fields: [appId], references: [id])
+  appId Int
+
+  resource   Resource @relation(fields: [resourceId], references: [id])
+  resourceId Int
+
+  rolePermissions        RolePermissions[]
+  accessTokenPermissions AccessTokenPermissions[]
+
+  @@unique([operation, appId, resourceId])
+  @@index([operation])
+  @@index([appId])
+  @@index([resourceId])
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  uuid      String    @unique @default(uuid(7))
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  /// @email 
+  username String @unique @db.VarChar(255)
+
+  /// @password
+  password String
+
+  userRoles UserRole[]
+}
+
+model UserRole {
+  id        Int       @id @default(autoincrement())
+  uuid      String    @unique @default(uuid(7))
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  user   User @relation(fields: [userId], references: [id])
+  userId Int
+
+  role   Role @relation(fields: [roleId], references: [id])
+  roleId Int
+
+  @@unique([userId, roleId])
+  @@index([userId])
+  @@index([roleId])
+}
+
+model AccessToken {
+  id        Int       @id @default(autoincrement())
+  uuid      String    @unique @default(uuid(7))
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  name String @unique
+
+  /// @generated 
+  token String @unique
+
+  accessTokenPermissions AccessTokenPermissions[]
+}
+
+model AccessTokenPermissions {
+  id        Int       @id @default(autoincrement())
+  uuid      String    @unique @default(uuid(7))
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  accessToken   AccessToken @relation(fields: [accessTokenId], references: [id])
+  accessTokenId Int
+
+  permission   Permission @relation(fields: [permissionId], references: [id])
+  permissionId Int
+
+  @@unique([accessTokenId, permissionId])
+  @@index([accessTokenId])
+  @@index([permissionId])
 }

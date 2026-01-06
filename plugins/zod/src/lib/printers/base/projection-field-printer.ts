@@ -1,4 +1,4 @@
-import { External } from '../../common/imports-as.js';
+import { External, Internal } from '../../common/imports-as.js';
 import { nameSuffixes } from '../../common/name-suffixes.js';
 import { InputFieldPrinter } from './input-field-printer.js';
 
@@ -12,11 +12,11 @@ export class ProjectionFieldPrinter extends InputFieldPrinter {
   }
 
   protected override oneRelationField(): string {
-    return `${this.field.type}${nameSuffixes.RelationProjection}`;
+    return `${Internal}.${this.field.type}${nameSuffixes.RelationProjection}`;
   }
 
   protected override manyRelationField(): string {
-    return `${this.field.type}${nameSuffixes.RelationManyProjection}`;
+    return `${Internal}.${this.field.type}${nameSuffixes.RelationManyProjection}`;
   }
 
   protected override enumField(): string {

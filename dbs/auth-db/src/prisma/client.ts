@@ -29,8 +29,8 @@ export * from "./enums.js"
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Categories
- * const categories = await prisma.category.findMany()
+ * // Fetch zero or more Apps
+ * const apps = await prisma.app.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -40,12 +40,47 @@ export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts exten
 export { Prisma }
 
 /**
- * Model Category
+ * Model App
  * 
  */
-export type Category = Prisma.CategoryModel
+export type App = Prisma.AppModel
 /**
- * Model Sample
+ * Model Resource
  * 
  */
-export type Sample = Prisma.SampleModel
+export type Resource = Prisma.ResourceModel
+/**
+ * Model Role
+ * 
+ */
+export type Role = Prisma.RoleModel
+/**
+ * Model RolePermissions
+ * 
+ */
+export type RolePermissions = Prisma.RolePermissionsModel
+/**
+ * Model Permission
+ * 
+ */
+export type Permission = Prisma.PermissionModel
+/**
+ * Model User
+ * 
+ */
+export type User = Prisma.UserModel
+/**
+ * Model UserRole
+ * 
+ */
+export type UserRole = Prisma.UserRoleModel
+/**
+ * Model AccessToken
+ * 
+ */
+export type AccessToken = Prisma.AccessTokenModel
+/**
+ * Model AccessTokenPermissions
+ * 
+ */
+export type AccessTokenPermissions = Prisma.AccessTokenPermissionsModel

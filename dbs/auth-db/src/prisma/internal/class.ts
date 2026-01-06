@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.2.0",
   "engineVersion": "0c8ef2ce45c83248ab3df073180d5eda9e8be7a3",
   "activeProvider": "postgresql",
-  "inlineSchema": "datasource db {\n  provider = \"postgresql\"\n}\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"../src/prisma\"\n}\n\ngenerator zod {\n  provider = \"zod\"\n  output   = \"../src/zod\"\n}\n\nmodel Category {\n  id   Int    @id @default(autoincrement())\n  name String\n\n  /// @internal\n  sampleCategories Sample[] @relation(\"Categories\")\n\n  /// @internal\n  sampleCategory Sample[] @relation(\"Category\")\n}\n\nmodel Sample {\n  id   Int    @id @default(autoincrement())\n  uuid String @unique @default(uuid(7))\n\n  createdAt DateTime  @default(now())\n  updatedAt DateTime  @updatedAt\n  deletedAt DateTime?\n\n  name String @unique @db.VarChar(255)\n\n  price Decimal @db.Decimal(8, 6)\n\n  quantity Int\n\n  active Boolean\n\n  extras Json\n\n  tags String[]\n\n  category   Category @relation(\"Category\", fields: [categoryId], references: [id])\n  categoryId Int\n\n  categories Category[] @relation(\"Categories\")\n}\n",
+  "inlineSchema": "datasource db {\n  provider = \"postgresql\"\n}\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"../src/prisma\"\n}\n\ngenerator zod {\n  provider = \"zod\"\n  output   = \"../src/zod\"\n}\n\nenum Operation {\n  READ\n  WRITE\n  UPDATE\n  DELTE\n  MANAGE\n}\n\nmodel App {\n  id          Int          @id @default(autoincrement())\n  createdAt   DateTime     @default(now())\n  updatedAt   DateTime     @updatedAt\n  deletedAt   DateTime?\n  name        String       @unique @db.VarChar(255)\n  permissions Permission[]\n}\n\nmodel Resource {\n  id          Int          @id @default(autoincrement())\n  createdAt   DateTime     @default(now())\n  updatedAt   DateTime     @updatedAt\n  deletedAt   DateTime?\n  name        String       @unique @db.VarChar(255)\n  permissions Permission[]\n}\n\nmodel Role {\n  id        Int       @id @default(autoincrement())\n  createdAt DateTime  @default(now())\n  updatedAt DateTime  @updatedAt\n  deletedAt DateTime?\n\n  name String @unique @db.VarChar(255)\n\n  rolePermissions RolePermissions[]\n  userRoles       UserRole[]\n}\n\nmodel RolePermissions {\n  id        Int       @id @default(autoincrement())\n  createdAt DateTime  @default(now())\n  updatedAt DateTime  @updatedAt\n  deletedAt DateTime?\n\n  role   Role @relation(fields: [roleId], references: [id])\n  roleId Int\n\n  permission   Permission @relation(fields: [permissionId], references: [id])\n  permissionId Int\n\n  @@unique([roleId, permissionId])\n  @@index([roleId])\n  @@index([permissionId])\n}\n\nmodel Permission {\n  id        Int       @id @default(autoincrement())\n  createdAt DateTime  @default(now())\n  updatedAt DateTime  @updatedAt\n  deletedAt DateTime?\n\n  operation Operation\n\n  app   App @relation(fields: [appId], references: [id])\n  appId Int\n\n  resource   Resource @relation(fields: [resourceId], references: [id])\n  resourceId Int\n\n  rolePermissions        RolePermissions[]\n  accessTokenPermissions AccessTokenPermissions[]\n\n  @@unique([operation, appId, resourceId])\n  @@index([operation])\n  @@index([appId])\n  @@index([resourceId])\n}\n\nmodel User {\n  id        Int       @id @default(autoincrement())\n  uuid      String    @unique @default(uuid(7))\n  createdAt DateTime  @default(now())\n  updatedAt DateTime  @updatedAt\n  deletedAt DateTime?\n\n  /// @email \n  username String @unique @db.VarChar(255)\n\n  /// @password\n  password String\n\n  userRoles UserRole[]\n}\n\nmodel UserRole {\n  id        Int       @id @default(autoincrement())\n  uuid      String    @unique @default(uuid(7))\n  createdAt DateTime  @default(now())\n  updatedAt DateTime  @updatedAt\n  deletedAt DateTime?\n\n  user   User @relation(fields: [userId], references: [id])\n  userId Int\n\n  role   Role @relation(fields: [roleId], references: [id])\n  roleId Int\n\n  @@unique([userId, roleId])\n  @@index([userId])\n  @@index([roleId])\n}\n\nmodel AccessToken {\n  id        Int       @id @default(autoincrement())\n  uuid      String    @unique @default(uuid(7))\n  createdAt DateTime  @default(now())\n  updatedAt DateTime  @updatedAt\n  deletedAt DateTime?\n\n  name String @unique\n\n  /// @generated \n  token String @unique\n\n  accessTokenPermissions AccessTokenPermissions[]\n}\n\nmodel AccessTokenPermissions {\n  id        Int       @id @default(autoincrement())\n  uuid      String    @unique @default(uuid(7))\n  createdAt DateTime  @default(now())\n  updatedAt DateTime  @updatedAt\n  deletedAt DateTime?\n\n  accessToken   AccessToken @relation(fields: [accessTokenId], references: [id])\n  accessTokenId Int\n\n  permission   Permission @relation(fields: [permissionId], references: [id])\n  permissionId Int\n\n  @@unique([accessTokenId, permissionId])\n  @@index([accessTokenId])\n  @@index([permissionId])\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -28,7 +28,7 @@ const config: runtime.GetPrismaClientConfig = {
   }
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"Category\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"sampleCategories\",\"kind\":\"object\",\"type\":\"Sample\",\"relationName\":\"Categories\"},{\"name\":\"sampleCategory\",\"kind\":\"object\",\"type\":\"Sample\",\"relationName\":\"Category\"}],\"dbName\":null},\"Sample\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"uuid\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"deletedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"price\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"quantity\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"extras\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"tags\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"category\",\"kind\":\"object\",\"type\":\"Category\",\"relationName\":\"Category\"},{\"name\":\"categoryId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"categories\",\"kind\":\"object\",\"type\":\"Category\",\"relationName\":\"Categories\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"App\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"deletedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"permissions\",\"kind\":\"object\",\"type\":\"Permission\",\"relationName\":\"AppToPermission\"}],\"dbName\":null},\"Resource\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"deletedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"permissions\",\"kind\":\"object\",\"type\":\"Permission\",\"relationName\":\"PermissionToResource\"}],\"dbName\":null},\"Role\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"deletedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"rolePermissions\",\"kind\":\"object\",\"type\":\"RolePermissions\",\"relationName\":\"RoleToRolePermissions\"},{\"name\":\"userRoles\",\"kind\":\"object\",\"type\":\"UserRole\",\"relationName\":\"RoleToUserRole\"}],\"dbName\":null},\"RolePermissions\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"deletedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"role\",\"kind\":\"object\",\"type\":\"Role\",\"relationName\":\"RoleToRolePermissions\"},{\"name\":\"roleId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"permission\",\"kind\":\"object\",\"type\":\"Permission\",\"relationName\":\"PermissionToRolePermissions\"},{\"name\":\"permissionId\",\"kind\":\"scalar\",\"type\":\"Int\"}],\"dbName\":null},\"Permission\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"deletedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"operation\",\"kind\":\"enum\",\"type\":\"Operation\"},{\"name\":\"app\",\"kind\":\"object\",\"type\":\"App\",\"relationName\":\"AppToPermission\"},{\"name\":\"appId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"resource\",\"kind\":\"object\",\"type\":\"Resource\",\"relationName\":\"PermissionToResource\"},{\"name\":\"resourceId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"rolePermissions\",\"kind\":\"object\",\"type\":\"RolePermissions\",\"relationName\":\"PermissionToRolePermissions\"},{\"name\":\"accessTokenPermissions\",\"kind\":\"object\",\"type\":\"AccessTokenPermissions\",\"relationName\":\"AccessTokenPermissionsToPermission\"}],\"dbName\":null},\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"uuid\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"deletedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"username\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userRoles\",\"kind\":\"object\",\"type\":\"UserRole\",\"relationName\":\"UserToUserRole\"}],\"dbName\":null},\"UserRole\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"uuid\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"deletedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"UserToUserRole\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"role\",\"kind\":\"object\",\"type\":\"Role\",\"relationName\":\"RoleToUserRole\"},{\"name\":\"roleId\",\"kind\":\"scalar\",\"type\":\"Int\"}],\"dbName\":null},\"AccessToken\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"uuid\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"deletedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"accessTokenPermissions\",\"kind\":\"object\",\"type\":\"AccessTokenPermissions\",\"relationName\":\"AccessTokenToAccessTokenPermissions\"}],\"dbName\":null},\"AccessTokenPermissions\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"uuid\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"deletedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"accessToken\",\"kind\":\"object\",\"type\":\"AccessToken\",\"relationName\":\"AccessTokenToAccessTokenPermissions\"},{\"name\":\"accessTokenId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"permission\",\"kind\":\"object\",\"type\":\"Permission\",\"relationName\":\"AccessTokenPermissionsToPermission\"},{\"name\":\"permissionId\",\"kind\":\"scalar\",\"type\":\"Int\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 
 async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
   const { Buffer } = await import('node:buffer')
@@ -58,8 +58,8 @@ export interface PrismaClientConstructor {
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Categories
-   * const categories = await prisma.category.findMany()
+   * // Fetch zero or more Apps
+   * const apps = await prisma.app.findMany()
    * ```
    * 
    * Read more in our [docs](https://pris.ly/d/client).
@@ -80,8 +80,8 @@ export interface PrismaClientConstructor {
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Categories
- * const categories = await prisma.category.findMany()
+ * // Fetch zero or more Apps
+ * const apps = await prisma.app.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -175,24 +175,94 @@ export interface PrismaClient<
   }>>
 
       /**
-   * `prisma.category`: Exposes CRUD operations for the **Category** model.
+   * `prisma.app`: Exposes CRUD operations for the **App** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Categories
-    * const categories = await prisma.category.findMany()
+    * // Fetch zero or more Apps
+    * const apps = await prisma.app.findMany()
     * ```
     */
-  get category(): Prisma.CategoryDelegate<ExtArgs, { omit: OmitOpts }>;
+  get app(): Prisma.AppDelegate<ExtArgs, { omit: OmitOpts }>;
 
   /**
-   * `prisma.sample`: Exposes CRUD operations for the **Sample** model.
+   * `prisma.resource`: Exposes CRUD operations for the **Resource** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Samples
-    * const samples = await prisma.sample.findMany()
+    * // Fetch zero or more Resources
+    * const resources = await prisma.resource.findMany()
     * ```
     */
-  get sample(): Prisma.SampleDelegate<ExtArgs, { omit: OmitOpts }>;
+  get resource(): Prisma.ResourceDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.role`: Exposes CRUD operations for the **Role** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Roles
+    * const roles = await prisma.role.findMany()
+    * ```
+    */
+  get role(): Prisma.RoleDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.rolePermissions`: Exposes CRUD operations for the **RolePermissions** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RolePermissions
+    * const rolePermissions = await prisma.rolePermissions.findMany()
+    * ```
+    */
+  get rolePermissions(): Prisma.RolePermissionsDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.permission`: Exposes CRUD operations for the **Permission** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Permissions
+    * const permissions = await prisma.permission.findMany()
+    * ```
+    */
+  get permission(): Prisma.PermissionDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.user`: Exposes CRUD operations for the **User** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Users
+    * const users = await prisma.user.findMany()
+    * ```
+    */
+  get user(): Prisma.UserDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.userRole`: Exposes CRUD operations for the **UserRole** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UserRoles
+    * const userRoles = await prisma.userRole.findMany()
+    * ```
+    */
+  get userRole(): Prisma.UserRoleDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.accessToken`: Exposes CRUD operations for the **AccessToken** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AccessTokens
+    * const accessTokens = await prisma.accessToken.findMany()
+    * ```
+    */
+  get accessToken(): Prisma.AccessTokenDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.accessTokenPermissions`: Exposes CRUD operations for the **AccessTokenPermissions** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AccessTokenPermissions
+    * const accessTokenPermissions = await prisma.accessTokenPermissions.findMany()
+    * ```
+    */
+  get accessTokenPermissions(): Prisma.AccessTokenPermissionsDelegate<ExtArgs, { omit: OmitOpts }>;
 }
 
 export function getPrismaClientClass(): PrismaClientConstructor {
