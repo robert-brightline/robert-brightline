@@ -12,7 +12,8 @@
     "tag": "latest"
   },
   "keywords": [
-    ""
+    "api",
+    "auth"
   ],
   "funding": [
     {
