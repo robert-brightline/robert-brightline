@@ -8,6 +8,7 @@
  *
  * 🟢 You can import this file directly.
  */
+export type * from './models/AuditLog.js'
 export type * from './models/App.js'
 export type * from './models/Resource.js'
 export type * from './models/Role.js'

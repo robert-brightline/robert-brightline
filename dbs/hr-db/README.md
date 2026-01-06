@@ -9,7 +9,7 @@
 
 ## @robert-brightline/hr-db
 
-- [ ] add description for @robert-brightline/hr-db
+HR Database
 
 ## Installation
 
@@ -21,7 +21,8 @@ pnpm add @robert-brightline/hr-db
 
 If you find my open-source contributions or the **@robert-brightline/hr-db** project helpful, consider supporting my work. Your sponsorship helps me maintain these projects and explore new enterprise patterns.
 
-![CashApp](https://img.shields.io/badge/Sponsor%20me-%23EA4AAA.svg?style=for-the-badge&logo=github-sponsors&logoColor=white)(https://cash.app/$puqlib)
+
+[![CashApp](https://img.shields.io/badge/Sponsor%20me-%23EA4AAA.svg?style=for-the-badge&logo=github-sponsors&logoColor=white)](https://cash.app/$puqlib)
 
 ---
 

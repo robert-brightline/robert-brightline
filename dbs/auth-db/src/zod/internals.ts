@@ -1,8 +1,81 @@
 import * as External from '@robert-brightline/zod';
 import { z } from 'zod';
 import * as Enums from './enums.js';
+export const AuditLogOwnProjection = z.object({
+  id: External.bool().optional(),
+  createdAt: External.bool().optional(),
+  subject: External.bool().optional(),
+  message: External.bool().optional(),
+  operation: External.bool().optional(),
+  operatorId: External.bool().optional(),
+});
+export const AuditLogOwnOrder = z.object({
+  id: External.dir().optional(),
+  createdAt: External.dir().optional(),
+  subject: External.dir().optional(),
+  message: External.dir().optional(),
+  operation: External.dir().optional(),
+  operatorId: External.dir().optional(),
+});
+export const AuditLogOwnWhere = z.object({
+  id: External.IntegerFilter.optional(),
+  createdAt: External.DateTimeFilter.optional(),
+  subject: External.StringFilter.optional(),
+  message: External.StringFilter.optional(),
+  operation: Enums.OperationEnumFilter.optional(),
+  operatorId: External.StringFilter.optional(),
+});
+export const AuditLogOwnCreate = z.object({
+  subject: External.str(),
+  message: External.str().optional(),
+  operation: Enums.OperationEnum,
+  operatorId: External.str(),
+});
+export const AuditLogOwnUpdate = z.object({
+  subject: External.str().optional(),
+  message: External.str().optional(),
+  operation: Enums.OperationEnum.optional(),
+  operatorId: External.str().optional(),
+});
+export const AuditLogRelationProjection = z.union([
+  External.bool(),
+  z.object({
+    select: AuditLogOwnProjection.optional(),
+    where: AuditLogOwnWhere.optional(),
+  }),
+]);
+export const AuditLogRelationManyProjection = z.union([
+  External.bool(),
+  z.object({
+    select: AuditLogOwnProjection.optional(),
+    where: AuditLogOwnWhere.optional(),
+    orderBy: AuditLogOwnOrder.optional(),
+    take: External.int().min(0).optional(),
+    skip: External.int().min(0).optional(),
+  }),
+]);
+export const AuditLogRelationManyWhere = z.union([
+  z.object({ some: AuditLogOwnWhere }),
+  z.object({ every: AuditLogOwnWhere }),
+  z.object({ none: AuditLogOwnWhere }),
+]);
+export const AuditLogRelationCreate = z.union([
+  External.connect(),
+  z.object({
+    create: AuditLogOwnCreate,
+  }),
+]);
+export const AuditLogRelationManyCreate = z.union([
+  External.connectMany(),
+  z.object({
+    createMany: z.object({
+      data: AuditLogOwnCreate.array(),
+    }),
+  }),
+]);
 export const AppOwnProjection = z.object({
   id: External.bool().optional(),
+  uuid: External.bool().optional(),
   createdAt: External.bool().optional(),
   updatedAt: External.bool().optional(),
   deletedAt: External.bool().optional(),
@@ -10,6 +83,7 @@ export const AppOwnProjection = z.object({
 });
 export const AppOwnOrder = z.object({
   id: External.dir().optional(),
+  uuid: External.dir().optional(),
   createdAt: External.dir().optional(),
   updatedAt: External.dir().optional(),
   deletedAt: External.dir().optional(),
@@ -17,13 +91,14 @@ export const AppOwnOrder = z.object({
 });
 export const AppOwnWhere = z.object({
   id: External.IntegerFilter.optional(),
+  uuid: External.StringFilter.optional(),
   createdAt: External.DateTimeFilter.optional(),
   updatedAt: External.DateTimeFilter.optional(),
   deletedAt: External.DateTimeFilter.optional(),
   name: External.StringFilter.optional(),
 });
-export const AppOwnCreate = z.object({ name: External.str() });
-export const AppOwnUpdate = z.object({ name: External.str().optional() });
+export const AppOwnCreate = z.object({ name: External.name() });
+export const AppOwnUpdate = z.object({ name: External.name().optional() });
 export const AppRelationProjection = z.union([
   External.bool(),
   z.object({
@@ -81,8 +156,8 @@ export const ResourceOwnWhere = z.object({
   deletedAt: External.DateTimeFilter.optional(),
   name: External.StringFilter.optional(),
 });
-export const ResourceOwnCreate = z.object({ name: External.str() });
-export const ResourceOwnUpdate = z.object({ name: External.str().optional() });
+export const ResourceOwnCreate = z.object({ name: External.name() });
+export const ResourceOwnUpdate = z.object({ name: External.name().optional() });
 export const ResourceRelationProjection = z.union([
   External.bool(),
   z.object({
@@ -140,8 +215,8 @@ export const RoleOwnWhere = z.object({
   deletedAt: External.DateTimeFilter.optional(),
   name: External.StringFilter.optional(),
 });
-export const RoleOwnCreate = z.object({ name: External.str() });
-export const RoleOwnUpdate = z.object({ name: External.str().optional() });
+export const RoleOwnCreate = z.object({ name: External.name() });
+export const RoleOwnUpdate = z.object({ name: External.name().optional() });
 export const RoleRelationProjection = z.union([
   External.bool(),
   z.object({
@@ -335,12 +410,12 @@ export const UserOwnWhere = z.object({
   password: External.StringFilter.optional(),
 });
 export const UserOwnCreate = z.object({
-  username: External.str(),
-  password: External.str(),
+  username: External.email(),
+  password: External.password(),
 });
 export const UserOwnUpdate = z.object({
-  username: External.str().optional(),
-  password: External.str().optional(),
+  username: External.email().optional(),
+  password: External.password().optional(),
 });
 export const UserRelationProjection = z.union([
   External.bool(),
@@ -471,11 +546,11 @@ export const AccessTokenOwnWhere = z.object({
   token: External.StringFilter.optional(),
 });
 export const AccessTokenOwnCreate = z.object({
-  name: External.str(),
+  name: External.name(),
   token: External.str(),
 });
 export const AccessTokenOwnUpdate = z.object({
-  name: External.str().optional(),
+  name: External.name().optional(),
   token: External.str().optional(),
 });
 export const AccessTokenRelationProjection = z.union([

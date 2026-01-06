@@ -12,7 +12,9 @@
     "tag": "latest"
   },
   "keywords": [
-    ""
+    "barcode",
+    "ean",
+    "upc"
   ],
   "funding": [
     {

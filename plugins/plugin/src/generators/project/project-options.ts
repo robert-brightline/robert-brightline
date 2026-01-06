@@ -3,6 +3,7 @@ import { join, normalize } from 'path';
 import {
   gitCurrentUsername,
   gitEmail,
+  githubPage,
   githubPageForDoc,
   gitRepoName,
   gitRepoOwnerUsername,
@@ -55,13 +56,14 @@ export async function projectOptions(
   const repoUrl = gitRepoUrl();
 
   const repositoryName = gitRepoName(repoUrl);
+  const githubPageUrl = githubPage(repositoryName);
   const fullProjectName = `@${repositoryName}/${shortProjectName}`;
 
   const currentUsername = gitCurrentUsername();
   const ownerUsername = gitRepoOwnerUsername(repoUrl);
   const version = main.version ?? '0.0.1';
 
-  const homepage = githubPageForDoc(repoUrl, options.directory);
+  const homepage = githubPageForDoc(githubPageUrl, options.directory);
 
   return {
     version,

@@ -9,7 +9,7 @@
 
 ## @robert-brightline/auth-db
 
-- [ ] add description for @robert-brightline/auth-db
+Auth database
 
 ## Installation
 
@@ -21,7 +21,8 @@ pnpm add @robert-brightline/auth-db
 
 If you find my open-source contributions or the **@robert-brightline/auth-db** project helpful, consider supporting my work. Your sponsorship helps me maintain these projects and explore new enterprise patterns.
 
-![CashApp](https://img.shields.io/badge/Sponsor%20me-%23EA4AAA.svg?style=for-the-badge&logo=github-sponsors&logoColor=white)(https://cash.app/$puqlib)
+
+[![CashApp](https://img.shields.io/badge/Sponsor%20me-%23EA4AAA.svg?style=for-the-badge&logo=github-sponsors&logoColor=white)](https://cash.app/$puqlib)
 
 ---
 

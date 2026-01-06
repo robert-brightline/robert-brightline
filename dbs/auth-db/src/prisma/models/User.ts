@@ -562,13 +562,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     createdAt: Date
     updatedAt: Date
     deletedAt: Date | null
-    /**
-     * @email 
-     */
     username: string
-    /**
-     * @password
-     */
     password: string
   }, ExtArgs["result"]["user"]>
   composites: {}

@@ -51,6 +51,7 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
+  AuditLog: 'AuditLog',
   App: 'App',
   Resource: 'Resource',
   Role: 'Role',
@@ -78,8 +79,21 @@ export const TransactionIsolationLevel = {
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+export const AuditLogScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  subject: 'subject',
+  message: 'message',
+  operation: 'operation',
+  operatorId: 'operatorId'
+} as const
+
+export type AuditLogScalarFieldEnum = (typeof AuditLogScalarFieldEnum)[keyof typeof AuditLogScalarFieldEnum]
+
+
 export const AppScalarFieldEnum = {
   id: 'id',
+  uuid: 'uuid',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt',

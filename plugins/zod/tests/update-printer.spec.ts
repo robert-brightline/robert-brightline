@@ -6,7 +6,7 @@ describe('UpdatePrinter', () => {
   it('should print the create schema', () => {
     const expected = ` 
          export const CategoryUpdate = z.object({ 
-         name: External.str().optional(), 
+         name: External.name().optional(), 
          parent: Internal.CategoryRelationCreate.optional(), 
          children: Internal.CategoryRelationManyCreate.optional()
          })

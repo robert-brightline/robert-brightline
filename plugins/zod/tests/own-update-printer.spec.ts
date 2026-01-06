@@ -6,7 +6,7 @@ describe('OwnUpdatePrinter', () => {
   it('should print own where', () => {
     const expected = `
     export const CategoryOwnUpdate = z.object({ 
-      name: External.str().optional()
+      name: External.name().optional()
     })
     `;
     expect(new OwnUpdatePrinter(Category as any).print()).toEqual(

@@ -1,13 +1,15 @@
 {
     "$schema": "https://typedoc.org/schema.json",
     "entryPointStrategy": "packages",
+    "sortEntryPoints": true,
     "entryPoints": [
         "libs/*",
+        "dbs/*",
         "plugins/*",
-        "dbs",
-        "apis"
+        "apis/*",
     ],
-    "out": "docs",
+    "out": "../robert-brightline.github.io/public/libs",
+    "includeVersion": true,
     "excludeInternal": true,
     "skipErrorChecking": true
 }

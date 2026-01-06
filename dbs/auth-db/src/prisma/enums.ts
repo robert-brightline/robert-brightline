@@ -13,8 +13,27 @@ export const Operation = {
   READ: 'READ',
   WRITE: 'WRITE',
   UPDATE: 'UPDATE',
-  DELTE: 'DELTE',
-  MANAGE: 'MANAGE'
+  DELETE: 'DELETE',
+  MANAGE: 'MANAGE',
+  TRIGGER: 'TRIGGER',
+  NOTIFY: 'NOTIFY',
+  APPROVE: 'APPROVE',
+  START: 'START',
+  STOP: 'STOP',
+  RESTART: 'RESTART',
+  REJECT: 'REJECT',
+  SUBMIT: 'SUBMIT',
+  ARCHIVE: 'ARCHIVE',
+  RESTORE: 'RESTORE',
+  EXPORT: 'EXPORT',
+  IMPORT: 'IMPORT',
+  GRANT: 'GRANT',
+  REVOKE: 'REVOKE',
+  LOCK: 'LOCK',
+  UNLOCK: 'UNLOCK',
+  SYNC: 'SYNC',
+  DEPLOY: 'DEPLOY',
+  ROLLBACK: 'ROLLBACK'
 } as const
 
 export type Operation = (typeof Operation)[keyof typeof Operation]

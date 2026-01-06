@@ -67,19 +67,86 @@ export class InputFieldPrinter implements Printable {
 
     switch (this.field.type as ScalarType) {
       case 'String': {
-        parts.push(`str()`);
+        switch (this.field.name) {
+          case 'description': {
+            parts.push('desc()');
+            break;
+          }
+          case 'name': {
+            parts.push('name()');
+            break;
+          }
+          case 'username':
+          case 'email': {
+            parts.push('email()');
+            break;
+          }
+          case 'uuid': {
+            parts.push('uuid7()');
+            break;
+          }
+          case 'password': {
+            parts.push('password()');
+            break;
+          }
+          case 'sku': {
+            parts.push('sku()');
+            break;
+          }
+          case 'barcode':
+          case 'upc': {
+            parts.push('upc()');
+            break;
+          }
+          case 'slug': {
+            parts.push('slug()');
+            break;
+          }
+          case 'url': {
+            parts.push('url()');
+            break;
+          }
+          default: {
+            parts.push('str()');
+            break;
+          }
+        }
         break;
       }
 
       case 'Int':
       case 'Integer': {
-        parts.push('int()');
+        switch (this.field.name) {
+          case 'rate': {
+            parts.push('rate()');
+            break;
+          }
+          case 'quantity': {
+            parts.push('uint()');
+            break;
+          }
+          default: {
+            parts.push('int()');
+            break;
+          }
+        }
         break;
       }
       case 'Float':
       case 'Decimal':
       case 'Number': {
-        parts.push('num()');
+        switch (this.field.name) {
+          case 'tax':
+          case 'price':
+          case 'cost': {
+            parts.push('unum()');
+            break;
+          }
+          default: {
+            parts.push('num()');
+            break;
+          }
+        }
         break;
       }
       case 'Boolean': {
@@ -92,11 +159,23 @@ export class InputFieldPrinter implements Printable {
       }
       case 'Datetime':
       case 'DateTime': {
-        parts.push(`datetime()`);
+        if (this.field.documentation?.includes('@future')) {
+          parts.push(`future()`);
+        } else if (this.field.documentation?.includes('@past')) {
+          parts.push(`past()`);
+        } else {
+          parts.push(`datetime()`);
+        }
         break;
       }
       case 'Date': {
-        parts.push(`date()`);
+        if (this.field.documentation?.includes('future')) {
+          parts.push(`future()`);
+        } else if (this.field.documentation?.includes('past')) {
+          parts.push(`past()`);
+        } else {
+          parts.push(`date()`);
+        }
         break;
       }
     }

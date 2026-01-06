@@ -12,7 +12,7 @@ export const uuid7 = () => z.uuidv7();
 export const ulid = () => z.ulid();
 
 export const name = () => str().max(255);
-export const desc = () => str();
+export const desc = () => str().max(1000);
 export const email = () => z.email();
 export const upc = () => z.string().min(8).max(13);
 export const slug = () => z.string().regex(/^[a-z-]+$/);
@@ -31,12 +31,25 @@ export const bool = () => z.coerce.boolean();
 export const datetime = () => z.iso.datetime();
 export const date = () => z.iso.date();
 
+
+export const password = () => {
+  return z
+    .string()
+    .regex(/[A-Z]{1,}/, { error: 'Must contain an uppercase letter' })
+    .regex(/[a-z]{1,}/, { error: 'Must contain a lowercase letter' })
+    .regex(/[0-9]{1,}/, { error: 'Must contain a number' })
+    .regex(/[!@#$%^&*()_+{}:"<>?\\[\\];',\.\/]{1,}/, {
+      error: 'Must contain a special character',
+    });
+};
+
+
 export const future = () =>
   z.iso.date().refine(
     (value) => {
       return new Date(value) > new Date();
     },
-    { error: 'The value is not a future date' },
+    { error: 'Must be a future date' },
   );
 
 export const past = () =>
@@ -44,7 +57,7 @@ export const past = () =>
     (value) => {
       return new Date(value) > new Date();
     },
-    { error: 'The value is not a past date' },
+    { error: 'Must be a past date' },
   );
 
 export const md5 = () => z.hash('md5');
@@ -71,9 +84,6 @@ export const connectMany = () =>
 const literalSchema = z.union([z.string(), z.number(), z.boolean(), z.null()]);
 
 type __Literal = z.infer<typeof literalSchema>;
-
 type __Json = __Literal | { [key: string]: __Json } | __Json[];
-
-// This schema mirrors Prisma's internal __JsonValue type
 export const json: () => z.ZodType<__Json> = () =>
   z.union([literalSchema, z.array(json()), z.record(str(), str())]);

@@ -1,6 +1,6 @@
 {
   "name": "@robert-brightline/checks",
-  "description": "- [ ] add project description",
+  "description": "Value checkers",
   "version": "0.0.13",
   "author": {
     "name": "robert-brightline",
@@ -12,7 +12,9 @@
     "tag": "latest"
   },
   "keywords": [
-    ""
+    "check",
+    "is",
+    "validation"
   ],
   "funding": [
     {

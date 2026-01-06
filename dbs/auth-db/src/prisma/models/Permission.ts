@@ -540,10 +540,6 @@ export type PermissionUpdateOneRequiredWithoutRolePermissionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PermissionUpdateToOneWithWhereWithoutRolePermissionsInput, Prisma.PermissionUpdateWithoutRolePermissionsInput>, Prisma.PermissionUncheckedUpdateWithoutRolePermissionsInput>
 }
 
-export type EnumOperationFieldUpdateOperationsInput = {
-  set?: $Enums.Operation
-}
-
 export type PermissionCreateNestedOneWithoutAccessTokenPermissionsInput = {
   create?: Prisma.XOR<Prisma.PermissionCreateWithoutAccessTokenPermissionsInput, Prisma.PermissionUncheckedCreateWithoutAccessTokenPermissionsInput>
   connectOrCreate?: Prisma.PermissionCreateOrConnectWithoutAccessTokenPermissionsInput

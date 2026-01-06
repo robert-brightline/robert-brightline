@@ -6,7 +6,7 @@ describe('OwnCreatePrinter', () => {
   it('should print own where', () => {
     const expected = `
     export const CategoryOwnCreate = z.object({ 
-      name: External.str()
+      name: External.name()
     })
     `;
     expect(new OwnCreatePrinter(Category as any).print()).toEqual(
