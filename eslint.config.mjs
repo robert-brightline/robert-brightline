@@ -18,6 +18,7 @@ export default [
       '**/vitest.config.*.timestamp*',
       '**/vite.config.ts',
       '**/vitest.config.mts',
+      '**/tests',
     ],
   },
   {

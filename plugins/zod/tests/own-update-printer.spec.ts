@@ -1,4 +1,4 @@
-import { OwnUpdatePrinter } from '../src/lib/printers/own-printers/own-update-printer.js';
+import { OwnUpdatePrinter } from '../src/lib/printers/internal-printers/own-update-printer.js';
 import { trim } from './__helpers.js';
 import { Category } from './test-data.js';
 

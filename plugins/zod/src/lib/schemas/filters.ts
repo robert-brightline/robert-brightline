@@ -96,8 +96,4 @@ export const ArrayIntegerFilter = z.object({
   isEmpty: bool(),
 });
 
-// equals: ['APP'],
-//       has: 'APP',
-//       hasEvery: ['APP'],
-//       hasSome: ['APP'],
-//       isEmpty: true,
+export const JsonFilter = z.object({});

@@ -22,11 +22,14 @@ export const nameSuffixes = {
   //
   RelationCreate: 'RelationCreate',
   RelationManyCreate: 'RelationManyCreate',
+
   RelationUpdate: 'RelationUpdate',
   RelationManyUpdate: 'RelationManyUpdate',
 
   RelationProjection: 'RelationProjection',
   RelationManyProjection: 'RelationManyProjection',
+
+  RelationManyWhere: 'RelationManyWhere',
 };
 
 export type NameSuffixes = typeof nameSuffixes;

@@ -139,7 +139,7 @@ export const Category = {
       relationToFields: [],
       isGenerated: false,
       isUpdatedAt: false,
-      documentation: '@internal',
+      documentation: '@hidden',
     },
   ],
   primaryKey: null,
@@ -272,7 +272,7 @@ export const User = {
       relationToFields: [],
       isGenerated: false,
       isUpdatedAt: false,
-      documentation: '@internal ',
+      documentation: '@hidden ',
     },
     {
       name: 'createdProducts',
@@ -290,7 +290,7 @@ export const User = {
       relationToFields: [],
       isGenerated: false,
       isUpdatedAt: false,
-      documentation: '@internal ',
+      documentation: '@hidden ',
     },
   ],
   primaryKey: null,
@@ -659,7 +659,7 @@ export const Product = {
       relationToFields: ['id'],
       isGenerated: false,
       isUpdatedAt: false,
-      documentation: '@internal',
+      documentation: '@hidden',
     },
     {
       name: 'createdById',
@@ -674,7 +674,7 @@ export const Product = {
       nativeType: null,
       isGenerated: false,
       isUpdatedAt: false,
-      documentation: '@internal',
+      documentation: '@hidden',
     },
     {
       name: 'updatedBy',
@@ -692,7 +692,7 @@ export const Product = {
       relationToFields: ['id'],
       isGenerated: false,
       isUpdatedAt: false,
-      documentation: '@internal',
+      documentation: '@hidden',
     },
     {
       name: 'updatedById',
@@ -707,7 +707,7 @@ export const Product = {
       nativeType: null,
       isGenerated: false,
       isUpdatedAt: false,
-      documentation: '@internal',
+      documentation: '@hidden',
     },
     {
       name: 'status',

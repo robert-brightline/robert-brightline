@@ -1,4 +1,4 @@
-import { External, Internal } from '../../common/imports-as.js';
+import { Enums, External, Internal } from '../../common/imports-as.js';
 import { nameSuffixes } from '../../common/name-suffixes.js';
 import type { ScalarType } from '../../common/scalar-type.js';
 import { InputFieldPrinter } from './input-field-printer.js';
@@ -7,18 +7,15 @@ export class WhereFieldPrinter extends InputFieldPrinter {
   protected override oneRelationField(): string {
     return this.join(
       Internal,
-      `${this.field.name}${nameSuffixes.OwnWhere}`,
+      `${this.field.type}${nameSuffixes.OwnWhere}`,
       this.optional(),
     );
   }
 
   protected override manyRelationField(): string {
     return this.join(
-      `z.union([
-        z.object({ some: ${Internal}.${this.field.name}${nameSuffixes.OwnWhere} }), 
-        z.object({ every: ${Internal}.${this.field.name}${nameSuffixes.OwnWhere} }), 
-        z.object({ none: ${Internal}.${this.field.name}${nameSuffixes.OwnWhere} })
-      ])`,
+      Internal,
+      `${this.field.type}${nameSuffixes.RelationManyWhere}`,
       this.optional(),
     );
   }
@@ -106,14 +103,14 @@ export class WhereFieldPrinter extends InputFieldPrinter {
   protected override enumField(): string {
     if (this.field.isList) {
       return this.join(
-        Internal,
-        `${this.field.name}${nameSuffixes.EnumArrayFilter}`,
+        Enums,
+        `${this.field.type}${nameSuffixes.EnumArrayFilter}`,
         this.optional(),
       );
     } else {
       return this.join(
-        Internal,
-        `${this.field.name}${nameSuffixes.EnumFilter}`,
+        Enums,
+        `${this.field.type}${nameSuffixes.EnumFilter}`,
         this.optional(),
       );
     }

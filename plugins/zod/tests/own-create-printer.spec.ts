@@ -1,4 +1,4 @@
-import { OwnCreatePrinter } from '../src/lib/printers/own-printers/own-create-printer.js';
+import { OwnCreatePrinter } from '../src/lib/printers/internal-printers/own-create-printer.js';
 import { trim } from './__helpers.js';
 import { Category } from './test-data.js';
 

@@ -55,9 +55,6 @@
       "path": "./apis/pms"
     },
     {
-      "path": "./apis/auth-db"
-    },
-    {
       "path": "./plugins/zod"
     }
   ]

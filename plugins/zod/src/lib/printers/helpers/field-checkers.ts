@@ -4,15 +4,15 @@ export function isTimestampField(field: DMMF.Field) {
   return ['createdAt', 'updatedAt', 'deletedAt'].includes(field.name);
 }
 
+export function isHidden(field: DMMF.Field) {
+  return field.documentation?.match(/@hidden/);
+}
+
 export function isIdField(field: DMMF.Field) {
-  return ['id'].includes(field.name);
+  return field.name === 'id';
 }
 
-export function isInternalField(field: DMMF.Field) {
-  return field.documentation?.match(/@internal/);
-}
-
-export function isReadonly(field: DMMF.Field) {
+export function isReadonlyField(field: DMMF.Field) {
   return field.documentation?.match(/@readonly/);
 }
 
@@ -31,7 +31,7 @@ export function isRelationKey(field: DMMF.Field) {
 export function isInputField(field: DMMF.Field) {
   if (
     isTimestampField(field) ||
-    isInternalField(field) ||
+    isHidden(field) ||
     isIdField(field) ||
     isRelationKey(field)
   ) {
@@ -43,4 +43,24 @@ export function isInputField(field: DMMF.Field) {
 
 export function isOwnInputField(field: DMMF.Field) {
   return isInputField(field) && !isRelationField(field);
+}
+
+export function isOwnField(field: DMMF.Field) {
+  return field.relationName == undefined;
+}
+
+export function isQueryField(field: DMMF.Field) {
+  if (isHidden(field)) {
+    return false;
+  }
+
+  return true;
+}
+
+export function isOwnQueryField(field: DMMF.Field) {
+  if (isOwnField(field)) {
+    return isQueryField(field);
+  }
+
+  return false;
 }

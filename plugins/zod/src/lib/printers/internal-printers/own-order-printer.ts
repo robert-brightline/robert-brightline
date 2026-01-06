@@ -2,6 +2,7 @@ import type { DMMF } from '@prisma/generator-helper';
 import { nameSuffixes } from '../../common/name-suffixes.js';
 import { InputPrinter } from '../base/input-printer.js';
 import { OrderFieldPrinter } from '../base/order-field-printer.js';
+import { isOwnQueryField } from '../helpers/field-checkers.js';
 
 export class OwnOrderPrinter extends InputPrinter {
   constructor(model: DMMF.Model) {
@@ -13,6 +14,6 @@ export class OwnOrderPrinter extends InputPrinter {
   }
 
   protected override filterField(field: DMMF.Field): boolean {
-    return field.relationName == undefined;
+    return isOwnQueryField(field);
   }
 }

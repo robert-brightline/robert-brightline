@@ -1,18 +1,19 @@
 import type { DMMF } from '@prisma/generator-helper';
 import { nameSuffixes } from '../../common/name-suffixes.js';
 import { InputPrinter } from '../base/input-printer.js';
-import { WhereFieldPrinter } from '../base/where-field-printer.js';
+import { ProjectionFieldPrinter } from '../base/projection-field-printer.js';
+import { isOwnQueryField } from '../helpers/field-checkers.js';
 
-export class OwnWherePrinter extends InputPrinter {
+export class OwnProjectionPrinter extends InputPrinter {
   constructor(model: DMMF.Model) {
-    super(model, WhereFieldPrinter);
+    super(model, ProjectionFieldPrinter);
   }
 
   protected override schemaNameSuffix(): string {
-    return nameSuffixes.OwnWhere;
+    return nameSuffixes.OwnProjection;
   }
 
   protected override filterField(field: DMMF.Field): boolean {
-    return field.relationName == undefined;
+    return isOwnQueryField(field);
   }
 }

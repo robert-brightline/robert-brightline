@@ -1,4 +1,4 @@
-import { OwnWherePrinter } from '../src/lib/printers/own-printers/own-where-printer.js';
+import { OwnWherePrinter } from '../src/lib/printers/internal-printers/own-where-printer.js';
 import { trim } from './__helpers.js';
 import { Category } from './test-data.js';
 

@@ -1,4 +1,4 @@
-import z from 'zod';
+import { z } from 'zod';
 
 export const str = () => z.string();
 
@@ -53,12 +53,27 @@ export const sha256 = () => z.hash('sha256');
 export const sha384 = () => z.hash('sha384');
 export const sha512 = () => z.hash('sha512');
 
-export const dir = () => z.enum(['ASC', 'DESC']);
-
-export const orderByCount = () => z.object({ _count: dir() });
+export const dir = () => z.enum(['asc', 'desc']);
 
 export const binary = () => int().min(0).max(1);
 export const percent = () => num().min(0).max(100);
 
 export const nrange = (min: number, max: number) => num().min(min).max(max);
 export const irange = (min: number, max: number) => int().min(min).max(max);
+
+export const orderByCount = () => z.object({ _count: dir() });
+
+export const connect = () => z.object({ connect: z.object({ id: int() }) });
+
+export const connectMany = () =>
+  z.object({ connect: z.object({ id: int() }).array() });
+
+const literalSchema = z.union([z.string(), z.number(), z.boolean(), z.null()]);
+
+type __Literal = z.infer<typeof literalSchema>;
+
+type __Json = __Literal | { [key: string]: __Json } | __Json[];
+
+// This schema mirrors Prisma's internal __JsonValue type
+export const json: () => z.ZodType<__Json> = () =>
+  z.union([literalSchema, z.array(json()), z.record(str(), str())]);

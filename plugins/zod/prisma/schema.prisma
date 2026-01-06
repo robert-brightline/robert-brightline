@@ -1,6 +1,11 @@
 generator zod {
   provider = "zod"
-  output   = "../tests"
+  output   = "../tests/zod"
+}
+
+generator client {
+  provider = "prisma-client"
+  output   = "../tests/prisma"
 }
 
 datasource db {

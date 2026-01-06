@@ -10,13 +10,13 @@ export * from './lib/printers/base/order-field-printer.js';
 export * from './lib/printers/base/projection-field-printer.js';
 export * from './lib/printers/base/schema-printer.js';
 export * from './lib/printers/base/where-field-printer.js';
-export * from './lib/printers/distinct-printer.js';
 export * from './lib/printers/enum-printer.js';
 export * from './lib/printers/helpers/field-checkers.js';
-export * from './lib/printers/own-printers/own-create-printer.js';
-export * from './lib/printers/own-printers/own-order-printer.js';
-export * from './lib/printers/own-printers/own-projection-printer.js';
-export * from './lib/printers/own-printers/own-where-printer.js';
+export * from './lib/printers/internal-printers/distinct-printer.js';
+export * from './lib/printers/internal-printers/own-create-printer.js';
+export * from './lib/printers/internal-printers/own-order-printer.js';
+export * from './lib/printers/internal-printers/own-projection-printer.js';
+export * from './lib/printers/internal-printers/own-where-printer.js';
 export * from './lib/schemas/filters.js';
 export * from './lib/schemas/primitives.js';
 

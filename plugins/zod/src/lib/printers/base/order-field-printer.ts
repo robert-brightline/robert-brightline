@@ -6,13 +6,13 @@ export class OrderFieldPrinter extends InputFieldPrinter {
   protected override oneRelationField(): string {
     return this.join(
       Internal,
-      `${this.field.name}${nameSuffixes.OwnOrder}`,
+      `${this.field.type}${nameSuffixes.OwnOrder}`,
       this.optional(),
     );
   }
 
   protected override manyRelationField(): string {
-    return this.join(External, 'orderByCount', this.optional());
+    return this.join(External, 'orderByCount()', this.optional());
   }
 
   protected override optional(): string {

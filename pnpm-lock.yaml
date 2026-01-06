@@ -509,6 +509,9 @@ importers:
       '@robert-brightline/errors':
         specifier: workspace:*
         version: link:../../libs/errors
+      '@robert-brightline/names':
+        specifier: workspace:*
+        version: link:../../libs/names
       '@robert-brightline/types':
         specifier: workspace:*
         version: link:../../libs/types

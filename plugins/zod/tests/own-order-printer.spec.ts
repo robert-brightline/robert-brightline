@@ -1,4 +1,4 @@
-import { OwnOrderPrinter } from '../src/lib/printers/own-printers/own-order-printer.js';
+import { OwnOrderPrinter } from '../src/lib/printers/internal-printers/own-order-printer.js';
 import { trim } from './__helpers.js';
 import { Category } from './test-data.js';
 

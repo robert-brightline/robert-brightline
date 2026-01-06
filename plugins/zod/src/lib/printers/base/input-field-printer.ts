@@ -1,9 +1,10 @@
 import type { DMMF } from '@prisma/generator-helper';
 import { UnsupportedError } from '@robert-brightline/errors';
-import { External, Internal } from '../../common/imports-as.js';
+import { Enums, External, Internal } from '../../common/imports-as.js';
 import { nameSuffixes } from '../../common/name-suffixes.js';
 import type { Printable } from '../../common/printable.js';
 import type { ScalarType } from '../../common/scalar-type.js';
+import { isRelationField } from '../helpers/field-checkers.js';
 
 /**
  * By default it print the create input fields.
@@ -15,14 +16,18 @@ export class InputFieldPrinter implements Printable {
   protected isList() {
     return this.field.isList;
   }
+
   protected join(...parts: string[]) {
-    return parts.filter((e) => e.trim()).join('.');
+    return parts.filter((e) => e && e.trim()).join('.');
   }
 
   protected optional() {
     const parts: string[] = [];
 
-    if (this.field.isRequired !== true) {
+    if (
+      this.field.isRequired !== true ||
+      (isRelationField(this.field) && this.field.isList)
+    ) {
       parts.push('optional()');
     }
 
@@ -37,20 +42,22 @@ export class InputFieldPrinter implements Printable {
       parts.push(this.oneRelationField());
     }
 
-    return this.join(parts.join(''), this.optional());
+    return this.join(parts.join(''));
   }
 
   protected manyRelationField() {
     return this.join(
       Internal,
-      `${this.field.name}${nameSuffixes.RelationManyCreate}`,
+      `${this.field.type}${nameSuffixes.RelationManyCreate}`,
+      this.optional(),
     );
   }
 
   protected oneRelationField() {
     return this.join(
       Internal,
-      `${this.field.name}${nameSuffixes.RelationCreate}`,
+      `${this.field.type}${nameSuffixes.RelationCreate}`,
+      this.optional(),
     );
   }
 
@@ -65,7 +72,8 @@ export class InputFieldPrinter implements Printable {
 
       case 'Int':
       case 'Integer': {
-        return parts.push('int()');
+        parts.push('int()');
+        break;
       }
       case 'Float':
       case 'Decimal':
@@ -102,13 +110,13 @@ export class InputFieldPrinter implements Printable {
   protected enumField() {
     const parts: string[] = [];
 
-    parts.push(`${this.field.name}${nameSuffixes.Enum}`);
+    parts.push(`${this.field.type}${nameSuffixes.Enum}`);
 
     if (this.field.isList === true) {
       parts.push('array()');
     }
 
-    return this.join(Internal, this.join(...parts), this.optional());
+    return this.join(Enums, this.join(...parts), this.optional());
   }
 
   schema() {

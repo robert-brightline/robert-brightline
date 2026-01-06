@@ -12,11 +12,11 @@ export class ProjectionFieldPrinter extends InputFieldPrinter {
   }
 
   protected override oneRelationField(): string {
-    return `${this.field.name}${nameSuffixes.RelationProjection}`;
+    return `${this.field.type}${nameSuffixes.RelationProjection}`;
   }
 
   protected override manyRelationField(): string {
-    return `${this.field.name}${nameSuffixes.RelationManyProjection}`;
+    return `${this.field.type}${nameSuffixes.RelationManyProjection}`;
   }
 
   protected override enumField(): string {
