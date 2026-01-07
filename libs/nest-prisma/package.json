@@ -1,0 +1,74 @@
+{
+  "name": "@robert-brightline/nest-prisma",
+  "description": "Nestjs prisma module",
+  "version": "0.0.1",
+  "author": {
+    "name": "robert-brightline",
+    "email": "robert.brightline+nest-prisma@gmail.com"
+  },
+  "homepage": "https://robert-brightline.github.io/libs/nest-prisma",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "keywords": [
+    ""
+  ],
+  "funding": [
+    {
+      "type": "cashapp",
+      "url": "https://cash.app/$puqlib"
+    }
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@robert-brightline/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "assets",
+    "!**/*.tsbuildinfo"
+  ],
+  "nx": {
+    "sourceRoot": "libs/nest-prisma/src",
+    "projectType": "library",
+    "targets": {
+      "build": {
+        "executor": "@nx/js:swc",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "outputPath": "libs/nest-prisma/dist",
+          "main": "libs/nest-prisma/src/index.ts",
+          "tsConfig": "libs/nest-prisma/tsconfig.lib.json",
+          "skipTypeCheck": false,
+          "stripLeadingPaths": true
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "@nestjs/common": "^11.1.11",
+    "@nestjs/config": "^4.0.2",
+    "@prisma/adapter-pg": "^7.2.0",
+    "@prisma/client": "^7.2.0",
+    "@robert-brightline/nest-common": "workspace:*",
+    "@robert-brightline/types": "workspace:^",
+    "@swc/helpers": "~0.5.11",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.16.0",
+    "vitest": "^4.0.8"
+  }
+}

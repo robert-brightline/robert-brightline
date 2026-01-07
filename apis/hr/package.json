@@ -40,6 +40,7 @@
   ],
   "nx": {
     "sourceRoot": "apis/hr/src",
+    "projectType": "library",
     "targets": {
       "build": {
         "executor": "@nx/js:swc",

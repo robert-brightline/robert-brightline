@@ -6,7 +6,7 @@
     "name": "robert-brightline",
     "email": "robert.brightline+auth@gmail.com"
   },
-  "homepage": "https://github.com/robert-brightline/robert-brightline.git/apis/auth",
+  "homepage": "https://robert-brightline.github.io/apis/auth",
   "publishConfig": {
     "access": "public",
     "tag": "latest"
@@ -41,6 +41,7 @@
   ],
   "nx": {
     "sourceRoot": "apis/auth/src",
+    "projectType": "library",
     "targets": {
       "build": {
         "executor": "@nx/js:swc",
@@ -49,7 +50,7 @@
         ],
         "options": {
           "outputPath": "apis/auth/dist",
-          "main": "apis/auth/src/index.ts",
+          "main": "apis/auth/src/main.ts",
           "tsConfig": "apis/auth/tsconfig.lib.json",
           "skipTypeCheck": false,
           "stripLeadingPaths": true
@@ -78,6 +79,9 @@
     "helmet": "^8.1.0"
   },
   "dependencies": {
+    "@robert-brightline/auth-db": "workspace:*",
+    "@robert-brightline/nest": "workspace:*",
+    "@robert-brightline/nest-prisma": "workspace:*",
     "@swc/helpers": "~0.5.11"
   },
   "devDependencies": {

@@ -56,6 +56,15 @@
     },
     {
       "path": "./dbs/crm-db"
+    },
+    {
+      "path": "./libs/nest"
+    },
+    {
+      "path": "./libs/nest-prisma"
+    },
+    {
+      "path": "./libs/nest-common"
     }
   ]
 }

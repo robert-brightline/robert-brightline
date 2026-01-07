@@ -61,6 +61,7 @@
   ],
   "nx": {
     "sourceRoot": "<%- directory %>/src",
+    "projectType": "library",
     "targets": {
       "build": {
         "executor": "@nx/js:swc",

@@ -1,0 +1,70 @@
+{
+  "name": "@robert-brightline/nest",
+  "description": "Nestjs common",
+  "version": "0.0.13",
+  "author": {
+    "name": "robert-brightline",
+    "email": "robert.brightline+nest@gmail.com"
+  },
+  "homepage": "https://robert-brightline.github.io/libs/nest",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "keywords": [
+    ""
+  ],
+  "funding": [
+    {
+      "type": "cashapp",
+      "url": "https://cash.app/$puqlib"
+    }
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@robert-brightline/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "assets",
+    "!**/*.tsbuildinfo"
+  ],
+  "nx": {
+    "sourceRoot": "libs/nest/src",
+    "targets": {
+      "build": {
+        "executor": "@nx/js:swc",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "outputPath": "libs/nest/dist",
+          "main": "libs/nest/src/index.ts",
+          "tsConfig": "libs/nest/tsconfig.lib.json",
+          "skipTypeCheck": false,
+          "stripLeadingPaths": true
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "@nestjs/common": "^11.1.11",
+    "@nestjs/core": "^11.1.11",
+    "@robert-brightline/errors": "workspace:*",
+    "@robert-brightline/names": "workspace:*",
+    "@swc/helpers": "~0.5.11",
+    "zod": "^4.3.4"
+  },
+  "devDependencies": {
+    "vitest": "^4.0.8"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "export-all": {
+    "prefix": "export-all",
+    "body": "// @index(['./**/*.ts', '!./**/*.{test,spec}.ts', '!./**/generate.ts'], f => `export * from '${f.path}.js';`",
+    "scope": "typescript",
+  },
+  "command-binder": {
+    "prefix": "command-binder",
+    "body": [
+      "import type { Command } from 'commander';",
+      "",
+      "export function $1(program: Command) {",
+      "  program",
+      "    .command('$1')",
+      "    .requiredOption('-n, --name <str>', 'What is your  name?')",
+      "    .action(({ name }) => console.log(`Hello, ${name}`));",
+      "}",
+    ],
+    "scope": "typescript",
+  },
+}
