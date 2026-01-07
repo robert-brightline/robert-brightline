@@ -1,3 +1,18 @@
+## 0.0.17 (2026-01-07)
+
+### 🚀 Features
+
+- created nest-common and nest-prisma modules ([013ffcb](https://github.com/robert-brightline/robert-brightline/commit/013ffcb))
+- configured the auth service and tested ([5aa6b82](https://github.com/robert-brightline/robert-brightline/commit/5aa6b82))
+
+### 🩹 Fixes
+
+- fixed the funding links ([4f5f159](https://github.com/robert-brightline/robert-brightline/commit/4f5f159))
+
+### ❤️ Thank You
+
+- robert-brightline @robert-brightline
+
 ## 0.0.13 (2026-01-06)
 
 ### 🚀 Features
