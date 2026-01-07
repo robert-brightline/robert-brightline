@@ -14,13 +14,18 @@ async function typedoc() {
     // "includeVersion": true,
     // "excludeInternal": true,
     // "skipErrorChecking": true
+    const relativeRoot = root.replace(workspace(), '');
     execSync(
       [
         `npx typedoc`,
-        `--out=".../../../robert-brightline.github.io/public/${root}"`,
-        `--favicon="assets/favicon.png"`,
-        `--tsconfig="tsconfig.lib.json"`,
+        `--out "../../../robert-brightline.github.io/public/${relativeRoot}"`,
+        `--favicon "assets/favicon.png"`,
+        `--tsconfig "tsconfig.lib.json"`,
+        `--skipErrorChecking true`,
+        `--excludeInternal true`,
+        `--includeVersion true`,
       ].join(' '),
+      { stdio: 'inherit' },
     );
   }
 }
