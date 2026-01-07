@@ -41,7 +41,7 @@
   ],
   "nx": {
     "sourceRoot": "apis/crm/src",
-    "projectType": "application",
+    "projectType": "library",
     "tags": [
       "scope:app"
     ],

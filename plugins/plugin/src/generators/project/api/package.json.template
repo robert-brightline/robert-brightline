@@ -35,7 +35,7 @@
   ],
   "nx": {
     "sourceRoot": "<%- directory %>/src",
-    "projectType": "application",
+    "projectType": "library",
     "tags": [
       "scope:app"
     ],

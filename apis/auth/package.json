@@ -42,7 +42,7 @@
   ],
   "nx": {
     "sourceRoot": "apis/auth/src",
-    "projectType": "application",
+    "projectType": "library",
     "tags": [
       "scope:app"
     ],

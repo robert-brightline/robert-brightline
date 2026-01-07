@@ -41,7 +41,7 @@
   ],
   "nx": {
     "sourceRoot": "apis/ims/src",
-    "projectType": "application",
+    "projectType": "library",
     "tags": [
       "scope:app"
     ],

@@ -41,7 +41,7 @@
   ],
   "nx": {
     "sourceRoot": "apis/hr/src",
-    "projectType": "application",
+    "projectType": "library",
     "tags": [
       "scope:app"
     ],
