@@ -12,7 +12,7 @@ async function update() {
     const json = JSON.parse(content);
 
     const relativePath = root.replace(workspace(), '');
-    json.homepage = `https://robert-brightline.github.io/${relativePath}`;
+    json.homepage = `https://robert-brightline.github.io${relativePath}`;
     const updatedContent = JSON.stringify(json, undefined, 2);
     await writeFile(packagePath, updatedContent);
   }

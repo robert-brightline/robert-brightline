@@ -6,7 +6,7 @@
     "name": "robert-brightline",
     "email": "robert.brightline+checks@gmail.com"
   },
-  "homepage": "https://github.com/robert-brightline/robert-brightline.git/libs/checks",
+  "homepage": "https://robert-brightline.github.io/libs/checks",
   "publishConfig": {
     "access": "public",
     "tag": "latest"

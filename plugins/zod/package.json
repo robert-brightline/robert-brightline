@@ -6,7 +6,7 @@
     "name": "robert-brightline",
     "email": "robert.brightline+zod@gmail.com"
   },
-  "homepage": "https://github.com/robert-brightline/robert-brightline.git/plugins/zod",
+  "homepage": "https://robert-brightline.github.io/plugins/zod",
   "publishConfig": {
     "access": "public",
     "tag": "latest"

@@ -21,7 +21,7 @@
   "homepage": "https://robert-brightline.github.io",
   "scripts": {
     "prepare": "husky",
-    "gen:doc": "npx typedoc",
+    "gen:doc": "npx ts-node ./tools/typedoc.ts",
     "gen:lib": "npx nx g @robert-brightline/plugin:project library ",
     "gen:prisma": "npx nx g @robert-brightline/plugin:project prisma ",
     "gen:api": "npx nx g @robert-brightline/plugin:project api "

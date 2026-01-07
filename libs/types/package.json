@@ -6,7 +6,7 @@
     "name": "robert-brightline",
     "email": "robert.brightline+types@gmail.com"
   },
-  "homepage": "https://github.com/robert-brightline/robert-brightline.git/libs/types",
+  "homepage": "https://robert-brightline.github.io/libs/types",
   "publishConfig": {
     "access": "public",
     "tag": "latest"

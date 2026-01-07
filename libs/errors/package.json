@@ -7,7 +7,7 @@
     "name": "Robert Brightline",
     "url": "https://robert.brightline.github.io"
   },
-  "homepage": "https://robert.brightline.github.io/libs/errors",
+  "homepage": "https://robert-brightline.github.io/libs/errors",
   "publishConfig": {
     "access": "public",
     "tag": "latest"

@@ -57,9 +57,11 @@
       }
     }
   },
-  "dependencies": {
+  "peerDependencies": {
     "@nestjs/common": "^11.1.11",
-    "@robert-brightline/types": "workspace:*",
+    "@robert-brightline/types": "workspace:*"
+  },
+  "dependencies": {
     "@swc/helpers": "~0.5.11"
   },
   "devDependencies": {

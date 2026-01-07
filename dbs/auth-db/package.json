@@ -6,7 +6,7 @@
     "name": "robert-brightline",
     "email": "robert.brightline+auth-db@gmail.com"
   },
-  "homepage": "https://github.com/robert-brightline/robert-brightline.git/dbs/auth-db",
+  "homepage": "https://robert-brightline.github.io/dbs/auth-db",
   "publishConfig": {
     "access": "public",
     "tag": "latest"

@@ -6,7 +6,7 @@
     "name": "robert-brightline",
     "email": "robert.brightline+ean@gmail.com"
   },
-  "homepage": "https://github.com/robert-brightline/robert-brightline.git/libs/ean",
+  "homepage": "https://robert-brightline.github.io/libs/ean",
   "publishConfig": {
     "access": "public",
     "tag": "latest"

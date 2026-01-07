@@ -6,7 +6,7 @@
     "name": "robert-brightline",
     "email": "robert.brightline+pms@gmail.com"
   },
-  "homepage": "https://github.com/robert-brightline/robert-brightline.git/apis/pms",
+  "homepage": "https://robert-brightline.github.io/apis/pms",
   "publishConfig": {
     "access": "public",
     "tag": "latest"

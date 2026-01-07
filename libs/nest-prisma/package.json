@@ -59,15 +59,17 @@
       }
     }
   },
-  "dependencies": {
+  "peerDependencies": {
     "@nestjs/common": "^11.1.11",
     "@nestjs/config": "^4.0.2",
     "@prisma/adapter-pg": "^7.2.0",
     "@prisma/client": "^7.2.0",
     "@robert-brightline/nest-common": "workspace:*",
-    "@robert-brightline/types": "workspace:^",
-    "@swc/helpers": "~0.5.11",
+    "@robert-brightline/types": "workspace:*",
     "pg": "^8.16.3"
+  },
+  "dependencies": {
+    "@swc/helpers": "~0.5.11"
   },
   "devDependencies": {
     "@types/pg": "^8.16.0",

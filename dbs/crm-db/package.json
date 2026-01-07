@@ -6,7 +6,7 @@
     "name": "robert-brightline",
     "email": "robert.brightline+crm-db@gmail.com"
   },
-  "homepage": "https://github.com/robert-brightline/robert-brightline.git/dbs/crm-db",
+  "homepage": "https://robert-brightline.github.io/dbs/crm-db",
   "publishConfig": {
     "access": "public",
     "tag": "latest"

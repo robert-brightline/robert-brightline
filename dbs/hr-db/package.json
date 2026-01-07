@@ -6,7 +6,7 @@
     "name": "robert-brightline",
     "email": "robert.brightline+hr-db@gmail.com"
   },
-  "homepage": "https://github.com/robert-brightline/robert-brightline.git/dbs/hr-db",
+  "homepage": "https://robert-brightline.github.io/dbs/hr-db",
   "publishConfig": {
     "access": "public",
     "tag": "latest"

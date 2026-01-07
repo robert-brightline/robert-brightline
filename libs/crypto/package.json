@@ -6,7 +6,7 @@
     "name": "robert-brightline",
     "email": "robert.brightline+crypto@gmail.com"
   },
-  "homepage": "https://github.com/robert-brightline/robert-brightline.git/libs/crypto",
+  "homepage": "https://robert-brightline.github.io/libs/crypto",
   "publishConfig": {
     "access": "public",
     "tag": "latest"

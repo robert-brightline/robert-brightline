@@ -492,7 +492,7 @@ importers:
         specifier: workspace:*
         version: link:../nest-common
       '@robert-brightline/types':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../types
       '@swc/helpers':
         specifier: ~0.5.11

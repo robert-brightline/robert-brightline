@@ -6,7 +6,7 @@
     "name": "robert-brightline",
     "email": "robert.brightline+ims@gmail.com"
   },
-  "homepage": "https://github.com/robert-brightline/robert-brightline.git/apis/ims",
+  "homepage": "https://robert-brightline.github.io/apis/ims",
   "publishConfig": {
     "access": "public",
     "tag": "latest"
