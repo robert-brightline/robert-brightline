@@ -13,3 +13,7 @@ export const AppQuery = z.object({
   take: External.int().min(0).optional(),
   skip: External.int().min(0).optional(),
 });
+
+export const AppOnlyProjection = z.object({
+  select: External.prejson(AppProjection.optional()),
+});

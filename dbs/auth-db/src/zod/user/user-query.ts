@@ -13,3 +13,7 @@ export const UserQuery = z.object({
   take: External.int().min(0).optional(),
   skip: External.int().min(0).optional(),
 });
+
+export const UserOnlyProjection = z.object({
+  select: External.prejson(UserProjection.optional()),
+});

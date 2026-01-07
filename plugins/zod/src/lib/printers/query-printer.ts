@@ -26,6 +26,11 @@ export class QueryPrinter implements Printable {
       take: External.int().min(0).optional(),
       skip: External.int().min(0).optional(),
     });
+
+    export const ${pascal}OnlyProjection = z.object({
+      select: External.prejson(${pascal}Projection.optional())
+    });
+
 `;
 
     const importCode = importsList.join('\n');

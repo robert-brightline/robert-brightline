@@ -1,11 +1,13 @@
 import type { Prisma } from '@robert-brightline/auth-db/client';
 import type {
   UserCreateInput,
+  UserDefaultArgs,
   UserFindManyArgs,
   UserUpdateInput,
 } from '@robert-brightline/auth-db/models';
 import {
   UserCreate,
+  UserProjection,
   UserQuery,
   UserUpdate,
 } from '@robert-brightline/auth-db/zod';
@@ -24,15 +26,22 @@ export class UserController {
     return this.repo.findMany(query);
   }
 
-  findById(@ParamId() id: number) {
-    return this.repo.findUniqueOrThrow({ where: { id } });
+  findById(
+    @ParamId() id: number,
+    @Query(UserProjection) query: UserDefaultArgs,
+  ) {
+    return this.repo.findUniqueOrThrow({ where: { id }, ...query });
   }
 
-  update(@ParamId() id: number, @Body(UserUpdate) data: UserUpdateInput) {
-    return this.repo.update({ where: { id }, data });
+  update(
+    @ParamId() id: number,
+    @Body(UserUpdate) data: UserUpdateInput,
+    @Query(UserProjection) query: UserDefaultArgs,
+  ) {
+    return this.repo.update({ where: { id }, data, ...query });
   }
 
-  delete(@ParamId() id: number) {
-    return this.repo.delete({ where: { id } });
+  delete(@ParamId() id: number, @Query(UserProjection) query: UserDefaultArgs) {
+    return this.repo.delete({ where: { id }, ...query });
   }
 }

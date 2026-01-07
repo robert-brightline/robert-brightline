@@ -51,11 +51,13 @@ export function Rest(): ClassDecorator {
           }
           case 'create': {
             SwaggerBody()(...args);
+            SwaggerProjectQuery()(...args);
             Post(singularResourcePath)(...args);
             break;
           }
           case 'update': {
             SwaggerBody()(...args);
+            SwaggerProjectQuery()(...args);
             Put(`${singularResourcePath}/:id`)(...args);
             break;
           }

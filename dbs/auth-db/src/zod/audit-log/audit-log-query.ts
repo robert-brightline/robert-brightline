@@ -13,3 +13,7 @@ export const AuditLogQuery = z.object({
   take: External.int().min(0).optional(),
   skip: External.int().min(0).optional(),
 });
+
+export const AuditLogOnlyProjection = z.object({
+  select: External.prejson(AuditLogProjection.optional()),
+});

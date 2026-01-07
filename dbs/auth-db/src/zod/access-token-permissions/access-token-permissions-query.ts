@@ -13,3 +13,7 @@ export const AccessTokenPermissionsQuery = z.object({
   take: External.int().min(0).optional(),
   skip: External.int().min(0).optional(),
 });
+
+export const AccessTokenPermissionsOnlyProjection = z.object({
+  select: External.prejson(AccessTokenPermissionsProjection.optional()),
+});

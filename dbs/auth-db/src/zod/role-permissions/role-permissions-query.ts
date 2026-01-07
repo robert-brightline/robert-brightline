@@ -13,3 +13,7 @@ export const RolePermissionsQuery = z.object({
   take: External.int().min(0).optional(),
   skip: External.int().min(0).optional(),
 });
+
+export const RolePermissionsOnlyProjection = z.object({
+  select: External.prejson(RolePermissionsProjection.optional()),
+});
