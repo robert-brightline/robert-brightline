@@ -1,7 +1,7 @@
 {
   "name": "@robert-brightline/ean",
   "description": "Ean barcode generator",
-  "version": "0.0.17",
+  "version": "0.0.19",
   "author": {
     "name": "robert-brightline",
     "email": "robert.brightline+ean@gmail.com",

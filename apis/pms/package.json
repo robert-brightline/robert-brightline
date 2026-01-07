@@ -1,7 +1,7 @@
 {
   "name": "@robert-brightline/pms",
   "description": "Project management service",
-  "version": "0.0.17",
+  "version": "0.0.19",
   "author": {
     "name": "robert-brightline",
     "email": "robert.brightline+pms@gmail.com",

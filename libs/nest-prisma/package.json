@@ -1,7 +1,7 @@
 {
   "name": "@robert-brightline/nest-prisma",
   "description": "Nestjs prisma module",
-  "version": "0.0.17",
+  "version": "0.0.19",
   "author": {
     "name": "robert-brightline",
     "email": "robert.brightline+nest-prisma@gmail.com",
