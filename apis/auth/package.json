@@ -1,3 +1,4 @@
+
 {
   "name": "@robert-brightline/auth",
   "description": "Auth service",
@@ -77,11 +78,11 @@
     "@nestjs/core": "^11.1.11",
     "@nestjs/swagger": "^11.2.3",
     "@robert-brightline/auth-db": "workspace:*",
+    "@robert-brightline/nest": "workspace:*",
+    "@robert-brightline/nest-prisma": "workspace:*",
     "helmet": "^8.1.0"
   },
   "dependencies": {
-    "@robert-brightline/nest": "workspace:*",
-    "@robert-brightline/nest-prisma": "workspace:*",
     "@swc/helpers": "~0.5.11"
   },
   "devDependencies": {

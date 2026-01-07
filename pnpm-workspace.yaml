@@ -5,7 +5,9 @@ packages:
   - libs/*
 
 onlyBuiltDependencies:
+  - '@nestjs/core'
   - '@prisma/engines'
+  - '@scarf/scarf'
   - '@swc/core'
   - bcrypt
   - better-sqlite3
@@ -13,3 +15,4 @@ onlyBuiltDependencies:
   - nx
   - prisma
   - prisma-zod-generator
+  - unrs-resolver
