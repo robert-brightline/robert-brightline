@@ -6,10 +6,10 @@ import { AccessTokenWhere } from './access-token-where.js';
 import { AccessTokenProjection } from './access-token-projection.js';
 
 export const AccessTokenQuery = z.object({
-  distinct: AccessTokenField.array().optional(),
-  select: AccessTokenProjection.optional(),
-  orderBy: AccessTokenOrder.optional(),
-  where: AccessTokenWhere.optional(),
+  distinct: External.prejson(AccessTokenField.array().optional()),
+  select: External.prejson(AccessTokenProjection.optional()),
+  orderBy: External.prejson(AccessTokenOrder.optional()),
+  where: External.prejson(AccessTokenWhere.optional()),
   take: External.int().min(0).optional(),
   skip: External.int().min(0).optional(),
 });

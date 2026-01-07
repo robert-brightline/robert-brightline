@@ -19,10 +19,10 @@ export class QueryPrinter implements Printable {
 
     const schemCode = `
     export const ${pascal}Query = z.object({
-      distinct: ${pascal}Field.array().optional(),
-      select: ${pascal}Projection.optional(),
-      orderBy: ${pascal}Order.optional(),
-      where: ${pascal}Where.optional(),
+      distinct: External.prejson(${pascal}Field.array().optional()),
+      select: External.prejson(${pascal}Projection.optional()),
+      orderBy: External.prejson(${pascal}Order.optional()),
+      where: External.prejson(${pascal}Where.optional()),
       take: External.int().min(0).optional(),
       skip: External.int().min(0).optional(),
     });

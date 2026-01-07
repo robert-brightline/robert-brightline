@@ -6,10 +6,10 @@ import { RolePermissionsWhere } from './role-permissions-where.js';
 import { RolePermissionsProjection } from './role-permissions-projection.js';
 
 export const RolePermissionsQuery = z.object({
-  distinct: RolePermissionsField.array().optional(),
-  select: RolePermissionsProjection.optional(),
-  orderBy: RolePermissionsOrder.optional(),
-  where: RolePermissionsWhere.optional(),
+  distinct: External.prejson(RolePermissionsField.array().optional()),
+  select: External.prejson(RolePermissionsProjection.optional()),
+  orderBy: External.prejson(RolePermissionsOrder.optional()),
+  where: External.prejson(RolePermissionsWhere.optional()),
   take: External.int().min(0).optional(),
   skip: External.int().min(0).optional(),
 });

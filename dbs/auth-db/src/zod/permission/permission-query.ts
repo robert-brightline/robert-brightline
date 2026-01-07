@@ -6,10 +6,10 @@ import { PermissionWhere } from './permission-where.js';
 import { PermissionProjection } from './permission-projection.js';
 
 export const PermissionQuery = z.object({
-  distinct: PermissionField.array().optional(),
-  select: PermissionProjection.optional(),
-  orderBy: PermissionOrder.optional(),
-  where: PermissionWhere.optional(),
+  distinct: External.prejson(PermissionField.array().optional()),
+  select: External.prejson(PermissionProjection.optional()),
+  orderBy: External.prejson(PermissionOrder.optional()),
+  where: External.prejson(PermissionWhere.optional()),
   take: External.int().min(0).optional(),
   skip: External.int().min(0).optional(),
 });

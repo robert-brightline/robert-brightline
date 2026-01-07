@@ -6,10 +6,10 @@ import { RoleWhere } from './role-where.js';
 import { RoleProjection } from './role-projection.js';
 
 export const RoleQuery = z.object({
-  distinct: RoleField.array().optional(),
-  select: RoleProjection.optional(),
-  orderBy: RoleOrder.optional(),
-  where: RoleWhere.optional(),
+  distinct: External.prejson(RoleField.array().optional()),
+  select: External.prejson(RoleProjection.optional()),
+  orderBy: External.prejson(RoleOrder.optional()),
+  where: External.prejson(RoleWhere.optional()),
   take: External.int().min(0).optional(),
   skip: External.int().min(0).optional(),
 });

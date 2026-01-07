@@ -1,3 +1,5 @@
+import type { Any } from '@robert-brightline/types';
+import type { ZodType } from 'zod';
 import { z } from 'zod';
 
 export const str = () => z.string();
@@ -31,7 +33,6 @@ export const bool = () => z.coerce.boolean();
 export const datetime = () => z.iso.datetime();
 export const date = () => z.iso.date();
 
-
 export const password = () => {
   return z
     .string()
@@ -42,7 +43,6 @@ export const password = () => {
       error: 'Must contain a special character',
     });
 };
-
 
 export const future = () =>
   z.iso.date().refine(
@@ -87,3 +87,12 @@ type __Literal = z.infer<typeof literalSchema>;
 type __Json = __Literal | { [key: string]: __Json } | __Json[];
 export const json: () => z.ZodType<__Json> = () =>
   z.union([literalSchema, z.array(json()), z.record(str(), str())]);
+
+export const prejson = (schema: ZodType<Any>) =>
+  z.preprocess((value: string) => {
+    try {
+      return JSON.parse(value);
+    } catch {
+      return value;
+    }
+  }, schema);

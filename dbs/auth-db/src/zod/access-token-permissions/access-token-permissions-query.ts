@@ -6,10 +6,10 @@ import { AccessTokenPermissionsWhere } from './access-token-permissions-where.js
 import { AccessTokenPermissionsProjection } from './access-token-permissions-projection.js';
 
 export const AccessTokenPermissionsQuery = z.object({
-  distinct: AccessTokenPermissionsField.array().optional(),
-  select: AccessTokenPermissionsProjection.optional(),
-  orderBy: AccessTokenPermissionsOrder.optional(),
-  where: AccessTokenPermissionsWhere.optional(),
+  distinct: External.prejson(AccessTokenPermissionsField.array().optional()),
+  select: External.prejson(AccessTokenPermissionsProjection.optional()),
+  orderBy: External.prejson(AccessTokenPermissionsOrder.optional()),
+  where: External.prejson(AccessTokenPermissionsWhere.optional()),
   take: External.int().min(0).optional(),
   skip: External.int().min(0).optional(),
 });

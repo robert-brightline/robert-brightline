@@ -6,10 +6,10 @@ import { UserWhere } from './user-where.js';
 import { UserProjection } from './user-projection.js';
 
 export const UserQuery = z.object({
-  distinct: UserField.array().optional(),
-  select: UserProjection.optional(),
-  orderBy: UserOrder.optional(),
-  where: UserWhere.optional(),
+  distinct: External.prejson(UserField.array().optional()),
+  select: External.prejson(UserProjection.optional()),
+  orderBy: External.prejson(UserOrder.optional()),
+  where: External.prejson(UserWhere.optional()),
   take: External.int().min(0).optional(),
   skip: External.int().min(0).optional(),
 });
