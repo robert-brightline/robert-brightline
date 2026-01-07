@@ -21,6 +21,7 @@ import { BaseError } from './base-error.js';
 `;
 
 const listOfErrors = new Set([
+  // 
   'Type',
   'InvalidFormat',
   'PatternMismatch',
@@ -106,6 +107,7 @@ const listOfErrors = new Set([
   'NotCallable',
   'Assertion',
   'Unsupported',
+  'AccessDenied'
 ]);
 
 const generatedErrors = [...listOfErrors].map(printErrorClass).join('\n');

@@ -1,5 +1,5 @@
 import { ResouceNameExp } from './resource-name-exp.js';
-// Controller|Service|EventListener|Interceptor|Guard|Filter|Pipe|Resolver
+
 describe('resourceName', () => {
   describe('valid', () => {
     it.each`

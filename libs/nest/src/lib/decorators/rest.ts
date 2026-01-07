@@ -1,7 +1,6 @@
 import { Controller, Delete, Get, Post, Put } from '@nestjs/common';
 import { names, pluralize } from '@robert-brightline/names';
-import { resourceName } from './../helpers/resource-name.js';
-
+import { resourceName } from '@robert-brightline/nest-common';
 /**
  * Nestjs smart controller decorator
  * @returns

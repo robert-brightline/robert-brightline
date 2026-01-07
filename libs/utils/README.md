@@ -9,7 +9,7 @@
 
 ## @robert-brightline/utils
 
-@robert-brightline/utils library
+Common utilities
 
 ## Installation
 

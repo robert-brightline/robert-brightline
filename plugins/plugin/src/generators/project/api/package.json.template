@@ -1,6 +1,6 @@
 {
   "name": "<%- fullProjectName %>",
-  "description": "- [ ] add project description",
+  "description": "<%- shortProjectName %> rest service",
   "version": "<%- version %>",
   "author": { 
     "name": "<%- currentUsername %>", 
@@ -35,7 +35,10 @@
   ],
   "nx": {
     "sourceRoot": "<%- directory %>/src",
-    "projectType": "library",
+    "projectType": "application",
+    "tags": [
+      "scope:app"
+    ],
     "targets": {
       "build": {
         "executor": "@nx/js:swc",
@@ -44,7 +47,7 @@
         ],
         "options": {
           "outputPath": "<%- directory %>/dist",
-          "main": "<%- directory %>/src/index.ts",
+          "main": "<%- directory %>/src/main.ts",
           "tsConfig": "<%- directory %>/tsconfig.lib.json",
           "skipTypeCheck": false,
           "stripLeadingPaths": true

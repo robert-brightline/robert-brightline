@@ -412,13 +412,19 @@ importers:
 
   libs/fs:
     dependencies:
-      '@robert-brightline/utils':
+      '@robert-brightline/errors':
         specifier: workspace:*
-        version: link:../utils
+        version: link:../errors
       '@swc/helpers':
         specifier: ~0.5.11
         version: 0.5.18
+      js-yaml:
+        specifier: ^4.1.1
+        version: 4.1.1
     devDependencies:
+      '@types/js-yaml':
+        specifier: ^4.0.9
+        version: 4.0.9
       vitest:
         specifier: ^4.0.8
         version: 4.0.16(@types/node@20.19.9)(jiti@2.6.1)(jsdom@27.4.0)(yaml@2.8.2)
@@ -444,6 +450,9 @@ importers:
       '@robert-brightline/names':
         specifier: workspace:*
         version: link:../names
+      '@robert-brightline/nest-common':
+        specifier: workspace:*
+        version: link:../nest-common
       '@swc/helpers':
         specifier: ~0.5.11
         version: 0.5.18
@@ -460,6 +469,9 @@ importers:
       '@nestjs/common':
         specifier: ^11.1.11
         version: 11.1.11(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@robert-brightline/errors':
+        specifier: workspace:*
+        version: link:../errors
       '@robert-brightline/types':
         specifier: workspace:*
         version: link:../types
@@ -2468,6 +2480,9 @@ packages:
 
   '@types/istanbul-reports@3.0.4':
     resolution: {integrity: sha512-pk2B1NWalF9toCRu6gjBzR69syFjP4Od8WRAX+0mmf9lAjCRicLOWc+ZrxZHx/0XRjotgkF9t6iaMJ+aXcOdZQ==}
+
+  '@types/js-yaml@4.0.9':
+    resolution: {integrity: sha512-k4MGaQl5TGo/iipqb2UDG2UwjXziSWkh0uysQelTlJpX1qGlpUZYm8PnO4DxG1qBomtJUdYJ6qR6xdIah10JLg==}
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
@@ -8170,6 +8185,8 @@ snapshots:
   '@types/istanbul-reports@3.0.4':
     dependencies:
       '@types/istanbul-lib-report': 3.0.3
+
+  '@types/js-yaml@4.0.9': {}
 
   '@types/json-schema@7.0.15': {}
 

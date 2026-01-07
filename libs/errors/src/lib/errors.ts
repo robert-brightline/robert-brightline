@@ -416,3 +416,8 @@ export class UnsupportedError extends BaseError {
        super(`UnsupportedError: ${message}`, 'UnsupportedError');
    }
 }
+export class AccessDeniedError extends BaseError {
+   constructor(message = '') {
+       super(`AccessDeniedError: ${message}`, 'AccessDeniedError');
+   }
+}

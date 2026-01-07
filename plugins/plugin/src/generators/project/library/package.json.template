@@ -1,6 +1,6 @@
 {
   "name": "<%- fullProjectName %>",
-  "description": "- [ ] add project description",
+  "description": "Common <%- shortProjectName %> library",
   "version": "<%- version %>",
   "author": { 
     "name": "<%- currentUsername %>", 
@@ -36,6 +36,9 @@
   "nx": {
     "sourceRoot": "<%- directory %>/src",
     "projectType": "library",
+    "tags": [
+      "scope:shared"
+    ],
     "targets": {
       "build": {
         "executor": "@nx/js:swc",
