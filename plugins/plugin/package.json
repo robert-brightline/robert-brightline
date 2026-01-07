@@ -4,7 +4,8 @@
   "version": "0.0.17",
   "author": {
     "name": "robert-brightline",
-    "email": "robert.brightline+names@gmail.com"
+    "email": "robert.brightline+names@gmail.com",
+    "url": "https://robert-brightline.github.io"
   },
   "homepage": "https://robert-brightline.github.io/plugins/plugin",
   "publishConfig": {

@@ -4,7 +4,8 @@
   "version": "0.0.17",
   "author": {
     "name": "robert-brightline",
-    "email": "robert.brightline+ims-db@gmail.com"
+    "email": "robert.brightline+ims-db@gmail.com",
+    "url": "https://robert-brightline.github.io"
   },
   "homepage": "https://robert-brightline.github.io/dbs/ims-db",
   "publishConfig": {

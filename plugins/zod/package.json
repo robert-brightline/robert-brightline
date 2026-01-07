@@ -4,7 +4,8 @@
   "version": "0.0.17",
   "author": {
     "name": "robert-brightline",
-    "email": "robert.brightline+zod@gmail.com"
+    "email": "robert.brightline+zod@gmail.com",
+    "url": "https://robert-brightline.github.io"
   },
   "homepage": "https://robert-brightline.github.io/plugins/zod",
   "publishConfig": {

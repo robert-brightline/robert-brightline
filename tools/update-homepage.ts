@@ -2,7 +2,6 @@
 import { readFile, writeFile } from 'fs/promises';
 import { join } from 'path';
 import { projectroots } from './common/project-roots';
-import { workspace } from './common/workspaces';
 
 async function update() {
   for (const root of await projectroots()) {
@@ -11,8 +10,8 @@ async function update() {
     const content = await readFile(packagePath, { encoding: 'utf-8' });
     const json = JSON.parse(content);
 
-    const relativePath = root.replace(workspace(), '');
-    json.homepage = `https://robert-brightline.github.io${relativePath}`;
+    // const relativePath = root.replace(workspace(), '');
+    json.author.url = `https://robert-brightline.github.io`;
     const updatedContent = JSON.stringify(json, undefined, 2);
     await writeFile(packagePath, updatedContent);
   }

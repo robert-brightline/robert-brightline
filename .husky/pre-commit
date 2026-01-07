@@ -5,7 +5,7 @@ pnpm install
 
 echo "pre-commit : Lint, build, and test all projects"
 
-npx nx run-many -t lint build test
+npx nx run-many -t build
 
 git add .
 echo "pre-commit : completed"

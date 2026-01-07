@@ -4,7 +4,8 @@
   "version": "0.0.17",
   "author": {
     "name": "robert-brightline",
-    "email": "robert.brightline+crypto@gmail.com"
+    "email": "robert.brightline+crypto@gmail.com",
+    "url": "https://robert-brightline.github.io"
   },
   "homepage": "https://robert-brightline.github.io/libs/crypto",
   "publishConfig": {
