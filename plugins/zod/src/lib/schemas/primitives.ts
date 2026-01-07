@@ -39,7 +39,7 @@ export const password = () => {
     .regex(/[A-Z]{1,}/, { error: 'Must contain an uppercase letter' })
     .regex(/[a-z]{1,}/, { error: 'Must contain a lowercase letter' })
     .regex(/[0-9]{1,}/, { error: 'Must contain a number' })
-    .regex(/[!@#$%^&*()_+{}:"<>?\\[\\];',\.\/]{1,}/, {
+    .regex(/[^a-zA-Z0-9]{1,}/, {
       error: 'Must contain a special character',
     });
 };

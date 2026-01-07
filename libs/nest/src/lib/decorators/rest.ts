@@ -1,6 +1,11 @@
 import { Controller, Delete, Get, Post, Put } from '@nestjs/common';
 import { names, pluralize } from '@robert-brightline/names';
 import { resourceName } from '@robert-brightline/nest-common';
+import {
+  SwaggerBody,
+  SwaggerManyQuery,
+  SwaggerProjectQuery,
+} from './swagger.js';
 /**
  * Nestjs smart controller decorator
  * @returns
@@ -28,29 +33,35 @@ export function Rest(): ClassDecorator {
       );
 
       if (typeof descriptor?.value === 'function') {
+        const args: [typeof target, typeof propertyKey, typeof descriptor] = [
+          target,
+          propertyKey,
+          descriptor,
+        ];
         switch (propertyKey) {
           case 'find': {
-            Get(pluralResourcePath)(target, propertyKey, descriptor);
+            SwaggerManyQuery()(...args);
+            Get(pluralResourcePath)(...args);
             break;
           }
           case 'findById': {
-            Get(`${singularResourcePath}/:id`)(target, propertyKey, descriptor);
+            SwaggerProjectQuery()(...args);
+            Get(`${singularResourcePath}/:id`)(...args);
             break;
           }
           case 'create': {
-            Post(singularResourcePath)(target, propertyKey, descriptor);
+            SwaggerBody()(...args);
+            Post(singularResourcePath)(...args);
             break;
           }
           case 'update': {
-            Put(`${singularResourcePath}/:id`)(target, propertyKey, descriptor);
+            SwaggerBody()(...args);
+            Put(`${singularResourcePath}/:id`)(...args);
             break;
           }
           case 'delete': {
-            Delete(`${singularResourcePath}/:id`)(
-              target,
-              propertyKey,
-              descriptor,
-            );
+            SwaggerProjectQuery()(...args);
+            Delete(`${singularResourcePath}/:id`)(...args);
             break;
           }
         }

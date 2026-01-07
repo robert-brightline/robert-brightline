@@ -14,17 +14,14 @@ import { InjectRepo } from '@robert-brightline/nest-prisma';
 
 @Rest()
 export class UserController {
-  constructor(
-    @InjectRepo('user', 'auth') protected readonly repo: Prisma.UserDelegate,
-  ) {}
+  constructor(@InjectRepo() protected readonly repo: Prisma.UserDelegate) {}
 
   create(@Body(UserCreate) data: UserCreateInput) {
     return this.repo.create({ data });
   }
 
   find(@Query(UserQuery) query: UserFindManyArgs) {
-    console.table(query);
-    return this.repo.findMany();
+    return this.repo.findMany(query);
   }
 
   findById(@ParamId() id: number) {

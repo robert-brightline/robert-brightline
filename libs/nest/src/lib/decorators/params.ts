@@ -1,9 +1,14 @@
-import { Param, Body as _Body, Query as _Query } from '@nestjs/common';
+import {
+  Param,
+  ParseIntPipe,
+  Body as _Body,
+  Query as _Query,
+} from '@nestjs/common';
 import type { ZodType } from 'zod';
 
 export function ParamId(): ParameterDecorator {
   return (...args) => {
-    Param('id')(...args);
+    Param('id', ParseIntPipe)(...args);
   };
 }
 
