@@ -1,3 +1,18 @@
+## 0.0.23 (2026-01-07)
+
+### 🚀 Features
+
+- added the default swagger query, body, and param options to the swagger ui ([ceccfc0](https://github.com/robert-brightline/robert-brightline/commit/ceccfc0))
+- added the missing projection schema for find-one, update, and delete operation responses ([0eedf77](https://github.com/robert-brightline/robert-brightline/commit/0eedf77))
+
+### 🩹 Fixes
+
+- dependency fix ([f702f1c](https://github.com/robert-brightline/robert-brightline/commit/f702f1c))
+
+### ❤️ Thank You
+
+- robert-brightline @robert-brightline
+
 ## 0.0.21 (2026-01-07)
 
 ### 🚀 Features

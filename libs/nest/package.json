@@ -1,9 +1,7 @@
-
-
 {
   "name": "@robert-brightline/nest",
   "description": "Nestjs common",
-  "version": "0.0.21",
+  "version": "0.0.23",
   "author": {
     "name": "robert-brightline",
     "email": "robert.brightline+nest@gmail.com",

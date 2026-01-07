@@ -1,7 +1,7 @@
 {
   "name": "@robert-brightline/fs",
   "description": "File system library",
-  "version": "0.0.21",
+  "version": "0.0.23",
   "author": {
     "name": "robert-brightline",
     "email": "robert.brightline+fs@gmail.com"
