@@ -9,6 +9,7 @@ import {
   provideClientFactory,
 } from './providers/client-provider.js';
 import { getRepoToken, provideRepoFactory } from './providers/repo-provider.js';
+
 @Module({
   imports: [ConfigModule.forFeature(() => ({}))],
 })
@@ -28,7 +29,7 @@ export class PrismaModule {
               connectionString,
               max: 20,
               idleTimeoutMillis: 30000,
-              connectionTimeoutMillis: 2000,
+              connectionTimeoutMillis: 5000,
             });
 
             pool.on('error', (err) => {

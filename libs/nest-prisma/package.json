@@ -12,7 +12,9 @@
     "tag": "latest"
   },
   "keywords": [
-    ""
+    "nest",
+    "prisma",
+    "prisma-module"
   ],
   "funding": [
     {
