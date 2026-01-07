@@ -3,10 +3,10 @@ import { defineConfig } from 'vite';
 
 export default defineConfig(() => ({
   root: import.meta.dirname,
-  cacheDir: '../../node_modules/.vite/libs/checks',
+  cacheDir: '../../node_modules/.vite/libs/utils',
   plugins: [],
   test: {
-    name: '@robert-brightline/checks',
+    name: '@robert-brightline/utils',
     watch: false,
     globals: true,
     environment: 'node',

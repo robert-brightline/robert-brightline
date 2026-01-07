@@ -41,6 +41,9 @@
   ],
   "nx": {
     "sourceRoot": "libs/nest/src",
+    "tags": [
+      "scope:feature"
+    ],
     "targets": {
       "build": {
         "executor": "@nx/js:swc",
@@ -59,7 +62,6 @@
   },
   "dependencies": {
     "@nestjs/common": "^11.1.11",
-    "@nestjs/core": "^11.1.11",
     "@robert-brightline/errors": "workspace:*",
     "@robert-brightline/names": "workspace:*",
     "@swc/helpers": "~0.5.11",

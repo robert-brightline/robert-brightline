@@ -13,7 +13,7 @@
     "tag": "latest"
   },
   "keywords": [
-    ""
+    "crm"
   ],
   "funding": [
     {
@@ -67,6 +67,10 @@
   ],
   "nx": {
     "sourceRoot": "dbs/crm-db/src",
+    "projectType": "library",
+    "tags": [
+      "scope:feature"
+    ],
     "targets": {
       "build": {
         "executor": "@nx/js:swc",

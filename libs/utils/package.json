@@ -1,21 +1,18 @@
 {
-  "name": "@robert-brightline/checks",
-  "description": "Value checkers",
-  "version": "0.0.19",
+  "name": "@robert-brightline/utils",
+  "description": "- [ ] add project description",
+  "version": "0.0.1",
   "author": {
     "name": "robert-brightline",
-    "email": "robert.brightline+checks@gmail.com",
-    "url": "https://robert-brightline.github.io"
+    "email": "robert.brightline+utils@gmail.com"
   },
-  "homepage": "https://robert-brightline.github.io/libs/checks",
+  "homepage": "https://robert-brightline.github.io/libs/utils",
   "publishConfig": {
     "access": "public",
     "tag": "latest"
   },
   "keywords": [
-    "check",
-    "is",
-    "validation"
+    ""
   ],
   "funding": [
     {
@@ -42,8 +39,11 @@
     "!**/*.tsbuildinfo"
   ],
   "nx": {
-    "sourceRoot": "libs/checks/src",
+    "sourceRoot": "libs/utils/src",
     "projectType": "library",
+    "tags": [
+      "scope:shared"
+    ],
     "targets": {
       "build": {
         "executor": "@nx/js:swc",
@@ -51,9 +51,9 @@
           "{options.outputPath}"
         ],
         "options": {
-          "outputPath": "libs/checks/dist",
-          "main": "libs/checks/src/index.ts",
-          "tsConfig": "libs/checks/tsconfig.lib.json",
+          "outputPath": "libs/utils/dist",
+          "main": "libs/utils/src/index.ts",
+          "tsConfig": "libs/utils/tsconfig.lib.json",
           "skipTypeCheck": false,
           "stripLeadingPaths": true
         }
@@ -61,7 +61,6 @@
     }
   },
   "dependencies": {
-    "@robert-brightline/types": "workspace:*",
     "@swc/helpers": "~0.5.11"
   },
   "devDependencies": {

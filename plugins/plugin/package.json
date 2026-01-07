@@ -41,6 +41,10 @@
     "generators.json"
   ],
   "nx": {
+    "projectType": "application",
+    "tags": [
+      "scope:app"
+    ],
     "targets": {
       "build": {
         "executor": "@nx/js:tsc",

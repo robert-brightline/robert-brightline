@@ -16,9 +16,6 @@
       "path": "./libs/types"
     },
     {
-      "path": "./libs/checks"
-    },
-    {
       "path": "./dbs/ims-db"
     },
     {
@@ -65,6 +62,12 @@
     },
     {
       "path": "./libs/nest-common"
+    },
+    {
+      "path": "./libs/fs"
+    },
+    {
+      "path": "./libs/utils"
     }
   ]
 }

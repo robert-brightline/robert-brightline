@@ -41,6 +41,10 @@
   ],
   "nx": {
     "sourceRoot": "libs/errors/src",
+    "projectType": "library",
+    "tags": [
+      "scope:shared"
+    ],
     "targets": {
       "build": {
         "executor": "@nx/js:swc",

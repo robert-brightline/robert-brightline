@@ -43,6 +43,10 @@
   ],
   "nx": {
     "sourceRoot": "libs/ean/src",
+    "projectType": "library",
+    "tags": [
+      "scope:feature"
+    ],
     "targets": {
       "build": {
         "executor": "@nx/js:swc",

@@ -67,6 +67,10 @@
   ],
   "nx": {
     "sourceRoot": "dbs/ims-db/src",
+    "projectType": "library",
+    "tags": [
+      "scope:feature"
+    ],
     "targets": {
       "build": {
         "executor": "@nx/js:swc",

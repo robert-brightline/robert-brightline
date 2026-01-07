@@ -50,6 +50,9 @@
   "nx": {
     "sourceRoot": "plugins/zod/src",
     "projectType": "library",
+    "tags": [
+      "scope:feature"
+    ],
     "targets": {
       "build": {
         "executor": "@nx/js:swc",

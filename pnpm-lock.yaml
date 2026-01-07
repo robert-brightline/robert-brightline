@@ -371,19 +371,6 @@ importers:
         specifier: ^4.0.8
         version: 4.0.16(@types/node@20.19.9)(jiti@2.6.1)(jsdom@27.4.0)(yaml@2.8.2)
 
-  libs/checks:
-    dependencies:
-      '@robert-brightline/types':
-        specifier: workspace:*
-        version: link:../types
-      '@swc/helpers':
-        specifier: ~0.5.11
-        version: 0.5.18
-    devDependencies:
-      vitest:
-        specifier: ^4.0.8
-        version: 4.0.16(@types/node@20.19.9)(jiti@2.6.1)(jsdom@27.4.0)(yaml@2.8.2)
-
   libs/crypto:
     dependencies:
       '@swc/helpers':
@@ -423,6 +410,19 @@ importers:
         specifier: ^4.0.8
         version: 4.0.16(@types/node@20.19.9)(jiti@2.6.1)(jsdom@27.4.0)(yaml@2.8.2)
 
+  libs/fs:
+    dependencies:
+      '@robert-brightline/utils':
+        specifier: workspace:*
+        version: link:../utils
+      '@swc/helpers':
+        specifier: ~0.5.11
+        version: 0.5.18
+    devDependencies:
+      vitest:
+        specifier: ^4.0.8
+        version: 4.0.16(@types/node@20.19.9)(jiti@2.6.1)(jsdom@27.4.0)(yaml@2.8.2)
+
   libs/names:
     dependencies:
       '@swc/helpers':
@@ -438,9 +438,6 @@ importers:
       '@nestjs/common':
         specifier: ^11.1.11
         version: 11.1.11(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      '@nestjs/core':
-        specifier: ^11.1.11
-        version: 11.1.11(@nestjs/common@11.1.11(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/platform-express@11.1.11)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@robert-brightline/errors':
         specifier: workspace:*
         version: link:../errors
@@ -509,6 +506,16 @@ importers:
         version: 4.0.16(@types/node@20.19.9)(jiti@2.6.1)(jsdom@27.4.0)(yaml@2.8.2)
 
   libs/types:
+    dependencies:
+      '@swc/helpers':
+        specifier: ~0.5.11
+        version: 0.5.18
+    devDependencies:
+      vitest:
+        specifier: ^4.0.8
+        version: 4.0.16(@types/node@20.19.9)(jiti@2.6.1)(jsdom@27.4.0)(yaml@2.8.2)
+
+  libs/utils:
     dependencies:
       '@swc/helpers':
         specifier: ~0.5.11

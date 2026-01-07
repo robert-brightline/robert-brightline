@@ -42,6 +42,9 @@
   "nx": {
     "sourceRoot": "libs/nest-common/src",
     "projectType": "library",
+    "tags": [
+      "scope:feature"
+    ],
     "targets": {
       "build": {
         "executor": "@nx/js:swc",

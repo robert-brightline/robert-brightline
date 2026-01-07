@@ -41,7 +41,10 @@
   ],
   "nx": {
     "sourceRoot": "apis/crm/src",
-    "projectType": "library",
+    "projectType": "application",
+    "tags": [
+      "scope:app"
+    ],
     "targets": {
       "build": {
         "executor": "@nx/js:swc",

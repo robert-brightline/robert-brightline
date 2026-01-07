@@ -1,21 +1,18 @@
 {
-  "name": "@robert-brightline/crypto",
-  "description": "Hasing and encription utilities",
-  "version": "0.0.19",
+  "name": "@robert-brightline/fs",
+  "description": "- [ ] add project description",
+  "version": "0.0.1",
   "author": {
     "name": "robert-brightline",
-    "email": "robert.brightline+crypto@gmail.com",
-    "url": "https://robert-brightline.github.io"
+    "email": "robert.brightline+fs@gmail.com"
   },
-  "homepage": "https://robert-brightline.github.io/libs/crypto",
+  "homepage": "https://robert-brightline.github.io/libs/fs",
   "publishConfig": {
     "access": "public",
     "tag": "latest"
   },
   "keywords": [
-    "hash",
-    "encription",
-    "security"
+    ""
   ],
   "funding": [
     {
@@ -42,7 +39,7 @@
     "!**/*.tsbuildinfo"
   ],
   "nx": {
-    "sourceRoot": "libs/crypto/src",
+    "sourceRoot": "libs/fs/src",
     "projectType": "library",
     "tags": [
       "scope:feature"
@@ -54,21 +51,20 @@
           "{options.outputPath}"
         ],
         "options": {
-          "outputPath": "libs/crypto/dist",
-          "main": "libs/crypto/src/index.ts",
-          "tsConfig": "libs/crypto/tsconfig.lib.json",
-          "skipTypeCheck": true,
+          "outputPath": "libs/fs/dist",
+          "main": "libs/fs/src/index.ts",
+          "tsConfig": "libs/fs/tsconfig.lib.json",
+          "skipTypeCheck": false,
           "stripLeadingPaths": true
         }
       }
     }
   },
   "dependencies": {
-    "@swc/helpers": "~0.5.11",
-    "bcrypt": "^6.0.0"
+    "@robert-brightline/utils": "workspace:*",
+    "@swc/helpers": "~0.5.11"
   },
   "devDependencies": {
-    "@types/bcrypt": "^6.0.0",
     "vitest": "^4.0.8"
   }
 }
