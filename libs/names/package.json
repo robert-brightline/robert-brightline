@@ -1,7 +1,7 @@
 {
   "name": "@robert-brightline/names",
   "description": "Utility function to create name variants.",
-  "version": "0.0.19",
+  "version": "0.0.21",
   "author": {
     "name": "robert-brightline",
     "email": "robert.brightline+names@gmail.com",

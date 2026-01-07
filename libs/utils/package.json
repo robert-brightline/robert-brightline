@@ -1,7 +1,7 @@
 {
   "name": "@robert-brightline/utils",
   "description": "Common utilities",
-  "version": "0.0.1",
+  "version": "0.0.21",
   "author": {
     "name": "robert-brightline",
     "email": "robert.brightline+utils@gmail.com"

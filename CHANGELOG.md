@@ -1,3 +1,18 @@
+## 0.0.21 (2026-01-07)
+
+### 🚀 Features
+
+- created the file system library ([69360b2](https://github.com/robert-brightline/robert-brightline/commit/69360b2))
+
+### 🩹 Fixes
+
+- fixed the query schema adding json-preprocessor ([151c7d4](https://github.com/robert-brightline/robert-brightline/commit/151c7d4))
+- fixed the eslint module boundries ([5e4ac40](https://github.com/robert-brightline/robert-brightline/commit/5e4ac40))
+
+### ❤️ Thank You
+
+- robert-brightline @robert-brightline
+
 ## 0.0.19 (2026-01-07)
 
 ### 🚀 Features
