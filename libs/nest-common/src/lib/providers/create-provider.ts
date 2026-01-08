@@ -46,7 +46,7 @@ export function createProvider<T>(suffix = ''): ProviderFunctions<T> {
 
   function inject(name?: string, scope = ''): ParameterDecorator {
     return (...args) => {
-      name = name ?? resourceName((args[0] as any).name);
+      name = name ?? resourceName((args[0] as Any).name);
 
       console.log('NAME: ', name);
       Inject(token(name, scope))(...args);

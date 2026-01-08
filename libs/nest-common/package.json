@@ -1,6 +1,6 @@
 {
   "name": "@robert-brightline/nest-common",
-  "description": "Nestjs common utilities",
+  "description": "Common nestjs utilities, providers, resource naming conventions",
   "version": "0.0.25",
   "author": {
     "name": "robert-brightline",
@@ -13,7 +13,12 @@
     "tag": "latest"
   },
   "keywords": [
-    ""
+    "nestjs",
+    "rest",
+    "utils",
+    "helpers",
+    "providers",
+    "DI"
   ],
   "funding": [
     {

@@ -23,4 +23,16 @@ export class UserListener implements CrudListener {
   beforeCreate(payload: Any): void | Promise<void> {
     console.log('beforeCreate: ', inspect(payload, true, 1000));
   }
+
+  beforeRead(payload: Any): void | Promise<void> {
+    console.log('beforeRead: ', inspect(payload, true, 1000));
+  }
+
+  beforeDelete(payload: Any): void | Promise<void> {
+    console.log('beforeDelete: ', inspect(payload, true, 1000));
+  }
+
+  beforeUpdate(payload: Any): void | Promise<void> {
+    console.log('beforeUpdate: ', inspect(payload, true, 1000));
+  }
 }

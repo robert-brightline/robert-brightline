@@ -9,7 +9,7 @@
 
 ## @robert-brightline/nest-common
 
-Nestjs common utilities
+Common nestjs utilities, providers, resource naming conventions
 
 ## Installation
 

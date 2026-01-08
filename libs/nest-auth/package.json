@@ -1,20 +1,19 @@
+
 {
-  "name": "@robert-brightline/nest",
-  "description": "Nestjs common",
-  "version": "0.0.25",
+  "name": "@robert-brightline/nest-auth",
+  "description": "Common nest-auth library",
+  "version": "0.0.1",
   "author": {
     "name": "robert-brightline",
-    "email": "robert.brightline+nest@gmail.com",
-    "url": "https://robert-brightline.github.io"
+    "email": "robert.brightline+nest-auth@gmail.com"
   },
-  "homepage": "https://robert-brightline.github.io/libs/nest",
+  "homepage": "https://robert-brightline.github.io/libs/nest-auth",
   "publishConfig": {
     "access": "public",
     "tag": "latest"
   },
   "keywords": [
-    "netsjs",
-    "rest"
+    ""
   ],
   "funding": [
     {
@@ -41,9 +40,10 @@
     "!**/*.tsbuildinfo"
   ],
   "nx": {
-    "sourceRoot": "libs/nest/src",
+    "sourceRoot": "libs/nest-auth/src",
+    "projectType": "library",
     "tags": [
-      "scope:feature"
+      "scope:shared"
     ],
     "targets": {
       "build": {
@@ -52,9 +52,9 @@
           "{options.outputPath}"
         ],
         "options": {
-          "outputPath": "libs/nest/dist",
-          "main": "libs/nest/src/index.ts",
-          "tsConfig": "libs/nest/tsconfig.lib.json",
+          "outputPath": "libs/nest-auth/dist",
+          "main": "libs/nest-auth/src/index.ts",
+          "tsConfig": "libs/nest-auth/tsconfig.lib.json",
           "skipTypeCheck": false,
           "stripLeadingPaths": true
         }
@@ -63,21 +63,20 @@
   },
   "peerDependencies": {
     "@nestjs/common": "^11.1.11",
+    "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.1.11",
-    "@nestjs/swagger": "^11.2.4",
-    "@robert-brightline/errors": "workspace:*",
-    "@robert-brightline/names": "workspace:*",
+    "@nestjs/jwt": "^11.0.2",
+    "@nestjs/passport": "^11.0.5",
     "@robert-brightline/nest-common": "workspace:*",
-    "@robert-brightline/types": "workspace:*",
-    "@nestjs/event-emitter": "^3.0.1",
-    "express": "^5.2.1",
-    "zod": "^4.3.4"
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "rxjs": "^7.8.2"
   },
   "dependencies": {
     "@swc/helpers": "~0.5.11"
   },
   "devDependencies": {
-    "@types/express": "^5.0.6",
+    "@types/passport-local": "^1.0.38",
     "vitest": "^4.0.8"
   }
 }

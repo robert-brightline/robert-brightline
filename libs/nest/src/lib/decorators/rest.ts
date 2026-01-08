@@ -8,6 +8,7 @@ import {
   SwaggerManyQuery,
   SwaggerProjectQuery,
 } from './swagger.js';
+
 /**
  * Nestjs smart controller decorator
  * @returns

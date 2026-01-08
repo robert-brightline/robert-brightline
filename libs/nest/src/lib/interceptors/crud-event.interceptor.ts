@@ -15,7 +15,7 @@ import { tap, type Observable } from 'rxjs';
 import type { CrudController } from '../interfaces/crud-controller.js';
 
 @Injectable()
-export class EmitterInterceptor implements NestInterceptor {
+export class CrudEventInterceptor implements NestInterceptor {
   constructor(
     @Inject(EventEmitter2) protected readonly emitter: EventEmitter2,
   ) {}
@@ -80,9 +80,9 @@ export class EmitterInterceptor implements NestInterceptor {
   }
 }
 
-export function provideAppEmitterInterceptor(): Provider {
+export function provideCrudEventInterceptor(): Provider {
   return {
     provide: APP_INTERCEPTOR,
-    useClass: EmitterInterceptor,
+    useClass: CrudEventInterceptor,
   };
 }
