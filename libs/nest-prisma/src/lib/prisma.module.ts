@@ -3,6 +3,7 @@ import type { PrismaClient } from '@prisma/client/extension';
 
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PrismaPg } from '@prisma/adapter-pg';
+import { names } from '@robert-brightline/names';
 import { Pool } from 'pg';
 import {
   getClientToken,
@@ -52,7 +53,8 @@ export class PrismaModule {
       return provideRepoFactory(
         e,
         (client) => {
-          return client[e];
+          const modelName = names(e).camel;
+          return client[modelName];
         },
         [getClientToken(scope)],
         scope,

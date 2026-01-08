@@ -10,24 +10,15 @@ export function zodExceptionFilter(...errors: Any[]) {
       const ctx = host.switchToHttp();
       const response = ctx.getResponse<Response>();
 
-      // 1. Determine if it's a Zod error
-      const isZodError = errors.some(
-        (e) => e.name?.includes('Zod') || exception.name === 'ZodError',
-      );
+      const isZodError = errors.some((e) => e.name?.includes('Zod'));
 
       if (isZodError) {
-        // 2. Instead of 'throw', send the response directly
-        return response.status(422).json({
+        response.status(422).json({
           statusCode: 422,
           message: 'Validation failed',
           errors: exception.errors || exception.format?.() || exception,
         });
       }
-
-      // 3. Fallback for unknown errors (optional, usually 500)
-      return response.status(500).json({
-        message: 'Internal server error',
-      });
     }
   }
 
