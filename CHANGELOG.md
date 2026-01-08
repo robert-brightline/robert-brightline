@@ -1,3 +1,18 @@
+## 0.0.25 (2026-01-08)
+
+### 🚀 Features
+
+- fixed the zod exception filter ([2c66867](https://github.com/robert-brightline/robert-brightline/commit/2c66867))
+- created the exception filter for prisma and zod ([120fa7b](https://github.com/robert-brightline/robert-brightline/commit/120fa7b))
+
+### 🩹 Fixes
+
+- changed the project type of the services into library ([845abe4](https://github.com/robert-brightline/robert-brightline/commit/845abe4))
+
+### ❤️ Thank You
+
+- robert-brightline @robert-brightline
+
 ## 0.0.23 (2026-01-07)
 
 ### 🚀 Features
