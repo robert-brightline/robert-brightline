@@ -11,22 +11,23 @@ import {
   UserQuery,
   UserUpdate,
 } from '@robert-brightline/auth-db/zod';
+import type { CrudController } from '@robert-brightline/nest';
 import { Body, ParamId, Query, Rest } from '@robert-brightline/nest';
 import { InjectRepo } from '@robert-brightline/nest-prisma';
 
 @Rest()
-export class UserController {
+export class UserController implements CrudController {
   constructor(@InjectRepo() protected readonly repo: Prisma.UserDelegate) {}
 
   create(@Body(UserCreate) data: UserCreateInput) {
     return this.repo.create({ data });
   }
 
-  find(@Query(UserQuery) query: UserFindManyArgs) {
+  read(@Query(UserQuery) query: UserFindManyArgs) {
     return this.repo.findMany(query);
   }
 
-  findById(
+  readOneById(
     @ParamId() id: number,
     @Query(UserProjection) query: UserDefaultArgs,
   ) {

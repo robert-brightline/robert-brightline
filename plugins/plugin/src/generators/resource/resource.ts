@@ -14,18 +14,17 @@ export async function resourceGenerator(
 ) {
   const projectConfig = readProjectConfiguration(tree, options.project);
 
-  let target = '';
+  const __names = names(options.name);
+  const source = path.join(__dirname, options.type);
+  const target = path.join(
+    projectConfig.sourceRoot ?? projectConfig.root + '/src',
+    'lib',
+    'resources',
+    __names.fileName,
+  );
 
-  if (options.type === 'controller') {
-    target = path.join(
-      projectConfig.sourceRoot ?? projectConfig.root + '/src',
-      'resources',
-    );
-  }
+  generateFiles(tree, source, target, { ...__names });
 
-  generateFiles(tree, path.join(__dirname, options.type), target, {
-    ...names(options.name),
-  });
   await formatFiles(tree);
 }
 
