@@ -18,54 +18,49 @@ enum Operation {
   UPDATE
   DELETE
   MANAGE
-  TRIGGER
-  NOTIFY
-  APPROVE
-  START
-  STOP
-  RESTART
-
-  REJECT
-  SUBMIT
-  ARCHIVE
-  RESTORE
-  EXPORT
-  IMPORT
-  GRANT
-  REVOKE
-  LOCK
-  UNLOCK
-  SYNC
-  DEPLOY
-  ROLLBACK
 }
 
+/// @internal 
 model AuditLog {
-  id         Int       @id @default(autoincrement())
-  createdAt  DateTime  @default(now())
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+
+  operation  Operation
+  operatorId String    @db.Uuid
   subject    String
   message    String?
-  operation  Operation
-  /// @uuid
-  operatorId String    @db.Uuid
 }
 
 model App {
-  id          Int          @id @default(autoincrement())
-  uuid        String       @default(uuid(7))
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
-  deletedAt   DateTime?
-  name        String       @unique @db.VarChar(255)
+  id        Int       @id @default(autoincrement())
+  uuid      String    @default(uuid(7))
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  name        String  @unique @db.VarChar(255)
+  version     String?
+  description String?
+
+  // @internal
   permissions Permission[]
+
+  /// @internal
+  resources Resource[]
 }
 
 model Resource {
-  id          Int          @id @default(autoincrement())
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
-  deletedAt   DateTime?
-  name        String       @unique @db.VarChar(255)
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  name String @unique @db.VarChar(255)
+
+  app   App @relation(fields: [appId], references: [id])
+  appId Int
+
+  // @internal
   permissions Permission[]
 }
 
@@ -77,8 +72,8 @@ model Role {
 
   name String @unique @db.VarChar(255)
 
+  /// @internal 
   rolePermissions RolePermissions[]
-  userRoles       UserRole[]
 }
 
 model RolePermissions {
@@ -112,8 +107,14 @@ model Permission {
   resource   Resource @relation(fields: [resourceId], references: [id])
   resourceId Int
 
-  rolePermissions        RolePermissions[]
-  accessTokenPermissions AccessTokenPermissions[]
+  /// @internal 
+  rolePermissions RolePermissions[]
+
+  /// @internal 
+  accessTokenPermissions TokenPermission[]
+
+  /// @internal 
+  userPermissions UserPermission[]
 
   @@unique([operation, appId, resourceId])
   @@index([operation])
@@ -131,12 +132,18 @@ model User {
   username String @unique @db.VarChar(255)
   password String
 
-  userRoles UserRole[]
+  /// @internal 
+  tokenVersion Int @default(1)
+
+  /// @internal
+  userPermissions UserPermission[]
+
+  /// @internal
+  permissions String?
 }
 
-model UserRole {
+model UserPermission {
   id        Int       @id @default(autoincrement())
-  uuid      String    @unique @default(uuid(7))
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
@@ -144,42 +151,42 @@ model UserRole {
   user   User @relation(fields: [userId], references: [id])
   userId Int
 
-  role   Role @relation(fields: [roleId], references: [id])
-  roleId Int
+  permission   Permission @relation(fields: [permissionId], references: [id])
+  permissionId Int
 
-  @@unique([userId, roleId])
+  @@unique([userId, permissionId])
   @@index([userId])
-  @@index([roleId])
+  @@index([permissionId])
 }
 
-model AccessToken {
+model Token {
   id        Int       @id @default(autoincrement())
   uuid      String    @unique @default(uuid(7))
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  name String @unique @db.VarChar(255)
+  name    String @unique @db.VarChar(255)
+  token   String @unique
+  version Int    @default(1)
 
-  token String @unique
-
-  accessTokenPermissions AccessTokenPermissions[]
+  tokenPermissions TokenPermission[]
 }
 
-model AccessTokenPermissions {
+model TokenPermission {
   id        Int       @id @default(autoincrement())
   uuid      String    @unique @default(uuid(7))
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  accessToken   AccessToken @relation(fields: [accessTokenId], references: [id])
-  accessTokenId Int
+  token   Token @relation(fields: [tokenId], references: [id])
+  tokenId Int
 
   permission   Permission @relation(fields: [permissionId], references: [id])
   permissionId Int
 
-  @@unique([accessTokenId, permissionId])
-  @@index([accessTokenId])
+  @@unique([tokenId, permissionId])
+  @@index([tokenId])
   @@index([permissionId])
 }

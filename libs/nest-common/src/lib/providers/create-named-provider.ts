@@ -1,3 +1,4 @@
+import type { Type } from '@nestjs/common';
 import { Inject, type Provider } from '@nestjs/common';
 import type { Any } from '@robert-brightline/types';
 
@@ -9,6 +10,8 @@ export type NamedProviderFunctions<T> = {
     injects: Any[],
     scope?: string,
   ) => Provider;
+
+  provideClass: (useClass: Any, scope?: string) => Provider;
   inject: (scope?: string) => ParameterDecorator;
 };
 
@@ -37,6 +40,13 @@ export function createNamedProvider<T>(
     };
   }
 
+  function provideClass(useClass: Type<T>, scope?: string): Provider {
+    return {
+      provide: token(scope),
+      useClass,
+    };
+  }
+
   function inject(scope = ''): ParameterDecorator {
     return (...args) => {
       Inject(token(scope))(...args);
@@ -46,6 +56,7 @@ export function createNamedProvider<T>(
     token,
     provideValue,
     provideFactory,
+    provideClass,
     inject,
   };
 }

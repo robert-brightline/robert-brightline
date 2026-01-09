@@ -1,4 +1,3 @@
-
 {
   "name": "@robert-brightline/nest-auth",
   "description": "Common nest-auth library",
@@ -13,7 +12,8 @@
     "tag": "latest"
   },
   "keywords": [
-    ""
+    "nest",
+    "auth"
   ],
   "funding": [
     {
@@ -43,7 +43,7 @@
     "sourceRoot": "libs/nest-auth/src",
     "projectType": "library",
     "tags": [
-      "scope:shared"
+      "scope:feature"
     ],
     "targets": {
       "build": {
@@ -63,20 +63,24 @@
   },
   "peerDependencies": {
     "@nestjs/common": "^11.1.11",
-    "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.1.11",
-    "@nestjs/jwt": "^11.0.2",
     "@nestjs/passport": "^11.0.5",
     "@robert-brightline/nest-common": "workspace:*",
-    "passport": "^0.7.0",
     "passport-local": "^1.0.0",
     "rxjs": "^7.8.2"
   },
   "dependencies": {
-    "@swc/helpers": "~0.5.11"
+    "@nestjs/config": "^4.0.2",
+    "@nestjs/jwt": "^11.0.2",
+    "@robert-brightline/types": "workspace:*",
+    "@swc/helpers": "~0.5.11",
+    "passport-jwt": "^4.0.1",
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
+    "@types/passport-jwt": "^4.0.1",
     "@types/passport-local": "^1.0.38",
+    "@types/uuid": "^11.0.0",
     "vitest": "^4.0.8"
   }
 }

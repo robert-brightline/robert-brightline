@@ -11,6 +11,7 @@ export type ProviderFunctions<T> = {
     injects: Any[],
     scope?: string,
   ) => Provider;
+  provideClass: (name: string, useClass: Any) => Provider;
   inject: (name?: string, scope?: string) => ParameterDecorator;
 };
 
@@ -52,10 +53,18 @@ export function createProvider<T>(suffix = ''): ProviderFunctions<T> {
       Inject(token(name, scope))(...args);
     };
   }
+
+  function provideClass(name: string, useClass: Any, scope = ''): Provider {
+    return {
+      provide: token(name, scope),
+      useClass,
+    };
+  }
   return {
     token,
     provideValue,
     provideFactory,
+    provideClass,
     inject,
   };
 }
