@@ -7,3 +7,5 @@ export interface CrudController {
   update(id: number, data: Any, projection: Any): Any;
   delete(id: number, projection: Any): Any;
 }
+
+export type CrudOperationName = keyof CrudController;

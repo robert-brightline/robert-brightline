@@ -1,5 +1,5 @@
 import type { PrismaClient } from '@prisma/client/extension';
-import { createNamedProvider } from '@robert-brightline/nest-common';
+import { createNamedProvider } from '@robert-brightline/nest';
 
 export const {
   inject: InjectClient,

@@ -1,6 +1,6 @@
 export type JwtPayload = {
   sub: number;
-  username: string;
   version: number;
+  username: string;
   permissions: string;
 };

@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import type { Any } from '@robert-brightline/types';
+import { JwtKeys } from './common/jwt-keys.js';
 
 @Module({
   imports: [
@@ -9,10 +10,10 @@ import type { Any } from '@robert-brightline/types';
     JwtModule.registerAsync({
       inject: [ConfigService],
       useFactory(config: ConfigService) {
-        const secret = config.getOrThrow<string>('JWT_TOKEN') as string;
+        const secret = config.getOrThrow<string>(JwtKeys.JWT_SECRET) as string;
         const expiresIn = config.getOrThrow(
-          'JWT_EXPIRES_IN',
-          '60econds',
+          JwtKeys.JWT_EXPIRES_IN,
+          '60seconds',
         ) as string;
         return {
           global: true,

@@ -1,93 +1,38 @@
-import { Injectable, Logger } from '@nestjs/common';
-import { OnEvent } from '@nestjs/event-emitter';
+import { Injectable } from '@nestjs/common';
 import { names } from '@robert-brightline/names';
-import { crudEventNames, resourceName } from '@robert-brightline/nest-common';
-import type { CrudListener } from '../interfaces/crud-listener.js';
+import {
+  getDescriptor,
+  getMethodNames,
+  isFunction,
+  isThen,
+} from '@robert-brightline/utils';
+import { crudEventDecorators } from '../helpers/crud-event-decorators.js';
+import { resourceName } from '../helpers/resource-name.js';
+import type { CrudListenerMethod } from '../interfaces/crud-listener.js';
 
 export function EventListener(): ClassDecorator {
-  const logger = new Logger('EventListener');
   return (target) => {
     Injectable()(target);
+    const { kebab } = names(resourceName(target.name));
+    const methods = getMethodNames(target);
 
-    const prototype = target.prototype;
+    for (const mn of methods) {
+      const desc = getDescriptor(target, mn);
 
-    const _resourceName = resourceName(target.name);
-    const { kebab } = names(_resourceName);
+      if (isFunction(desc?.value)) {
+        const args = [target, mn, desc] as Parameters<MethodDecorator>;
+  
+        const _on = crudEventDecorators(kebab);
 
-    const propertyNames = Object.getOwnPropertyNames(prototype).filter(
-      (e) => e != 'constructor',
-    );
-
-    for (const propertyKey of propertyNames) {
-      const descriptor = Object.getOwnPropertyDescriptor(
-        prototype,
-        propertyKey,
-      );
-
-      if (typeof descriptor?.value === 'function') {
-        const args: [typeof target, typeof propertyKey, typeof descriptor] = [
-          target,
-          propertyKey,
-          descriptor,
-        ];
-
-        const eventNames = crudEventNames(kebab);
-
-        switch (propertyKey as keyof CrudListener) {
-          case 'onRead': {
-            OnEvent(eventNames.read)(...args);
-            logger.log(`Wiring "${eventNames.read} event to onRead method"`);
-            break;
-          }
-          case 'onCreate': {
-            OnEvent(eventNames.create)(...args);
-            logger.log(
-              `Wiring "${eventNames.create} event to onCreate method"`,
-            );
-            break;
-          }
-          case 'onUpdate': {
-            OnEvent(eventNames.update)(...args);
-            logger.log(
-              `Wiring "${eventNames.update} event to onUpdate method"`,
-            );
-            break;
-          }
-          case 'onDelete': {
-            OnEvent(eventNames.delete)(...args);
-            logger.log(
-              `Wiring "${eventNames.delete} event to onDelete method"`,
-            );
-            break;
-          }
-
-          case 'beforeRead': {
-            OnEvent(eventNames.beforeRead)(...args);
-            logger.log(`Wiring ${eventNames.beforeRead} to beforeRead method`);
-            break;
-          }
-          case 'beforeCreate': {
-            OnEvent(eventNames.beforeCreate)(...args);
-            logger.log(
-              `Wiring ${eventNames.beforeCreate} to beforeCreate method`,
-            );
-            break;
-          }
-          case 'beforeUpdate': {
-            OnEvent(eventNames.beforeUpdate)(...args);
-            logger.log(
-              `Wiring ${eventNames.beforeUpdate} to beforeUpdate method`,
-            );
-            break;
-          }
-          case 'beforeDelete': {
-            OnEvent(eventNames.beforeDelete)(...args);
-            logger.log(
-              `Wiring ${eventNames.beforeDelete} to beforeDelete method`,
-            );
-            break;
-          }
-        }
+        isThen<CrudListenerMethod>(mn as CrudListenerMethod)
+          .is(['beforeCreate'], () => _on.beforeCreate()(...args))
+          .is(['beforeDelete'], () => _on.beforeDelete()(...args))
+          .is(['beforeUpdate'], () => _on.beforeUpdate()(...args))
+          .is(['beforeRead'], () => _on.beforeRead()(...args))
+          .is(['onCreate'], () => _on.onCreate()(...args))
+          .is(['onRead'], () => _on.onRead()(...args))
+          .is(['onUpdate'], () => _on.onUpdate()(...args))
+          .is(['onDelete'], () => _on.onDelete()(...args));
       }
     }
   };

@@ -63,21 +63,24 @@
   },
   "peerDependencies": {
     "@nestjs/common": "^11.1.11",
+    "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.1.11",
+    "@nestjs/jwt": "^11.0.2",
     "@nestjs/passport": "^11.0.5",
-    "@robert-brightline/nest-common": "workspace:*",
+    "@robert-brightline/nest": "workspace:*",
+    "@robert-brightline/types": "workspace:*",
+    "@robert-brightline/zod": "workspace:*",
+    "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
-    "rxjs": "^7.8.2"
+    "rxjs": "^7.8.2",
+    "zod": "^4.3.4"
   },
   "dependencies": {
-    "@nestjs/config": "^4.0.2",
-    "@nestjs/jwt": "^11.0.2",
-    "@robert-brightline/types": "workspace:*",
     "@swc/helpers": "~0.5.11",
-    "passport-jwt": "^4.0.1",
-    "uuid": "^13.0.0"
+    "express": "^5.2.1"
   },
   "devDependencies": {
+    "@types/express": "^5.0.6",
     "@types/passport-jwt": "^4.0.1",
     "@types/passport-local": "^1.0.38",
     "@types/uuid": "^11.0.0",

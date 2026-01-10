@@ -1,4 +1,4 @@
-import { createProvider } from '@robert-brightline/nest-common';
+import { createProvider } from '@robert-brightline/nest';
 import type { Any } from '@robert-brightline/types';
 
 export const {

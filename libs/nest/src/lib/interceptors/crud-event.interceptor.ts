@@ -9,11 +9,12 @@ import {
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { names } from '@robert-brightline/names';
-import { crudEventNames, resourceName } from '@robert-brightline/nest-common';
 import type { Any } from '@robert-brightline/types';
+import { isThen } from '@robert-brightline/utils';
 import { tap, type Observable } from 'rxjs';
-import type { CrudController } from '../interfaces/crud-controller.js';
-
+import { crudEventNames } from '../helpers/crud-event-names.js';
+import { resourceName } from '../helpers/resource-name.js';
+import type { CrudOperationName } from '../interfaces/crud-controller.js';
 @Injectable()
 export class CrudEventInterceptor implements NestInterceptor {
   constructor(
@@ -27,54 +28,32 @@ export class CrudEventInterceptor implements NestInterceptor {
     const targetClass = context.getClass<string>();
     const { kebab } = names(resourceName(targetClass.name));
     const operationName = targetMethod.name;
-    const eventNames = crudEventNames(kebab);
+    const en = crudEventNames(kebab);
 
     const request = context.switchToHttp().getRequest();
     const body = request.body;
     const query = request.query;
     const params = request.params;
 
-    switch (operationName as keyof CrudController) {
-      case 'create': {
-        this.emitter.emit(eventNames.beforeCreate, { body, query });
-        break;
-      }
-      case 'readOneById':
-      case 'read': {
-        this.emitter.emit(eventNames.beforeRead, { query, params });
-        break;
-      }
-      case 'update': {
-        this.emitter.emit(eventNames.update, { params, query, body });
-        break;
-      }
-      case 'delete': {
-        this.emitter.emit(eventNames.delete, { params, query });
-        break;
-      }
-    }
+    const emit = (name: string, value: Any) => this.emitter.emit(name, value);
+
+    isThen<CrudOperationName>(operationName as CrudOperationName)
+      .is(['create'], () => emit(en.beforeCreate, { body, query }))
+      .is(['update'], () => emit(en.beforeUpdate, { body, query }))
+      .is(['delete'], () => emit(en.beforeDelete, { body, query }))
+      .is(['read', 'readOneById'], () =>
+        emit(en.beforeRead, { query, params }),
+      );
 
     return next.handle().pipe(
-      tap((value) => {
-        switch (operationName as keyof CrudController) {
-          case 'create': {
-            this.emitter.emit(eventNames.create, value);
-            break;
-          }
-          case 'readOneById':
-          case 'read': {
-            this.emitter.emit(eventNames.read, value);
-            break;
-          }
-          case 'update': {
-            this.emitter.emit(eventNames.update, value);
-            break;
-          }
-          case 'delete': {
-            this.emitter.emit(eventNames.delete, value);
-            break;
-          }
-        }
+      tap((res) => {
+        isThen<CrudOperationName>(operationName as CrudOperationName)
+          .is(['create'], () => emit(en.create, { res, query, body }))
+          .is(['update'], () => emit(en.update, { res, query, body }))
+          .is(['delete'], () => emit(en.delete, { res, query, body }))
+          .is(['read', 'readOneById'], () =>
+            emit(en.beforeRead, { res, query, params }),
+          );
       }),
     );
   }

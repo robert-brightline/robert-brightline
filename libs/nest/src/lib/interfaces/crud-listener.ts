@@ -11,3 +11,5 @@ export interface CrudListener {
   beforeUpdate?(payload: Any): void | Promise<void>;
   beforeDelete?(payload: Any): void | Promise<void>;
 }
+
+export type CrudListenerMethod = keyof Required<CrudListener>;

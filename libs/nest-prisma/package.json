@@ -1,3 +1,4 @@
+
 {
   "name": "@robert-brightline/nest-prisma",
   "description": "Nestjs prisma module",
@@ -68,7 +69,7 @@
     "@nestjs/config": "^4.0.2",
     "@prisma/adapter-pg": "^7.2.0",
     "@prisma/client": "^7.2.0",
-    "@robert-brightline/nest-common": "workspace:*",
+    "@robert-brightline/nest": "workspace:*",
     "@robert-brightline/types": "workspace:*",
     "@robert-brightline/names": "workspace:*",
     "pg": "^8.16.3"

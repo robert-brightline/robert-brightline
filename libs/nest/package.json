@@ -64,16 +64,16 @@
   "peerDependencies": {
     "@nestjs/common": "^11.1.11",
     "@nestjs/core": "^11.1.11",
+    "@nestjs/event-emitter": "^3.0.1",
     "@nestjs/swagger": "^11.2.4",
     "@robert-brightline/errors": "workspace:*",
     "@robert-brightline/names": "workspace:*",
-    "@robert-brightline/nest-common": "workspace:*",
     "@robert-brightline/types": "workspace:*",
-    "@nestjs/event-emitter": "^3.0.1",
     "express": "^5.2.1",
     "zod": "^4.3.4"
   },
   "dependencies": {
+    "@robert-brightline/utils": "workspace:*",
     "@swc/helpers": "~0.5.11"
   },
   "devDependencies": {

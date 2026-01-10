@@ -1,4 +1,4 @@
-import { createNamedProvider } from '@robert-brightline/nest-common';
+import { createNamedProvider } from '@robert-brightline/nest';
 import type { AuthService } from '../services/auth.service.js';
 
 export const {

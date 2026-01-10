@@ -147,3 +147,5 @@ export type LiteralUnion<T extends U, U = string> = T | (U & {});
 export type RecursivePartial<T> = {
   [P in keyof T]?: T[P] extends object ? RecursivePartial<T[P]> : T[P];
 };
+
+export type NoneNull<T> = Exclude<T, null | undefined>;

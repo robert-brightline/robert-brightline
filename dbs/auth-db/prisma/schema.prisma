@@ -135,6 +135,8 @@ model User {
   /// @internal 
   tokenVersion Int @default(1)
 
+  otp String?
+
   /// @internal
   userPermissions UserPermission[]
 
