@@ -34,14 +34,14 @@ export function Body(schema: ZodType<Any>): ParameterDecorator {
   };
 }
 
-export const UserInfo = createParamDecorator((data, context) => {
+export const ParamUser = createParamDecorator((data, context) => {
   return context.switchToHttp().getRequest().user;
 });
 
-export const UserId = createParamDecorator((data, context) => {
+export const ParamUserId = createParamDecorator((data, context) => {
   return context.switchToHttp().getRequest().user?.id;
 });
 
-export const OrgId = createParamDecorator((data, context) => {
+export const ParamOrgId = createParamDecorator((data, context) => {
   return context.switchToHttp().getRequest().user?.orgId;
 });

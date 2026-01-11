@@ -1,4 +1,4 @@
-import { resourceName } from './resource-name.js';
+import { extractResourceName } from './resource-name.js';
 // Controller|Service|EventListener|Interceptor|Guard|Filter|Pipe|Resolver
 describe('resourceName', () => {
   it.each`
@@ -13,6 +13,6 @@ describe('resourceName', () => {
     ${'CategoryPipe'}          | ${'Category'}
     ${'CategoryResolver'}      | ${'Category'}
   `('resourceName($name) should return $expected', ({ name, expected }) => {
-    expect(resourceName(name)).toEqual(expected);
+    expect(extractResourceName(name)).toEqual(expected);
   });
 });

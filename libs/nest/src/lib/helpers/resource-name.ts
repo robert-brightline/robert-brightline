@@ -1,5 +1,5 @@
 import { ResouceNameSuffixExp } from './resource-name-exp.js';
 
-export function resourceName(className: string) {
+export function extractResourceName(className: string) {
   return className.replace(ResouceNameSuffixExp, '');
 }

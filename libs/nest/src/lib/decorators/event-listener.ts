@@ -7,13 +7,18 @@ import {
   isThen,
 } from '@robert-brightline/utils';
 import { crudEventDecorators } from '../helpers/crud-event-decorators.js';
-import { resourceName } from '../helpers/resource-name.js';
+import { extractResourceName } from '../helpers/resource-name.js';
 import type { CrudListenerMethod } from '../interfaces/crud-listener.js';
 
+/**
+ * Cofigure the target class as a event-listener and wire relative method names with the corresponding events
+ *
+ * @returns {@link ClassDecorator}
+ */
 export function EventListener(): ClassDecorator {
   return (target) => {
     Injectable()(target);
-    const { kebab } = names(resourceName(target.name));
+    const { kebab } = names(extractResourceName(target.name));
     const methods = getMethodNames(target);
 
     for (const methodName of methods) {

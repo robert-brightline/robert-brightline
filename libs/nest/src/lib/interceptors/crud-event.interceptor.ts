@@ -11,9 +11,10 @@ import { EventEmitter2 } from '@nestjs/event-emitter';
 import { names } from '@robert-brightline/names';
 import type { Any } from '@robert-brightline/types';
 import { isThen } from '@robert-brightline/utils';
+import type { Request } from 'express';
 import { tap, type Observable } from 'rxjs';
 import { crudEventNames } from '../helpers/crud-event-names.js';
-import { resourceName } from '../helpers/resource-name.js';
+import { extractResourceName } from '../helpers/resource-name.js';
 import type { CrudOperationName } from '../interfaces/crud-controller.js';
 @Injectable()
 export class CrudEventInterceptor implements NestInterceptor {
@@ -26,15 +27,12 @@ export class CrudEventInterceptor implements NestInterceptor {
   ): Observable<Any> | Promise<Observable<Any>> {
     const targetMethod = context.getHandler();
     const targetClass = context.getClass<string>();
-    const { kebab } = names(resourceName(targetClass.name));
+    const { kebab } = names(extractResourceName(targetClass.name));
     const operationName = targetMethod.name;
     const en = crudEventNames(kebab);
 
-    const request = context.switchToHttp().getRequest();
-    const body = request.body;
-    const query = request.query;
-    const params = request.params;
-
+    const request = context.switchToHttp().getRequest<Request>();
+    const { body, query, params } = request;
     const emit = (name: string, value: Any) => this.emitter.emit(name, value);
 
     isThen<CrudOperationName>(operationName as CrudOperationName)

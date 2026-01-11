@@ -1,4 +1,5 @@
 import { Controller, Delete, Get, Logger, Post, Put } from '@nestjs/common';
+import { ApiBearerAuth } from '@nestjs/swagger';
 import { InvalidNameError } from '@robert-brightline/errors';
 import { names, pluralize } from '@robert-brightline/names';
 import {
@@ -7,8 +8,15 @@ import {
   isFunction,
   isThen,
 } from '@robert-brightline/utils';
-import { resourceName } from '../helpers/resource-name.js';
+import { extractResourceName } from '../helpers/resource-name.js';
 import type { CrudOperationName } from '../interfaces/crud-controller.js';
+import {
+  DeleteOperation,
+  ReadOperation,
+  ResourceName,
+  UpdateOperation,
+  WriteOperation,
+} from './metadata-decorators.js';
 import {
   SwaggerBody,
   SwaggerManyQuery,
@@ -16,16 +24,16 @@ import {
 } from './swagger-decorators.js';
 
 /**
- * Nestjs smart controller decorator
+ * Exended nestjs controller decorator
  *
- * @returns
+ * @returns {@link ClassDecorator}
  */
 export function Rest(): ClassDecorator {
   const logger = new Logger('Rest');
   return (target) => {
     const className = target.name;
-    const _resourceName = resourceName(className);
-    const { kebab } = names(_resourceName);
+    const _resourceName = extractResourceName(className);
+    const { kebab, pascal } = names(_resourceName);
 
     const singularPath = kebab;
     const idPath = `${kebab}/:id`;
@@ -39,12 +47,16 @@ export function Rest(): ClassDecorator {
       );
     }
 
+    ResourceName(pascal)(target);
     Controller()(target);
+
+    ApiBearerAuth()(target);
 
     logger.log(`Wiring ${className}`);
 
     for (const methodName of methods) {
       const descriptor = getDescriptor(target, methodName);
+
       if (isFunction(descriptor?.value)) {
         const args = [
           target,
@@ -59,23 +71,28 @@ export function Rest(): ClassDecorator {
             SwaggerBody()(...args);
             SwaggerProjectQuery()(...args);
             Post(singularPath)(...args);
+            WriteOperation()(...args);
           })
           .is(['read'], () => {
             SwaggerManyQuery()(...args);
             Get(pluralPath)(...args);
+            ReadOperation()(...args);
           })
           .is(['readOneById'], () => {
             SwaggerProjectQuery()(...args);
             Get(idPath)(...args);
+            ReadOperation()(...args);
           })
           .is(['update'], () => {
             SwaggerBody()(...args);
             SwaggerProjectQuery()(...args);
             Put(idPath)(...args);
+            UpdateOperation()(...args);
           })
           .is(['delete'], () => {
             SwaggerProjectQuery()(...args);
             Delete(idPath)(...args);
+            DeleteOperation()(...args);
           });
       }
     }

@@ -1,4 +1,5 @@
 // @index(['./**/*.ts', '!./**/*.{test,spec}.ts'], f => `export * from '${f.path}.js'`)
+export * from './lib/bootstrap/bootstrap.js';
 export * from './lib/decorators/event-listener.js';
 export * from './lib/decorators/metadata-decorators.js';
 export * from './lib/decorators/param-decorators.js';
@@ -15,6 +16,7 @@ export * from './lib/helpers/validate-resource-name.js';
 export * from './lib/interceptors/crud-event.interceptor.js';
 export * from './lib/interfaces/crud-controller.js';
 export * from './lib/interfaces/crud-listener.js';
+export * from './lib/interfaces/crud-operation.js';
 export * from './lib/providers/create-named-provider.js';
 export * from './lib/providers/create-provider.js';
 
