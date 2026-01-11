@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import type { Any } from '@robert-brightline/types';
+import { AuthController } from './auth.controller.js';
 import { JwtKeys } from './common/jwt-keys.js';
 
 @Module({
@@ -26,7 +27,7 @@ import { JwtKeys } from './common/jwt-keys.js';
     }),
   ],
 
-  controllers: [],
+  controllers: [AuthController],
   providers: [],
 })
 export class AuthModule {}

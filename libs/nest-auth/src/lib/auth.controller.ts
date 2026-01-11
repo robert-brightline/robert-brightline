@@ -1,6 +1,7 @@
-import { Controller, Post } from '@nestjs/common';
+import { Controller, Post, Res } from '@nestjs/common';
 import { Body, ParamUser, PublicOperation } from '@robert-brightline/nest';
 import type { Any } from '@robert-brightline/types';
+import type { Response } from 'express';
 import { AuthLocalOtp } from './decorators/auth-local-otp.js';
 import { AuthLocal } from './decorators/auth-local.js';
 import { AuthSession } from './decorators/auth-session.js';
@@ -21,7 +22,13 @@ import {
 export class AuthController {
   @AuthLocal()
   @Post('login')
-  login(@Body(LoginSchema) body: Login, @ParamUser() user: Any) {
+  login(
+    @Body(LoginSchema) body: Login,
+    @ParamUser() user: Any,
+    @Res() res: Response,
+  ) {
+
+    res.setHeader("autorization",'' )
     return user;
   }
 

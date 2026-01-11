@@ -6,6 +6,6 @@ export * from './lib/guards/auth-session.guard.js';
 export * from './lib/guards/auth-session.strategy.js';
 export * from './lib/guards/local.guard.js';
 export * from './lib/guards/local.strategy.js';
-export * from './lib/providers/auth-service.provider.js';
+export * from './lib/providers/user-service.provider.js';
 export * from './lib/services/auth.service.js';
 

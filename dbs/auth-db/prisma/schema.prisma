@@ -12,25 +12,6 @@ generator zod {
   output   = "../src/zod"
 }
 
-enum Operation {
-  READ
-  WRITE
-  UPDATE
-  DELETE
-  MANAGE
-}
-
-/// @internal 
-model AuditLog {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-
-  operation  Operation
-  operatorId String    @db.Uuid
-  subject    String
-  message    String?
-}
-
 model App {
   id        Int       @id @default(autoincrement())
   uuid      String    @default(uuid(7))
@@ -42,26 +23,31 @@ model App {
   version     String?
   description String?
 
-  // @internal
+  /// @internal
   permissions Permission[]
 
   /// @internal
   resources Resource[]
+
+  @@unique([id, name])
 }
 
 model Resource {
-  id        Int       @id @default(autoincrement())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
 
-  name String @unique @db.VarChar(255)
+  name    String @unique @map("resourceName") @db.VarChar(255)
+  appName String
+  appId   Int
 
-  app   App @relation(fields: [appId], references: [id])
-  appId Int
+  /// @internal
+  app App @relation(fields: [appId, appName], references: [id, name])
 
-  // @internal
+  /// @internal
   permissions Permission[]
+
+  @@unique([id, appId, appName, name])
+  @@unique([id, name])
 }
 
 model Role {
@@ -74,52 +60,62 @@ model Role {
 
   /// @internal 
   rolePermissions RolePermissions[]
+
+  @@unique([id, name])
 }
 
 model RolePermissions {
-  id        Int       @id @default(autoincrement())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
 
-  role   Role @relation(fields: [roleId], references: [id])
-  roleId Int
+  appName       String
+  appId         Int
+  roleName      String
+  roleId        Int
+  resourceName  String
+  resourceId    Int
+  operationName String
+  permissionId  Int
 
-  permission   Permission @relation(fields: [permissionId], references: [id])
-  permissionId Int
+  role Role @relation(fields: [roleId, roleName], references: [id, name])
 
-  @@unique([roleId, permissionId])
-  @@index([roleId])
+  permission Permission @relation(fields: [appId, resourceId, permissionId, appName, resourceName, operationName], references: [appId, resourceId, id, appName, resourceName, operationName])
+
+  @@unique([permissionId, appName, resourceName, operationName])
+  @@index([roleName])
+  @@index([operationName])
+  @@index([appName])
+  @@index([resourceName])
   @@index([permissionId])
 }
 
 model Permission {
-  id        Int       @id @default(autoincrement())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
 
-  operation Operation
+  appId         Int
+  resourceId    Int
+  appName       String
+  resourceName  String
+  operationName String
 
-  app   App @relation(fields: [appId], references: [id])
-  appId Int
-
-  resource   Resource @relation(fields: [resourceId], references: [id])
-  resourceId Int
+  app      App      @relation(fields: [appId, appName], references: [id, name])
+  resource Resource @relation(fields: [resourceId, resourceName], references: [id, name])
 
   /// @internal 
   rolePermissions RolePermissions[]
 
   /// @internal 
-  accessTokenPermissions TokenPermission[]
+  accessTokenPermissions SessionPermission[]
 
   /// @internal 
   userPermissions UserPermission[]
 
-  @@unique([operation, appId, resourceId])
-  @@index([operation])
-  @@index([appId])
-  @@index([resourceId])
+  @@unique([id, appId, resourceId, appName, resourceName, operationName])
+  @@unique([id, appName, operationName, resourceName])
+  @@index([appName])
+  @@index([resourceName])
+  @@index([operationName])
 }
 
 model User {
@@ -132,16 +128,11 @@ model User {
   username String @unique @db.VarChar(255)
   password String
 
-  /// @internal 
-  tokenVersion Int @default(1)
-
-  otp String?
-
   /// @internal
   userPermissions UserPermission[]
 
-  /// @internal
-  permissions String?
+  /// @internal 
+  sessions Session[]
 }
 
 model UserPermission {
@@ -161,34 +152,44 @@ model UserPermission {
   @@index([permissionId])
 }
 
-model Token {
-  id        Int       @id @default(autoincrement())
-  uuid      String    @unique @default(uuid(7))
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
+model Session {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
 
-  name    String @unique @db.VarChar(255)
-  token   String @unique
-  version Int    @default(1)
+  username String
+  token    String @unique
+  version  Int    @default(1)
 
-  tokenPermissions TokenPermission[]
+  deviceId   String? @db.Uuid
+  deviceType String?
+  longitude  String?
+  latitude   String?
+
+  user User @relation(fields: [username], references: [username])
+
+  sessionPermissions SessionPermission[]
+
+  @@unique([username, token, version])
+  @@unique([username, deviceId])
 }
 
-model TokenPermission {
-  id        Int       @id @default(autoincrement())
-  uuid      String    @unique @default(uuid(7))
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
+model SessionPermission {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
 
-  token   Token @relation(fields: [tokenId], references: [id])
-  tokenId Int
+  session   Session @relation(fields: [sessionId], references: [id])
+  sessionId Int
 
-  permission   Permission @relation(fields: [permissionId], references: [id])
-  permissionId Int
+  permission    Permission @relation(fields: [permissionId, appName, operationName, resourceName], references: [id, appName, operationName, resourceName])
+  permissionId  Int
+  appName       String
+  operationName String
+  resourceName  String
 
-  @@unique([tokenId, permissionId])
-  @@index([tokenId])
+  @@unique([sessionId, permissionId, appName, operationName, resourceName])
+  @@index([sessionId])
   @@index([permissionId])
+  @@index([appName])
+  @@index([operationName])
+  @@index([resourceName])
 }
