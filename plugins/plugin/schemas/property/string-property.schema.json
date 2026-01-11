@@ -1,0 +1,40 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "title": "String Property Schema",
+    "properties": {
+        "type": {
+            "$ref": "./../common/property-type.schema.json",
+            "const": "string"
+        },
+        "min": {
+            "type": "integer"
+        },
+        "max": {
+            "type": "integer"
+        },
+        "pattern": {
+            "properties": {
+                "exp": {
+                    "type": "string"
+                },
+                "error": {
+                    "type": "string"
+                }
+            }
+        },
+        "patterns": {
+            "type": "array",
+            "items": {
+                "properties": {
+                    "exp": {
+                        "type": "string"
+                    },
+                    "error": {
+                        "type": "string"
+                    }
+                }
+            },
+            "uniqueItems": true
+        }
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "title": "Number Property Schema",
+    "properties": {
+        "type": {
+            "$ref": "./../common/property-type.schema.json",
+            "const": "integer"
+        },
+        "min": {
+            "type": "integer"
+        },
+        "max": {
+            "type": "integer"
+        }
+    }
+}

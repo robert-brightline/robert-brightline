@@ -1,0 +1,32 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "title": "Common Property Schema",
+    "properties": {
+        "name": {
+            "$ref": "../common/property-name.schema.json"
+        },
+        "type": {
+            "$ref": "./../common/property-type.schema.json"
+        },
+        "required": {
+            "type": "boolean",
+            "default": true
+        },
+        "readonly": {
+            "type": "boolean",
+            "default": true
+        },
+        "writeonly": {
+            "type": "boolean",
+            "default": true
+        },
+        "internal": {
+            "type": "boolean",
+            "default": true
+        }
+    },
+    "required": [
+        "name",
+        "type"
+    ]
+}

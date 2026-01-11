@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=./../model/model.schema.json
+name: Some
+
+properties:
+  - name: some
+    type: boolean
+    inputType: switch
+
+  - name: age
+    type: number
+    max: 100
+

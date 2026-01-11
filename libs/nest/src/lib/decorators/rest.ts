@@ -17,6 +17,7 @@ import {
 
 /**
  * Nestjs smart controller decorator
+ *
  * @returns
  */
 export function Rest(): ClassDecorator {
@@ -26,14 +27,15 @@ export function Rest(): ClassDecorator {
     const _resourceName = resourceName(className);
     const { kebab } = names(_resourceName);
 
-    const singularResourcePath = kebab;
-    const pluralResourcePath = pluralize(kebab);
+    const singularPath = kebab;
+    const idPath = `${kebab}/:id`;
+    const pluralPath = pluralize(kebab);
 
     const methods = getMethodNames(target);
 
     if (!className.endsWith('Controller')) {
       throw new InvalidNameError(
-        `Nestjs controller must ends with "Controller" suffix`,
+        `Nestjs controller must end with "Controller" suffix`,
       );
     }
 
@@ -41,39 +43,39 @@ export function Rest(): ClassDecorator {
 
     logger.log(`Wiring ${className}`);
 
-    for (const m of methods) {
-      const descriptor = getDescriptor(target, m);
-
+    for (const methodName of methods) {
+      const descriptor = getDescriptor(target, methodName);
       if (isFunction(descriptor?.value)) {
-        const args = [target, m, descriptor] as Parameters<MethodDecorator>;
+        const args = [
+          target,
+          methodName,
+          descriptor,
+        ] as Parameters<MethodDecorator>;
+
+        logger.log(`Wiring ${methodName} to ${className}`);
 
         isThen<CrudOperationName>('create')
           .is(['create'], () => {
             SwaggerBody()(...args);
             SwaggerProjectQuery()(...args);
-            Post(singularResourcePath)(...args);
-            logger.log(`Wiring ${m} method to ${className}`);
+            Post(singularPath)(...args);
           })
           .is(['read'], () => {
             SwaggerManyQuery()(...args);
-            Get(pluralResourcePath)(...args);
-            logger.log(`Wiring ${m} method to ${className}`);
+            Get(pluralPath)(...args);
           })
           .is(['readOneById'], () => {
             SwaggerProjectQuery()(...args);
-            Get(`${singularResourcePath}/:id`)(...args);
-            logger.log(`Wiring ${m} method to ${className}`);
+            Get(idPath)(...args);
           })
           .is(['update'], () => {
             SwaggerBody()(...args);
             SwaggerProjectQuery()(...args);
-            Put(`${singularResourcePath}/:id`)(...args);
-            logger.log(`Wiring ${m} method to ${className}`);
+            Put(idPath)(...args);
           })
           .is(['delete'], () => {
             SwaggerProjectQuery()(...args);
-            Delete(`${singularResourcePath}/:id`)(...args);
-            logger.log(`Wiring ${m} method to ${className}`);
+            Delete(idPath)(...args);
           });
       }
     }

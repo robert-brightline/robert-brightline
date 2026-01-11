@@ -16,23 +16,27 @@ export function EventListener(): ClassDecorator {
     const { kebab } = names(resourceName(target.name));
     const methods = getMethodNames(target);
 
-    for (const mn of methods) {
-      const desc = getDescriptor(target, mn);
+    for (const methodName of methods) {
+      const descriptor = getDescriptor(target, methodName);
 
-      if (isFunction(desc?.value)) {
-        const args = [target, mn, desc] as Parameters<MethodDecorator>;
-  
-        const _on = crudEventDecorators(kebab);
+      if (isFunction(descriptor?.value)) {
+        const args = [
+          target,
+          methodName,
+          descriptor,
+        ] as Parameters<MethodDecorator>;
 
-        isThen<CrudListenerMethod>(mn as CrudListenerMethod)
-          .is(['beforeCreate'], () => _on.beforeCreate()(...args))
-          .is(['beforeDelete'], () => _on.beforeDelete()(...args))
-          .is(['beforeUpdate'], () => _on.beforeUpdate()(...args))
-          .is(['beforeRead'], () => _on.beforeRead()(...args))
-          .is(['onCreate'], () => _on.onCreate()(...args))
-          .is(['onRead'], () => _on.onRead()(...args))
-          .is(['onUpdate'], () => _on.onUpdate()(...args))
-          .is(['onDelete'], () => _on.onDelete()(...args));
+        const _event = crudEventDecorators(kebab);
+
+        isThen<CrudListenerMethod>(methodName as CrudListenerMethod)
+          .is(['beforeCreate'], () => _event.beforeCreate()(...args))
+          .is(['beforeDelete'], () => _event.beforeDelete()(...args))
+          .is(['beforeUpdate'], () => _event.beforeUpdate()(...args))
+          .is(['beforeRead'], () => _event.beforeRead()(...args))
+          .is(['onCreate'], () => _event.onCreate()(...args))
+          .is(['onRead'], () => _event.onRead()(...args))
+          .is(['onUpdate'], () => _event.onUpdate()(...args))
+          .is(['onDelete'], () => _event.onDelete()(...args));
       }
     }
   };

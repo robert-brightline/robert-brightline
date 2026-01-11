@@ -68,6 +68,6 @@
     },
     {
       "path": "./libs/nest-auth"
-    }
+    },
   ]
 }

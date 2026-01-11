@@ -1,0 +1,6 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "title": "Model Name",
+    "type": "string",
+    "pattern": "^[A-Z]{1,}[a-zA-Z]+$"
+}

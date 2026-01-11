@@ -1,0 +1,24 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "title": "Date Property Schema",
+    "properties": {
+        "type": {
+            "$ref": "./../common/property-type.schema.json",
+            "const": "date"
+        },
+        "min": {
+            "type": "string",
+            "format": "date"
+        },
+        "max": {
+            "type": "string",
+            "format": "date"
+        },
+        "future": {
+            "type": "boolean"
+        },
+        "past": {
+            "type": "boolean"
+        }
+    }
+}
