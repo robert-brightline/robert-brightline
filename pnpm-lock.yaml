@@ -132,6 +132,9 @@ importers:
       '@robert-brightline/auth-db':
         specifier: workspace:*
         version: link:../../dbs/auth-db
+      '@robert-brightline/crypto':
+        specifier: workspace:*
+        version: link:../../libs/crypto
       '@robert-brightline/nest':
         specifier: workspace:*
         version: link:../../libs/nest

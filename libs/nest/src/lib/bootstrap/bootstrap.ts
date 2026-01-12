@@ -22,6 +22,7 @@ export async function bootstrap(module: Type) {
     .setTitle(APP_NAME)
     .setDescription(APP_DESCRIPTION)
     .setVersion(APP_VERSION)
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, swaggerConfig);

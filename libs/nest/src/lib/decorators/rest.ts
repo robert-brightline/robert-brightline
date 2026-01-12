@@ -66,12 +66,12 @@ export function Rest(): ClassDecorator {
 
         logger.log(`Wiring ${methodName} to ${className}`);
 
-        isThen<CrudOperationName>('create')
+        isThen<CrudOperationName>(methodName)
           .is(['create'], () => {
             SwaggerBody()(...args);
             SwaggerProjectQuery()(...args);
-            Post(singularPath)(...args);
             WriteOperation()(...args);
+            Post(singularPath)(...args);
           })
           .is(['read'], () => {
             SwaggerManyQuery()(...args);

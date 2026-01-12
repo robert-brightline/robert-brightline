@@ -79,16 +79,17 @@
     "@nestjs/common": "^11.1.11",
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.1.11",
+    "@nestjs/event-emitter": "^3.0.1",
     "@nestjs/swagger": "^11.2.3",
     "@robert-brightline/auth-db": "workspace:*",
     "@robert-brightline/nest": "workspace:*",
     "@robert-brightline/nest-prisma": "workspace:*",
+    "@robert-brightline/types": "workspace:*",
     "helmet": "^8.1.0",
-    "zod": "^4.3.4",
-    "@nestjs/event-emitter": "^3.0.1",
-    "@robert-brightline/types": "workspace:*"
+    "zod": "^4.3.4"
   },
   "dependencies": {
+    "@robert-brightline/crypto": "workspace:*",
     "@swc/helpers": "~0.5.11"
   },
   "devDependencies": {

@@ -99,7 +99,9 @@ model Permission {
   resourceName  String
   operationName String
 
+  /// @internal
   app      App      @relation(fields: [appId, appName], references: [id, name])
+  /// @internal
   resource Resource @relation(fields: [resourceId, resourceName], references: [id, name])
 
   /// @internal 

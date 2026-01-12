@@ -7,10 +7,11 @@ import type {
 } from '@robert-brightline/auth-db/models';
 import {
   UserCreate,
-  UserProjection,
+  UserOnlyProjection,
   UserQuery,
   UserUpdate,
 } from '@robert-brightline/auth-db/zod';
+import { hash } from '@robert-brightline/crypto';
 import type { CrudController } from '@robert-brightline/nest';
 import { Body, ParamId, Query, Rest } from '@robert-brightline/nest';
 import { InjectRepo } from '@robert-brightline/nest-prisma';
@@ -19,8 +20,13 @@ import { InjectRepo } from '@robert-brightline/nest-prisma';
 export class UserController implements CrudController {
   constructor(@InjectRepo() protected readonly repo: Prisma.UserDelegate) {}
 
-  create(@Body(UserCreate) data: UserCreateInput) {
-    return this.repo.create({ data });
+  async create(
+    @Body(UserCreate) data: UserCreateInput,
+    @Query(UserOnlyProjection) { select }: UserDefaultArgs,
+  ) {
+    const hashedPassword = await hash(data.password);
+    data.password = hashedPassword;
+    return await this.repo.create({ data, select });
   }
 
   read(@Query(UserQuery) query: UserFindManyArgs) {
@@ -29,20 +35,23 @@ export class UserController implements CrudController {
 
   readOneById(
     @ParamId() id: number,
-    @Query(UserProjection) query: UserDefaultArgs,
+    @Query(UserOnlyProjection) { select }: UserDefaultArgs,
   ) {
-    return this.repo.findUniqueOrThrow({ where: { id }, ...query });
+    return this.repo.findUniqueOrThrow({ where: { id }, select });
   }
 
   update(
     @ParamId() id: number,
     @Body(UserUpdate) data: UserUpdateInput,
-    @Query(UserProjection) query: UserDefaultArgs,
+    @Query(UserOnlyProjection) { select }: UserDefaultArgs,
   ) {
-    return this.repo.update({ where: { id }, data, ...query });
+    return this.repo.update({ where: { id }, data, select });
   }
 
-  delete(@ParamId() id: number, @Query(UserProjection) query: UserDefaultArgs) {
-    return this.repo.delete({ where: { id }, ...query });
+  delete(
+    @ParamId() id: number,
+    @Query(UserOnlyProjection) { select }: UserDefaultArgs,
+  ) {
+    return this.repo.delete({ where: { id }, select });
   }
 }
