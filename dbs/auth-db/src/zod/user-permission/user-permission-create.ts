@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import * as Internal from '../internals.js';
-export const UserRoleCreate = z.object({
+export const UserPermissionCreate = z.object({
   user: Internal.UserRelationCreate,
-  role: Internal.RoleRelationCreate,
+  permission: Internal.PermissionRelationCreate,
 });

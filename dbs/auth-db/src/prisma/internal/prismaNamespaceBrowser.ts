@@ -51,16 +51,15 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  AuditLog: 'AuditLog',
   App: 'App',
   Resource: 'Resource',
   Role: 'Role',
   RolePermissions: 'RolePermissions',
   Permission: 'Permission',
   User: 'User',
-  UserRole: 'UserRole',
-  AccessToken: 'AccessToken',
-  AccessTokenPermissions: 'AccessTokenPermissions'
+  UserPermission: 'UserPermission',
+  Session: 'Session',
+  SessionPermission: 'SessionPermission'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -79,25 +78,15 @@ export const TransactionIsolationLevel = {
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-export const AuditLogScalarFieldEnum = {
-  id: 'id',
-  createdAt: 'createdAt',
-  subject: 'subject',
-  message: 'message',
-  operation: 'operation',
-  operatorId: 'operatorId'
-} as const
-
-export type AuditLogScalarFieldEnum = (typeof AuditLogScalarFieldEnum)[keyof typeof AuditLogScalarFieldEnum]
-
-
 export const AppScalarFieldEnum = {
   id: 'id',
   uuid: 'uuid',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt',
-  name: 'name'
+  name: 'name',
+  version: 'version',
+  description: 'description'
 } as const
 
 export type AppScalarFieldEnum = (typeof AppScalarFieldEnum)[keyof typeof AppScalarFieldEnum]
@@ -106,9 +95,9 @@ export type AppScalarFieldEnum = (typeof AppScalarFieldEnum)[keyof typeof AppSca
 export const ResourceScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  deletedAt: 'deletedAt',
-  name: 'name'
+  name: 'name',
+  appName: 'appName',
+  appId: 'appId'
 } as const
 
 export type ResourceScalarFieldEnum = (typeof ResourceScalarFieldEnum)[keyof typeof ResourceScalarFieldEnum]
@@ -128,9 +117,13 @@ export type RoleScalarFieldEnum = (typeof RoleScalarFieldEnum)[keyof typeof Role
 export const RolePermissionsScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  deletedAt: 'deletedAt',
+  appName: 'appName',
+  appId: 'appId',
+  roleName: 'roleName',
   roleId: 'roleId',
+  resourceName: 'resourceName',
+  resourceId: 'resourceId',
+  operationName: 'operationName',
   permissionId: 'permissionId'
 } as const
 
@@ -140,11 +133,11 @@ export type RolePermissionsScalarFieldEnum = (typeof RolePermissionsScalarFieldE
 export const PermissionScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  deletedAt: 'deletedAt',
-  operation: 'operation',
   appId: 'appId',
-  resourceId: 'resourceId'
+  resourceId: 'resourceId',
+  appName: 'appName',
+  resourceName: 'resourceName',
+  operationName: 'operationName'
 } as const
 
 export type PermissionScalarFieldEnum = (typeof PermissionScalarFieldEnum)[keyof typeof PermissionScalarFieldEnum]
@@ -163,43 +156,44 @@ export const UserScalarFieldEnum = {
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
-export const UserRoleScalarFieldEnum = {
+export const UserPermissionScalarFieldEnum = {
   id: 'id',
-  uuid: 'uuid',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt',
   userId: 'userId',
-  roleId: 'roleId'
-} as const
-
-export type UserRoleScalarFieldEnum = (typeof UserRoleScalarFieldEnum)[keyof typeof UserRoleScalarFieldEnum]
-
-
-export const AccessTokenScalarFieldEnum = {
-  id: 'id',
-  uuid: 'uuid',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  deletedAt: 'deletedAt',
-  name: 'name',
-  token: 'token'
-} as const
-
-export type AccessTokenScalarFieldEnum = (typeof AccessTokenScalarFieldEnum)[keyof typeof AccessTokenScalarFieldEnum]
-
-
-export const AccessTokenPermissionsScalarFieldEnum = {
-  id: 'id',
-  uuid: 'uuid',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  deletedAt: 'deletedAt',
-  accessTokenId: 'accessTokenId',
   permissionId: 'permissionId'
 } as const
 
-export type AccessTokenPermissionsScalarFieldEnum = (typeof AccessTokenPermissionsScalarFieldEnum)[keyof typeof AccessTokenPermissionsScalarFieldEnum]
+export type UserPermissionScalarFieldEnum = (typeof UserPermissionScalarFieldEnum)[keyof typeof UserPermissionScalarFieldEnum]
+
+
+export const SessionScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  username: 'username',
+  token: 'token',
+  version: 'version',
+  deviceId: 'deviceId',
+  deviceType: 'deviceType',
+  longitude: 'longitude',
+  latitude: 'latitude'
+} as const
+
+export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
+
+
+export const SessionPermissionScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  sessionId: 'sessionId',
+  permissionId: 'permissionId',
+  appName: 'appName',
+  operationName: 'operationName',
+  resourceName: 'resourceName'
+} as const
+
+export type SessionPermissionScalarFieldEnum = (typeof SessionPermissionScalarFieldEnum)[keyof typeof SessionPermissionScalarFieldEnum]
 
 
 export const SortOrder = {

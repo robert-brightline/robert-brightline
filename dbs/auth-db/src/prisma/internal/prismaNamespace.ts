@@ -384,16 +384,15 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
-  AuditLog: 'AuditLog',
   App: 'App',
   Resource: 'Resource',
   Role: 'Role',
   RolePermissions: 'RolePermissions',
   Permission: 'Permission',
   User: 'User',
-  UserRole: 'UserRole',
-  AccessToken: 'AccessToken',
-  AccessTokenPermissions: 'AccessTokenPermissions'
+  UserPermission: 'UserPermission',
+  Session: 'Session',
+  SessionPermission: 'SessionPermission'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -409,84 +408,10 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "auditLog" | "app" | "resource" | "role" | "rolePermissions" | "permission" | "user" | "userRole" | "accessToken" | "accessTokenPermissions"
+    modelProps: "app" | "resource" | "role" | "rolePermissions" | "permission" | "user" | "userPermission" | "session" | "sessionPermission"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
-    AuditLog: {
-      payload: Prisma.$AuditLogPayload<ExtArgs>
-      fields: Prisma.AuditLogFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.AuditLogFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuditLogPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.AuditLogFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuditLogPayload>
-        }
-        findFirst: {
-          args: Prisma.AuditLogFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuditLogPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.AuditLogFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuditLogPayload>
-        }
-        findMany: {
-          args: Prisma.AuditLogFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuditLogPayload>[]
-        }
-        create: {
-          args: Prisma.AuditLogCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuditLogPayload>
-        }
-        createMany: {
-          args: Prisma.AuditLogCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.AuditLogCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuditLogPayload>[]
-        }
-        delete: {
-          args: Prisma.AuditLogDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuditLogPayload>
-        }
-        update: {
-          args: Prisma.AuditLogUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuditLogPayload>
-        }
-        deleteMany: {
-          args: Prisma.AuditLogDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.AuditLogUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.AuditLogUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuditLogPayload>[]
-        }
-        upsert: {
-          args: Prisma.AuditLogUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuditLogPayload>
-        }
-        aggregate: {
-          args: Prisma.AuditLogAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateAuditLog>
-        }
-        groupBy: {
-          args: Prisma.AuditLogGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AuditLogGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.AuditLogCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AuditLogCountAggregateOutputType> | number
-        }
-      }
-    }
     App: {
       payload: Prisma.$AppPayload<ExtArgs>
       fields: Prisma.AppFieldRefs
@@ -931,225 +856,225 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    UserRole: {
-      payload: Prisma.$UserRolePayload<ExtArgs>
-      fields: Prisma.UserRoleFieldRefs
+    UserPermission: {
+      payload: Prisma.$UserPermissionPayload<ExtArgs>
+      fields: Prisma.UserPermissionFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.UserRoleFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserRolePayload> | null
+          args: Prisma.UserPermissionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPermissionPayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.UserRoleFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserRolePayload>
+          args: Prisma.UserPermissionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPermissionPayload>
         }
         findFirst: {
-          args: Prisma.UserRoleFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserRolePayload> | null
+          args: Prisma.UserPermissionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPermissionPayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.UserRoleFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserRolePayload>
+          args: Prisma.UserPermissionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPermissionPayload>
         }
         findMany: {
-          args: Prisma.UserRoleFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserRolePayload>[]
+          args: Prisma.UserPermissionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPermissionPayload>[]
         }
         create: {
-          args: Prisma.UserRoleCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserRolePayload>
+          args: Prisma.UserPermissionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPermissionPayload>
         }
         createMany: {
-          args: Prisma.UserRoleCreateManyArgs<ExtArgs>
+          args: Prisma.UserPermissionCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.UserRoleCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserRolePayload>[]
+          args: Prisma.UserPermissionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPermissionPayload>[]
         }
         delete: {
-          args: Prisma.UserRoleDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserRolePayload>
+          args: Prisma.UserPermissionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPermissionPayload>
         }
         update: {
-          args: Prisma.UserRoleUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserRolePayload>
+          args: Prisma.UserPermissionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPermissionPayload>
         }
         deleteMany: {
-          args: Prisma.UserRoleDeleteManyArgs<ExtArgs>
+          args: Prisma.UserPermissionDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.UserRoleUpdateManyArgs<ExtArgs>
+          args: Prisma.UserPermissionUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.UserRoleUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserRolePayload>[]
+          args: Prisma.UserPermissionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPermissionPayload>[]
         }
         upsert: {
-          args: Prisma.UserRoleUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserRolePayload>
+          args: Prisma.UserPermissionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPermissionPayload>
         }
         aggregate: {
-          args: Prisma.UserRoleAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateUserRole>
+          args: Prisma.UserPermissionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateUserPermission>
         }
         groupBy: {
-          args: Prisma.UserRoleGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.UserRoleGroupByOutputType>[]
+          args: Prisma.UserPermissionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserPermissionGroupByOutputType>[]
         }
         count: {
-          args: Prisma.UserRoleCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.UserRoleCountAggregateOutputType> | number
+          args: Prisma.UserPermissionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserPermissionCountAggregateOutputType> | number
         }
       }
     }
-    AccessToken: {
-      payload: Prisma.$AccessTokenPayload<ExtArgs>
-      fields: Prisma.AccessTokenFieldRefs
+    Session: {
+      payload: Prisma.$SessionPayload<ExtArgs>
+      fields: Prisma.SessionFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.AccessTokenFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccessTokenPayload> | null
+          args: Prisma.SessionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionPayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.AccessTokenFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccessTokenPayload>
+          args: Prisma.SessionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionPayload>
         }
         findFirst: {
-          args: Prisma.AccessTokenFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccessTokenPayload> | null
+          args: Prisma.SessionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionPayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.AccessTokenFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccessTokenPayload>
+          args: Prisma.SessionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionPayload>
         }
         findMany: {
-          args: Prisma.AccessTokenFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccessTokenPayload>[]
+          args: Prisma.SessionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionPayload>[]
         }
         create: {
-          args: Prisma.AccessTokenCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccessTokenPayload>
+          args: Prisma.SessionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionPayload>
         }
         createMany: {
-          args: Prisma.AccessTokenCreateManyArgs<ExtArgs>
+          args: Prisma.SessionCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.AccessTokenCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccessTokenPayload>[]
+          args: Prisma.SessionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionPayload>[]
         }
         delete: {
-          args: Prisma.AccessTokenDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccessTokenPayload>
+          args: Prisma.SessionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionPayload>
         }
         update: {
-          args: Prisma.AccessTokenUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccessTokenPayload>
+          args: Prisma.SessionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionPayload>
         }
         deleteMany: {
-          args: Prisma.AccessTokenDeleteManyArgs<ExtArgs>
+          args: Prisma.SessionDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.AccessTokenUpdateManyArgs<ExtArgs>
+          args: Prisma.SessionUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.AccessTokenUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccessTokenPayload>[]
+          args: Prisma.SessionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionPayload>[]
         }
         upsert: {
-          args: Prisma.AccessTokenUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccessTokenPayload>
+          args: Prisma.SessionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionPayload>
         }
         aggregate: {
-          args: Prisma.AccessTokenAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateAccessToken>
+          args: Prisma.SessionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSession>
         }
         groupBy: {
-          args: Prisma.AccessTokenGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AccessTokenGroupByOutputType>[]
+          args: Prisma.SessionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SessionGroupByOutputType>[]
         }
         count: {
-          args: Prisma.AccessTokenCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AccessTokenCountAggregateOutputType> | number
+          args: Prisma.SessionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SessionCountAggregateOutputType> | number
         }
       }
     }
-    AccessTokenPermissions: {
-      payload: Prisma.$AccessTokenPermissionsPayload<ExtArgs>
-      fields: Prisma.AccessTokenPermissionsFieldRefs
+    SessionPermission: {
+      payload: Prisma.$SessionPermissionPayload<ExtArgs>
+      fields: Prisma.SessionPermissionFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.AccessTokenPermissionsFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccessTokenPermissionsPayload> | null
+          args: Prisma.SessionPermissionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionPermissionPayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.AccessTokenPermissionsFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccessTokenPermissionsPayload>
+          args: Prisma.SessionPermissionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionPermissionPayload>
         }
         findFirst: {
-          args: Prisma.AccessTokenPermissionsFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccessTokenPermissionsPayload> | null
+          args: Prisma.SessionPermissionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionPermissionPayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.AccessTokenPermissionsFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccessTokenPermissionsPayload>
+          args: Prisma.SessionPermissionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionPermissionPayload>
         }
         findMany: {
-          args: Prisma.AccessTokenPermissionsFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccessTokenPermissionsPayload>[]
+          args: Prisma.SessionPermissionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionPermissionPayload>[]
         }
         create: {
-          args: Prisma.AccessTokenPermissionsCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccessTokenPermissionsPayload>
+          args: Prisma.SessionPermissionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionPermissionPayload>
         }
         createMany: {
-          args: Prisma.AccessTokenPermissionsCreateManyArgs<ExtArgs>
+          args: Prisma.SessionPermissionCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.AccessTokenPermissionsCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccessTokenPermissionsPayload>[]
+          args: Prisma.SessionPermissionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionPermissionPayload>[]
         }
         delete: {
-          args: Prisma.AccessTokenPermissionsDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccessTokenPermissionsPayload>
+          args: Prisma.SessionPermissionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionPermissionPayload>
         }
         update: {
-          args: Prisma.AccessTokenPermissionsUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccessTokenPermissionsPayload>
+          args: Prisma.SessionPermissionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionPermissionPayload>
         }
         deleteMany: {
-          args: Prisma.AccessTokenPermissionsDeleteManyArgs<ExtArgs>
+          args: Prisma.SessionPermissionDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.AccessTokenPermissionsUpdateManyArgs<ExtArgs>
+          args: Prisma.SessionPermissionUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.AccessTokenPermissionsUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccessTokenPermissionsPayload>[]
+          args: Prisma.SessionPermissionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionPermissionPayload>[]
         }
         upsert: {
-          args: Prisma.AccessTokenPermissionsUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AccessTokenPermissionsPayload>
+          args: Prisma.SessionPermissionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionPermissionPayload>
         }
         aggregate: {
-          args: Prisma.AccessTokenPermissionsAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateAccessTokenPermissions>
+          args: Prisma.SessionPermissionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSessionPermission>
         }
         groupBy: {
-          args: Prisma.AccessTokenPermissionsGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AccessTokenPermissionsGroupByOutputType>[]
+          args: Prisma.SessionPermissionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SessionPermissionGroupByOutputType>[]
         }
         count: {
-          args: Prisma.AccessTokenPermissionsCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AccessTokenPermissionsCountAggregateOutputType> | number
+          args: Prisma.SessionPermissionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SessionPermissionCountAggregateOutputType> | number
         }
       }
     }
@@ -1192,25 +1117,15 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-export const AuditLogScalarFieldEnum = {
-  id: 'id',
-  createdAt: 'createdAt',
-  subject: 'subject',
-  message: 'message',
-  operation: 'operation',
-  operatorId: 'operatorId'
-} as const
-
-export type AuditLogScalarFieldEnum = (typeof AuditLogScalarFieldEnum)[keyof typeof AuditLogScalarFieldEnum]
-
-
 export const AppScalarFieldEnum = {
   id: 'id',
   uuid: 'uuid',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt',
-  name: 'name'
+  name: 'name',
+  version: 'version',
+  description: 'description'
 } as const
 
 export type AppScalarFieldEnum = (typeof AppScalarFieldEnum)[keyof typeof AppScalarFieldEnum]
@@ -1219,9 +1134,9 @@ export type AppScalarFieldEnum = (typeof AppScalarFieldEnum)[keyof typeof AppSca
 export const ResourceScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  deletedAt: 'deletedAt',
-  name: 'name'
+  name: 'name',
+  appName: 'appName',
+  appId: 'appId'
 } as const
 
 export type ResourceScalarFieldEnum = (typeof ResourceScalarFieldEnum)[keyof typeof ResourceScalarFieldEnum]
@@ -1241,9 +1156,13 @@ export type RoleScalarFieldEnum = (typeof RoleScalarFieldEnum)[keyof typeof Role
 export const RolePermissionsScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  deletedAt: 'deletedAt',
+  appName: 'appName',
+  appId: 'appId',
+  roleName: 'roleName',
   roleId: 'roleId',
+  resourceName: 'resourceName',
+  resourceId: 'resourceId',
+  operationName: 'operationName',
   permissionId: 'permissionId'
 } as const
 
@@ -1253,11 +1172,11 @@ export type RolePermissionsScalarFieldEnum = (typeof RolePermissionsScalarFieldE
 export const PermissionScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  deletedAt: 'deletedAt',
-  operation: 'operation',
   appId: 'appId',
-  resourceId: 'resourceId'
+  resourceId: 'resourceId',
+  appName: 'appName',
+  resourceName: 'resourceName',
+  operationName: 'operationName'
 } as const
 
 export type PermissionScalarFieldEnum = (typeof PermissionScalarFieldEnum)[keyof typeof PermissionScalarFieldEnum]
@@ -1276,43 +1195,44 @@ export const UserScalarFieldEnum = {
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
-export const UserRoleScalarFieldEnum = {
+export const UserPermissionScalarFieldEnum = {
   id: 'id',
-  uuid: 'uuid',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt',
   userId: 'userId',
-  roleId: 'roleId'
-} as const
-
-export type UserRoleScalarFieldEnum = (typeof UserRoleScalarFieldEnum)[keyof typeof UserRoleScalarFieldEnum]
-
-
-export const AccessTokenScalarFieldEnum = {
-  id: 'id',
-  uuid: 'uuid',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  deletedAt: 'deletedAt',
-  name: 'name',
-  token: 'token'
-} as const
-
-export type AccessTokenScalarFieldEnum = (typeof AccessTokenScalarFieldEnum)[keyof typeof AccessTokenScalarFieldEnum]
-
-
-export const AccessTokenPermissionsScalarFieldEnum = {
-  id: 'id',
-  uuid: 'uuid',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  deletedAt: 'deletedAt',
-  accessTokenId: 'accessTokenId',
   permissionId: 'permissionId'
 } as const
 
-export type AccessTokenPermissionsScalarFieldEnum = (typeof AccessTokenPermissionsScalarFieldEnum)[keyof typeof AccessTokenPermissionsScalarFieldEnum]
+export type UserPermissionScalarFieldEnum = (typeof UserPermissionScalarFieldEnum)[keyof typeof UserPermissionScalarFieldEnum]
+
+
+export const SessionScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  username: 'username',
+  token: 'token',
+  version: 'version',
+  deviceId: 'deviceId',
+  deviceType: 'deviceType',
+  longitude: 'longitude',
+  latitude: 'latitude'
+} as const
+
+export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
+
+
+export const SessionPermissionScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  sessionId: 'sessionId',
+  permissionId: 'permissionId',
+  appName: 'appName',
+  operationName: 'operationName',
+  resourceName: 'resourceName'
+} as const
+
+export type SessionPermissionScalarFieldEnum = (typeof SessionPermissionScalarFieldEnum)[keyof typeof SessionPermissionScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1360,20 +1280,6 @@ export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
 
 
 /**
- * Reference to a field of type 'DateTime'
- */
-export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
-    
-
-
-/**
- * Reference to a field of type 'DateTime[]'
- */
-export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
-    
-
-
-/**
  * Reference to a field of type 'String'
  */
 export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
@@ -1388,16 +1294,16 @@ export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
 
 
 /**
- * Reference to a field of type 'Operation'
+ * Reference to a field of type 'DateTime'
  */
-export type EnumOperationFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Operation'>
+export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
     
 
 
 /**
- * Reference to a field of type 'Operation[]'
+ * Reference to a field of type 'DateTime[]'
  */
-export type ListEnumOperationFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Operation[]'>
+export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
     
 
 
@@ -1509,16 +1415,15 @@ export type PrismaClientOptions = ({
   comments?: runtime.SqlCommenterPlugin[]
 }
 export type GlobalOmitConfig = {
-  auditLog?: Prisma.AuditLogOmit
   app?: Prisma.AppOmit
   resource?: Prisma.ResourceOmit
   role?: Prisma.RoleOmit
   rolePermissions?: Prisma.RolePermissionsOmit
   permission?: Prisma.PermissionOmit
   user?: Prisma.UserOmit
-  userRole?: Prisma.UserRoleOmit
-  accessToken?: Prisma.AccessTokenOmit
-  accessTokenPermissions?: Prisma.AccessTokenPermissionsOmit
+  userPermission?: Prisma.UserPermissionOmit
+  session?: Prisma.SessionOmit
+  sessionPermission?: Prisma.SessionPermissionOmit
 }
 
 /* Types for Logging */

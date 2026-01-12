@@ -18,11 +18,6 @@ export { Prisma }
 export * as $Enums from './enums.js'
 export * from './enums.js';
 /**
- * Model AuditLog
- * 
- */
-export type AuditLog = Prisma.AuditLogModel
-/**
  * Model App
  * 
  */
@@ -53,17 +48,17 @@ export type Permission = Prisma.PermissionModel
  */
 export type User = Prisma.UserModel
 /**
- * Model UserRole
+ * Model UserPermission
  * 
  */
-export type UserRole = Prisma.UserRoleModel
+export type UserPermission = Prisma.UserPermissionModel
 /**
- * Model AccessToken
+ * Model Session
  * 
  */
-export type AccessToken = Prisma.AccessTokenModel
+export type Session = Prisma.SessionModel
 /**
- * Model AccessTokenPermissions
+ * Model SessionPermission
  * 
  */
-export type AccessTokenPermissions = Prisma.AccessTokenPermissionsModel
+export type SessionPermission = Prisma.SessionPermissionModel

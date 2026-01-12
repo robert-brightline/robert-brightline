@@ -4,10 +4,14 @@ import * as External from '@robert-brightline/zod';
 export const RolePermissionsWhere = z.object({
   id: External.IntegerFilter.optional(),
   createdAt: External.DateTimeFilter.optional(),
-  updatedAt: External.DateTimeFilter.optional(),
-  deletedAt: External.DateTimeFilter.optional(),
-  role: Internal.RoleOwnWhere.optional(),
+  appName: External.StringFilter.optional(),
+  appId: External.IntegerFilter.optional(),
+  roleName: External.StringFilter.optional(),
   roleId: External.IntegerFilter.optional(),
-  permission: Internal.PermissionOwnWhere.optional(),
+  resourceName: External.StringFilter.optional(),
+  resourceId: External.IntegerFilter.optional(),
+  operationName: External.StringFilter.optional(),
   permissionId: External.IntegerFilter.optional(),
+  role: Internal.RoleOwnWhere.optional(),
+  permission: Internal.PermissionOwnWhere.optional(),
 });

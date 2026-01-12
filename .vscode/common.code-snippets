@@ -1,7 +1,7 @@
 {
   "export-all": {
     "prefix": "export-all",
-    "body": "// @index(['./**/*.ts', '!./**/*.{test,spec}.ts', '!./**/generate.ts'], f => `export * from '${f.path}.js';`",
+    "body": "// @index(['./**/*.ts', '!./**/*.{test,spec}.ts', '!./**/generate.ts'], f => `export * from '${f.path}.js';`)",
     "scope": "typescript",
   },
   "command-binder": {

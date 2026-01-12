@@ -3,5 +3,6 @@ import * as Internal from '../internals.js';
 import * as External from '@robert-brightline/zod';
 export const ResourceUpdate = z.object({
   name: External.name().optional(),
+  app: Internal.AppRelationCreate.optional(),
   permissions: Internal.PermissionRelationManyCreate.optional(),
 });

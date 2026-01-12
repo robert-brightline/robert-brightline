@@ -4,5 +4,6 @@ import * as External from '@robert-brightline/zod';
 export const UserUpdate = z.object({
   username: External.email().optional(),
   password: External.password().optional(),
-  userRoles: Internal.UserRoleRelationManyCreate.optional(),
+  userPermissions: Internal.UserPermissionRelationManyCreate.optional(),
+  sessions: Internal.SessionRelationManyCreate.optional(),
 });

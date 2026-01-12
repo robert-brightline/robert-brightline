@@ -4,10 +4,14 @@ import * as External from '@robert-brightline/zod';
 export const RolePermissionsOrder = z.object({
   id: External.dir().optional(),
   createdAt: External.dir().optional(),
-  updatedAt: External.dir().optional(),
-  deletedAt: External.dir().optional(),
-  role: Internal.RoleOwnOrder.optional(),
+  appName: External.dir().optional(),
+  appId: External.dir().optional(),
+  roleName: External.dir().optional(),
   roleId: External.dir().optional(),
-  permission: Internal.PermissionOwnOrder.optional(),
+  resourceName: External.dir().optional(),
+  resourceId: External.dir().optional(),
+  operationName: External.dir().optional(),
   permissionId: External.dir().optional(),
+  role: Internal.RoleOwnOrder.optional(),
+  permission: Internal.PermissionOwnOrder.optional(),
 });

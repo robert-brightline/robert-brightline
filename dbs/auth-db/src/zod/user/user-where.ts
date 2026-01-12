@@ -9,5 +9,6 @@ export const UserWhere = z.object({
   deletedAt: External.DateTimeFilter.optional(),
   username: External.StringFilter.optional(),
   password: External.StringFilter.optional(),
-  userRoles: Internal.UserRoleRelationManyWhere.optional(),
+  userPermissions: Internal.UserPermissionRelationManyWhere.optional(),
+  sessions: Internal.SessionRelationManyWhere.optional(),
 });

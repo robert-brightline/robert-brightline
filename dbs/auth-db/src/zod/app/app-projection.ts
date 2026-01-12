@@ -8,5 +8,8 @@ export const AppProjection = z.object({
   updatedAt: External.bool().optional(),
   deletedAt: External.bool().optional(),
   name: External.bool().optional(),
+  version: External.bool().optional(),
+  description: External.bool().optional(),
   permissions: Internal.PermissionRelationManyProjection,
+  resources: Internal.ResourceRelationManyProjection,
 });

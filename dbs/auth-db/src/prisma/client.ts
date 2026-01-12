@@ -29,8 +29,8 @@ export * from "./enums.js"
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more AuditLogs
- * const auditLogs = await prisma.auditLog.findMany()
+ * // Fetch zero or more Apps
+ * const apps = await prisma.app.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -39,11 +39,6 @@ export const PrismaClient = $Class.getPrismaClientClass()
 export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts extends Prisma.PrismaClientOptions["omit"] = Prisma.PrismaClientOptions["omit"], ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = $Class.PrismaClient<LogOpts, OmitOpts, ExtArgs>
 export { Prisma }
 
-/**
- * Model AuditLog
- * 
- */
-export type AuditLog = Prisma.AuditLogModel
 /**
  * Model App
  * 
@@ -75,17 +70,17 @@ export type Permission = Prisma.PermissionModel
  */
 export type User = Prisma.UserModel
 /**
- * Model UserRole
+ * Model UserPermission
  * 
  */
-export type UserRole = Prisma.UserRoleModel
+export type UserPermission = Prisma.UserPermissionModel
 /**
- * Model AccessToken
+ * Model Session
  * 
  */
-export type AccessToken = Prisma.AccessTokenModel
+export type Session = Prisma.SessionModel
 /**
- * Model AccessTokenPermissions
+ * Model SessionPermission
  * 
  */
-export type AccessTokenPermissions = Prisma.AccessTokenPermissionsModel
+export type SessionPermission = Prisma.SessionPermissionModel

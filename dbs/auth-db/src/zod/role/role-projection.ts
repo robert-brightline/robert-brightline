@@ -8,5 +8,4 @@ export const RoleProjection = z.object({
   deletedAt: External.bool().optional(),
   name: External.bool().optional(),
   rolePermissions: Internal.RolePermissionsRelationManyProjection,
-  userRoles: Internal.UserRoleRelationManyProjection,
 });

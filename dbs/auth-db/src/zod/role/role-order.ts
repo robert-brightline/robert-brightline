@@ -7,5 +7,4 @@ export const RoleOrder = z.object({
   deletedAt: External.dir().optional(),
   name: External.dir().optional(),
   rolePermissions: External.orderByCount().optional(),
-  userRoles: External.orderByCount().optional(),
 });

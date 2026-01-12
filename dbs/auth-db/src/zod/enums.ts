@@ -1,52 +1,5 @@
 import { z } from 'zod';
-import * as External from '@robert-brightline/zod';
-export const OperationEnum = z.enum([
-  'READ',
-  'WRITE',
-  'UPDATE',
-  'DELETE',
-  'MANAGE',
-  'TRIGGER',
-  'NOTIFY',
-  'APPROVE',
-  'START',
-  'STOP',
-  'RESTART',
-  'REJECT',
-  'SUBMIT',
-  'ARCHIVE',
-  'RESTORE',
-  'EXPORT',
-  'IMPORT',
-  'GRANT',
-  'REVOKE',
-  'LOCK',
-  'UNLOCK',
-  'SYNC',
-  'DEPLOY',
-  'ROLLBACK',
-]);
-export const OperationEnumFilter = z.object({
-  equals: OperationEnum.optional(),
-  in: OperationEnum.array().optional(),
-  notIn: OperationEnum.array().optional(),
-  not: OperationEnum.optional(),
-});
-export const OperationEnumArrayFilter = z.object({
-  equals: OperationEnum.array().optional(),
-  has: OperationEnum.optional(),
-  hasEvery: OperationEnum.array().optional(),
-  hasSome: OperationEnum.array().optional(),
-  isEmpty: External.bool().optional(),
-});
-export const AuditLogField = z.enum([
-  'id',
-  'createdAt',
-  'subject',
-  'message',
-  'operation',
-  'operatorId',
-]);
+
 export const AppField = z.enum([
   'id',
   'uuid',
@@ -54,13 +7,15 @@ export const AppField = z.enum([
   'updatedAt',
   'deletedAt',
   'name',
+  'version',
+  'description',
 ]);
 export const ResourceField = z.enum([
   'id',
   'createdAt',
-  'updatedAt',
-  'deletedAt',
   'name',
+  'appName',
+  'appId',
 ]);
 export const RoleField = z.enum([
   'id',
@@ -72,19 +27,23 @@ export const RoleField = z.enum([
 export const RolePermissionsField = z.enum([
   'id',
   'createdAt',
-  'updatedAt',
-  'deletedAt',
+  'appName',
+  'appId',
+  'roleName',
   'roleId',
+  'resourceName',
+  'resourceId',
+  'operationName',
   'permissionId',
 ]);
 export const PermissionField = z.enum([
   'id',
   'createdAt',
-  'updatedAt',
-  'deletedAt',
-  'operation',
   'appId',
   'resourceId',
+  'appName',
+  'resourceName',
+  'operationName',
 ]);
 export const UserField = z.enum([
   'id',
@@ -95,30 +54,31 @@ export const UserField = z.enum([
   'username',
   'password',
 ]);
-export const UserRoleField = z.enum([
+export const UserPermissionField = z.enum([
   'id',
-  'uuid',
   'createdAt',
   'updatedAt',
   'deletedAt',
   'userId',
-  'roleId',
-]);
-export const AccessTokenField = z.enum([
-  'id',
-  'uuid',
-  'createdAt',
-  'updatedAt',
-  'deletedAt',
-  'name',
-  'token',
-]);
-export const AccessTokenPermissionsField = z.enum([
-  'id',
-  'uuid',
-  'createdAt',
-  'updatedAt',
-  'deletedAt',
-  'accessTokenId',
   'permissionId',
+]);
+export const SessionField = z.enum([
+  'id',
+  'createdAt',
+  'username',
+  'token',
+  'version',
+  'deviceId',
+  'deviceType',
+  'longitude',
+  'latitude',
+]);
+export const SessionPermissionField = z.enum([
+  'id',
+  'createdAt',
+  'sessionId',
+  'permissionId',
+  'appName',
+  'operationName',
+  'resourceName',
 ]);

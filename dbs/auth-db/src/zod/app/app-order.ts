@@ -7,5 +7,8 @@ export const AppOrder = z.object({
   updatedAt: External.dir().optional(),
   deletedAt: External.dir().optional(),
   name: External.dir().optional(),
+  version: External.dir().optional(),
+  description: External.dir().optional(),
   permissions: External.orderByCount().optional(),
+  resources: External.orderByCount().optional(),
 });

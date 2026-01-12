@@ -28,68 +28,72 @@ export type AggregateResource = {
 
 export type ResourceAvgAggregateOutputType = {
   id: number | null
+  appId: number | null
 }
 
 export type ResourceSumAggregateOutputType = {
   id: number | null
+  appId: number | null
 }
 
 export type ResourceMinAggregateOutputType = {
   id: number | null
   createdAt: Date | null
-  updatedAt: Date | null
-  deletedAt: Date | null
   name: string | null
+  appName: string | null
+  appId: number | null
 }
 
 export type ResourceMaxAggregateOutputType = {
   id: number | null
   createdAt: Date | null
-  updatedAt: Date | null
-  deletedAt: Date | null
   name: string | null
+  appName: string | null
+  appId: number | null
 }
 
 export type ResourceCountAggregateOutputType = {
   id: number
   createdAt: number
-  updatedAt: number
-  deletedAt: number
   name: number
+  appName: number
+  appId: number
   _all: number
 }
 
 
 export type ResourceAvgAggregateInputType = {
   id?: true
+  appId?: true
 }
 
 export type ResourceSumAggregateInputType = {
   id?: true
+  appId?: true
 }
 
 export type ResourceMinAggregateInputType = {
   id?: true
   createdAt?: true
-  updatedAt?: true
-  deletedAt?: true
   name?: true
+  appName?: true
+  appId?: true
 }
 
 export type ResourceMaxAggregateInputType = {
   id?: true
   createdAt?: true
-  updatedAt?: true
-  deletedAt?: true
   name?: true
+  appName?: true
+  appId?: true
 }
 
 export type ResourceCountAggregateInputType = {
   id?: true
   createdAt?: true
-  updatedAt?: true
-  deletedAt?: true
   name?: true
+  appName?: true
+  appId?: true
   _all?: true
 }
 
@@ -182,9 +186,9 @@ export type ResourceGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 export type ResourceGroupByOutputType = {
   id: number
   createdAt: Date
-  updatedAt: Date
-  deletedAt: Date | null
   name: string
+  appName: string
+  appId: number
   _count: ResourceCountAggregateOutputType | null
   _avg: ResourceAvgAggregateOutputType | null
   _sum: ResourceSumAggregateOutputType | null
@@ -213,39 +217,44 @@ export type ResourceWhereInput = {
   NOT?: Prisma.ResourceWhereInput | Prisma.ResourceWhereInput[]
   id?: Prisma.IntFilter<"Resource"> | number
   createdAt?: Prisma.DateTimeFilter<"Resource"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Resource"> | Date | string
-  deletedAt?: Prisma.DateTimeNullableFilter<"Resource"> | Date | string | null
   name?: Prisma.StringFilter<"Resource"> | string
+  appName?: Prisma.StringFilter<"Resource"> | string
+  appId?: Prisma.IntFilter<"Resource"> | number
+  app?: Prisma.XOR<Prisma.AppScalarRelationFilter, Prisma.AppWhereInput>
   permissions?: Prisma.PermissionListRelationFilter
 }
 
 export type ResourceOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
-  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
+  appName?: Prisma.SortOrder
+  appId?: Prisma.SortOrder
+  app?: Prisma.AppOrderByWithRelationInput
   permissions?: Prisma.PermissionOrderByRelationAggregateInput
 }
 
 export type ResourceWhereUniqueInput = Prisma.AtLeast<{
   id?: number
   name?: string
+  id_appId_appName_name?: Prisma.ResourceIdAppIdAppNameNameCompoundUniqueInput
+  id_name?: Prisma.ResourceIdNameCompoundUniqueInput
   AND?: Prisma.ResourceWhereInput | Prisma.ResourceWhereInput[]
   OR?: Prisma.ResourceWhereInput[]
   NOT?: Prisma.ResourceWhereInput | Prisma.ResourceWhereInput[]
   createdAt?: Prisma.DateTimeFilter<"Resource"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Resource"> | Date | string
-  deletedAt?: Prisma.DateTimeNullableFilter<"Resource"> | Date | string | null
+  appName?: Prisma.StringFilter<"Resource"> | string
+  appId?: Prisma.IntFilter<"Resource"> | number
+  app?: Prisma.XOR<Prisma.AppScalarRelationFilter, Prisma.AppWhereInput>
   permissions?: Prisma.PermissionListRelationFilter
-}, "id" | "name">
+}, "id" | "name" | "id_appId_appName_name" | "id_name">
 
 export type ResourceOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
-  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
+  appName?: Prisma.SortOrder
+  appId?: Prisma.SortOrder
   _count?: Prisma.ResourceCountOrderByAggregateInput
   _avg?: Prisma.ResourceAvgOrderByAggregateInput
   _max?: Prisma.ResourceMaxOrderByAggregateInput
@@ -259,103 +268,165 @@ export type ResourceScalarWhereWithAggregatesInput = {
   NOT?: Prisma.ResourceScalarWhereWithAggregatesInput | Prisma.ResourceScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Resource"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Resource"> | Date | string
-  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Resource"> | Date | string
-  deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Resource"> | Date | string | null
   name?: Prisma.StringWithAggregatesFilter<"Resource"> | string
+  appName?: Prisma.StringWithAggregatesFilter<"Resource"> | string
+  appId?: Prisma.IntWithAggregatesFilter<"Resource"> | number
 }
 
 export type ResourceCreateInput = {
   createdAt?: Date | string
-  updatedAt?: Date | string
-  deletedAt?: Date | string | null
   name: string
+  app: Prisma.AppCreateNestedOneWithoutResourcesInput
   permissions?: Prisma.PermissionCreateNestedManyWithoutResourceInput
 }
 
 export type ResourceUncheckedCreateInput = {
   id?: number
   createdAt?: Date | string
-  updatedAt?: Date | string
-  deletedAt?: Date | string | null
   name: string
+  appName: string
+  appId: number
   permissions?: Prisma.PermissionUncheckedCreateNestedManyWithoutResourceInput
 }
 
 export type ResourceUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  app?: Prisma.AppUpdateOneRequiredWithoutResourcesNestedInput
   permissions?: Prisma.PermissionUpdateManyWithoutResourceNestedInput
 }
 
 export type ResourceUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  appName?: Prisma.StringFieldUpdateOperationsInput | string
+  appId?: Prisma.IntFieldUpdateOperationsInput | number
   permissions?: Prisma.PermissionUncheckedUpdateManyWithoutResourceNestedInput
 }
 
 export type ResourceCreateManyInput = {
   id?: number
   createdAt?: Date | string
-  updatedAt?: Date | string
-  deletedAt?: Date | string | null
   name: string
+  appName: string
+  appId: number
 }
 
 export type ResourceUpdateManyMutationInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ResourceUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  appName?: Prisma.StringFieldUpdateOperationsInput | string
+  appId?: Prisma.IntFieldUpdateOperationsInput | number
+}
+
+export type ResourceListRelationFilter = {
+  every?: Prisma.ResourceWhereInput
+  some?: Prisma.ResourceWhereInput
+  none?: Prisma.ResourceWhereInput
+}
+
+export type ResourceOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
+export type ResourceIdAppIdAppNameNameCompoundUniqueInput = {
+  id: number
+  appId: number
+  appName: string
+  name: string
+}
+
+export type ResourceIdNameCompoundUniqueInput = {
+  id: number
+  name: string
 }
 
 export type ResourceCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
-  deletedAt?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  appName?: Prisma.SortOrder
+  appId?: Prisma.SortOrder
 }
 
 export type ResourceAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  appId?: Prisma.SortOrder
 }
 
 export type ResourceMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
-  deletedAt?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  appName?: Prisma.SortOrder
+  appId?: Prisma.SortOrder
 }
 
 export type ResourceMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
-  deletedAt?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  appName?: Prisma.SortOrder
+  appId?: Prisma.SortOrder
 }
 
 export type ResourceSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  appId?: Prisma.SortOrder
 }
 
 export type ResourceScalarRelationFilter = {
   is?: Prisma.ResourceWhereInput
   isNot?: Prisma.ResourceWhereInput
+}
+
+export type ResourceCreateNestedManyWithoutAppInput = {
+  create?: Prisma.XOR<Prisma.ResourceCreateWithoutAppInput, Prisma.ResourceUncheckedCreateWithoutAppInput> | Prisma.ResourceCreateWithoutAppInput[] | Prisma.ResourceUncheckedCreateWithoutAppInput[]
+  connectOrCreate?: Prisma.ResourceCreateOrConnectWithoutAppInput | Prisma.ResourceCreateOrConnectWithoutAppInput[]
+  createMany?: Prisma.ResourceCreateManyAppInputEnvelope
+  connect?: Prisma.ResourceWhereUniqueInput | Prisma.ResourceWhereUniqueInput[]
+}
+
+export type ResourceUncheckedCreateNestedManyWithoutAppInput = {
+  create?: Prisma.XOR<Prisma.ResourceCreateWithoutAppInput, Prisma.ResourceUncheckedCreateWithoutAppInput> | Prisma.ResourceCreateWithoutAppInput[] | Prisma.ResourceUncheckedCreateWithoutAppInput[]
+  connectOrCreate?: Prisma.ResourceCreateOrConnectWithoutAppInput | Prisma.ResourceCreateOrConnectWithoutAppInput[]
+  createMany?: Prisma.ResourceCreateManyAppInputEnvelope
+  connect?: Prisma.ResourceWhereUniqueInput | Prisma.ResourceWhereUniqueInput[]
+}
+
+export type ResourceUpdateManyWithoutAppNestedInput = {
+  create?: Prisma.XOR<Prisma.ResourceCreateWithoutAppInput, Prisma.ResourceUncheckedCreateWithoutAppInput> | Prisma.ResourceCreateWithoutAppInput[] | Prisma.ResourceUncheckedCreateWithoutAppInput[]
+  connectOrCreate?: Prisma.ResourceCreateOrConnectWithoutAppInput | Prisma.ResourceCreateOrConnectWithoutAppInput[]
+  upsert?: Prisma.ResourceUpsertWithWhereUniqueWithoutAppInput | Prisma.ResourceUpsertWithWhereUniqueWithoutAppInput[]
+  createMany?: Prisma.ResourceCreateManyAppInputEnvelope
+  set?: Prisma.ResourceWhereUniqueInput | Prisma.ResourceWhereUniqueInput[]
+  disconnect?: Prisma.ResourceWhereUniqueInput | Prisma.ResourceWhereUniqueInput[]
+  delete?: Prisma.ResourceWhereUniqueInput | Prisma.ResourceWhereUniqueInput[]
+  connect?: Prisma.ResourceWhereUniqueInput | Prisma.ResourceWhereUniqueInput[]
+  update?: Prisma.ResourceUpdateWithWhereUniqueWithoutAppInput | Prisma.ResourceUpdateWithWhereUniqueWithoutAppInput[]
+  updateMany?: Prisma.ResourceUpdateManyWithWhereWithoutAppInput | Prisma.ResourceUpdateManyWithWhereWithoutAppInput[]
+  deleteMany?: Prisma.ResourceScalarWhereInput | Prisma.ResourceScalarWhereInput[]
+}
+
+export type ResourceUncheckedUpdateManyWithoutAppNestedInput = {
+  create?: Prisma.XOR<Prisma.ResourceCreateWithoutAppInput, Prisma.ResourceUncheckedCreateWithoutAppInput> | Prisma.ResourceCreateWithoutAppInput[] | Prisma.ResourceUncheckedCreateWithoutAppInput[]
+  connectOrCreate?: Prisma.ResourceCreateOrConnectWithoutAppInput | Prisma.ResourceCreateOrConnectWithoutAppInput[]
+  upsert?: Prisma.ResourceUpsertWithWhereUniqueWithoutAppInput | Prisma.ResourceUpsertWithWhereUniqueWithoutAppInput[]
+  createMany?: Prisma.ResourceCreateManyAppInputEnvelope
+  set?: Prisma.ResourceWhereUniqueInput | Prisma.ResourceWhereUniqueInput[]
+  disconnect?: Prisma.ResourceWhereUniqueInput | Prisma.ResourceWhereUniqueInput[]
+  delete?: Prisma.ResourceWhereUniqueInput | Prisma.ResourceWhereUniqueInput[]
+  connect?: Prisma.ResourceWhereUniqueInput | Prisma.ResourceWhereUniqueInput[]
+  update?: Prisma.ResourceUpdateWithWhereUniqueWithoutAppInput | Prisma.ResourceUpdateWithWhereUniqueWithoutAppInput[]
+  updateMany?: Prisma.ResourceUpdateManyWithWhereWithoutAppInput | Prisma.ResourceUpdateManyWithWhereWithoutAppInput[]
+  deleteMany?: Prisma.ResourceScalarWhereInput | Prisma.ResourceScalarWhereInput[]
 }
 
 export type ResourceCreateNestedOneWithoutPermissionsInput = {
@@ -372,19 +443,68 @@ export type ResourceUpdateOneRequiredWithoutPermissionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ResourceUpdateToOneWithWhereWithoutPermissionsInput, Prisma.ResourceUpdateWithoutPermissionsInput>, Prisma.ResourceUncheckedUpdateWithoutPermissionsInput>
 }
 
+export type ResourceCreateWithoutAppInput = {
+  createdAt?: Date | string
+  name: string
+  permissions?: Prisma.PermissionCreateNestedManyWithoutResourceInput
+}
+
+export type ResourceUncheckedCreateWithoutAppInput = {
+  id?: number
+  createdAt?: Date | string
+  name: string
+  permissions?: Prisma.PermissionUncheckedCreateNestedManyWithoutResourceInput
+}
+
+export type ResourceCreateOrConnectWithoutAppInput = {
+  where: Prisma.ResourceWhereUniqueInput
+  create: Prisma.XOR<Prisma.ResourceCreateWithoutAppInput, Prisma.ResourceUncheckedCreateWithoutAppInput>
+}
+
+export type ResourceCreateManyAppInputEnvelope = {
+  data: Prisma.ResourceCreateManyAppInput | Prisma.ResourceCreateManyAppInput[]
+  skipDuplicates?: boolean
+}
+
+export type ResourceUpsertWithWhereUniqueWithoutAppInput = {
+  where: Prisma.ResourceWhereUniqueInput
+  update: Prisma.XOR<Prisma.ResourceUpdateWithoutAppInput, Prisma.ResourceUncheckedUpdateWithoutAppInput>
+  create: Prisma.XOR<Prisma.ResourceCreateWithoutAppInput, Prisma.ResourceUncheckedCreateWithoutAppInput>
+}
+
+export type ResourceUpdateWithWhereUniqueWithoutAppInput = {
+  where: Prisma.ResourceWhereUniqueInput
+  data: Prisma.XOR<Prisma.ResourceUpdateWithoutAppInput, Prisma.ResourceUncheckedUpdateWithoutAppInput>
+}
+
+export type ResourceUpdateManyWithWhereWithoutAppInput = {
+  where: Prisma.ResourceScalarWhereInput
+  data: Prisma.XOR<Prisma.ResourceUpdateManyMutationInput, Prisma.ResourceUncheckedUpdateManyWithoutAppInput>
+}
+
+export type ResourceScalarWhereInput = {
+  AND?: Prisma.ResourceScalarWhereInput | Prisma.ResourceScalarWhereInput[]
+  OR?: Prisma.ResourceScalarWhereInput[]
+  NOT?: Prisma.ResourceScalarWhereInput | Prisma.ResourceScalarWhereInput[]
+  id?: Prisma.IntFilter<"Resource"> | number
+  createdAt?: Prisma.DateTimeFilter<"Resource"> | Date | string
+  name?: Prisma.StringFilter<"Resource"> | string
+  appName?: Prisma.StringFilter<"Resource"> | string
+  appId?: Prisma.IntFilter<"Resource"> | number
+}
+
 export type ResourceCreateWithoutPermissionsInput = {
   createdAt?: Date | string
-  updatedAt?: Date | string
-  deletedAt?: Date | string | null
   name: string
+  app: Prisma.AppCreateNestedOneWithoutResourcesInput
 }
 
 export type ResourceUncheckedCreateWithoutPermissionsInput = {
   id?: number
   createdAt?: Date | string
-  updatedAt?: Date | string
-  deletedAt?: Date | string | null
   name: string
+  appName: string
+  appId: number
 }
 
 export type ResourceCreateOrConnectWithoutPermissionsInput = {
@@ -405,16 +525,40 @@ export type ResourceUpdateToOneWithWhereWithoutPermissionsInput = {
 
 export type ResourceUpdateWithoutPermissionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  app?: Prisma.AppUpdateOneRequiredWithoutResourcesNestedInput
 }
 
 export type ResourceUncheckedUpdateWithoutPermissionsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  appName?: Prisma.StringFieldUpdateOperationsInput | string
+  appId?: Prisma.IntFieldUpdateOperationsInput | number
+}
+
+export type ResourceCreateManyAppInput = {
+  id?: number
+  createdAt?: Date | string
+  name: string
+}
+
+export type ResourceUpdateWithoutAppInput = {
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  permissions?: Prisma.PermissionUpdateManyWithoutResourceNestedInput
+}
+
+export type ResourceUncheckedUpdateWithoutAppInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  permissions?: Prisma.PermissionUncheckedUpdateManyWithoutResourceNestedInput
+}
+
+export type ResourceUncheckedUpdateManyWithoutAppInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -452,9 +596,10 @@ export type ResourceCountOutputTypeCountPermissionsArgs<ExtArgs extends runtime.
 export type ResourceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   createdAt?: boolean
-  updatedAt?: boolean
-  deletedAt?: boolean
   name?: boolean
+  appName?: boolean
+  appId?: boolean
+  app?: boolean | Prisma.AppDefaultArgs<ExtArgs>
   permissions?: boolean | Prisma.Resource$permissionsArgs<ExtArgs>
   _count?: boolean | Prisma.ResourceCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["resource"]>
@@ -462,46 +607,60 @@ export type ResourceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
 export type ResourceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   createdAt?: boolean
-  updatedAt?: boolean
-  deletedAt?: boolean
   name?: boolean
+  appName?: boolean
+  appId?: boolean
+  app?: boolean | Prisma.AppDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["resource"]>
 
 export type ResourceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   createdAt?: boolean
-  updatedAt?: boolean
-  deletedAt?: boolean
   name?: boolean
+  appName?: boolean
+  appId?: boolean
+  app?: boolean | Prisma.AppDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["resource"]>
 
 export type ResourceSelectScalar = {
   id?: boolean
   createdAt?: boolean
-  updatedAt?: boolean
-  deletedAt?: boolean
   name?: boolean
+  appName?: boolean
+  appId?: boolean
 }
 
-export type ResourceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "deletedAt" | "name", ExtArgs["result"]["resource"]>
+export type ResourceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "name" | "appName" | "appId", ExtArgs["result"]["resource"]>
 export type ResourceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  app?: boolean | Prisma.AppDefaultArgs<ExtArgs>
   permissions?: boolean | Prisma.Resource$permissionsArgs<ExtArgs>
   _count?: boolean | Prisma.ResourceCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type ResourceIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type ResourceIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type ResourceIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  app?: boolean | Prisma.AppDefaultArgs<ExtArgs>
+}
+export type ResourceIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  app?: boolean | Prisma.AppDefaultArgs<ExtArgs>
+}
 
 export type $ResourcePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Resource"
   objects: {
+    /**
+     * @internal
+     */
+    app: Prisma.$AppPayload<ExtArgs>
+    /**
+     * @internal
+     */
     permissions: Prisma.$PermissionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     createdAt: Date
-    updatedAt: Date
-    deletedAt: Date | null
     name: string
+    appName: string
+    appId: number
   }, ExtArgs["result"]["resource"]>
   composites: {}
 }
@@ -896,6 +1055,7 @@ readonly fields: ResourceFieldRefs;
  */
 export interface Prisma__ResourceClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  app<T extends Prisma.AppDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AppDefaultArgs<ExtArgs>>): Prisma.Prisma__AppClient<runtime.Types.Result.GetResult<Prisma.$AppPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   permissions<T extends Prisma.Resource$permissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Resource$permissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PermissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -928,9 +1088,9 @@ export interface Prisma__ResourceClient<T, Null = never, ExtArgs extends runtime
 export interface ResourceFieldRefs {
   readonly id: Prisma.FieldRef<"Resource", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Resource", 'DateTime'>
-  readonly updatedAt: Prisma.FieldRef<"Resource", 'DateTime'>
-  readonly deletedAt: Prisma.FieldRef<"Resource", 'DateTime'>
   readonly name: Prisma.FieldRef<"Resource", 'String'>
+  readonly appName: Prisma.FieldRef<"Resource", 'String'>
+  readonly appId: Prisma.FieldRef<"Resource", 'Int'>
 }
     
 
@@ -1180,6 +1340,10 @@ export type ResourceCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extens
    */
   data: Prisma.ResourceCreateManyInput | Prisma.ResourceCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ResourceIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1250,6 +1414,10 @@ export type ResourceUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extens
    * Limit how many Resources to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ResourceIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**

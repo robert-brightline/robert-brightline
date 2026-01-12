@@ -4,5 +4,4 @@ import * as External from '@robert-brightline/zod';
 export const RoleCreate = z.object({
   name: External.name(),
   rolePermissions: Internal.RolePermissionsRelationManyCreate.optional(),
-  userRoles: Internal.UserRoleRelationManyCreate.optional(),
 });

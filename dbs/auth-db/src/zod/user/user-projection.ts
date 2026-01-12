@@ -9,5 +9,6 @@ export const UserProjection = z.object({
   deletedAt: External.bool().optional(),
   username: External.bool().optional(),
   password: External.bool().optional(),
-  userRoles: Internal.UserRoleRelationManyProjection,
+  userPermissions: Internal.UserPermissionRelationManyProjection,
+  sessions: Internal.SessionRelationManyProjection,
 });

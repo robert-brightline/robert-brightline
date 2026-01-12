@@ -1,78 +1,5 @@
 import * as External from '@robert-brightline/zod';
 import { z } from 'zod';
-import * as Enums from './enums.js';
-export const AuditLogOwnProjection = z.object({
-  id: External.bool().optional(),
-  createdAt: External.bool().optional(),
-  subject: External.bool().optional(),
-  message: External.bool().optional(),
-  operation: External.bool().optional(),
-  operatorId: External.bool().optional(),
-});
-export const AuditLogOwnOrder = z.object({
-  id: External.dir().optional(),
-  createdAt: External.dir().optional(),
-  subject: External.dir().optional(),
-  message: External.dir().optional(),
-  operation: External.dir().optional(),
-  operatorId: External.dir().optional(),
-});
-export const AuditLogOwnWhere = z.object({
-  id: External.IntegerFilter.optional(),
-  createdAt: External.DateTimeFilter.optional(),
-  subject: External.StringFilter.optional(),
-  message: External.StringFilter.optional(),
-  operation: Enums.OperationEnumFilter.optional(),
-  operatorId: External.StringFilter.optional(),
-});
-export const AuditLogOwnCreate = z.object({
-  subject: External.str(),
-  message: External.str().optional(),
-  operation: Enums.OperationEnum,
-  operatorId: External.str(),
-});
-export const AuditLogOwnUpdate = z.object({
-  subject: External.str().optional(),
-  message: External.str().optional(),
-  operation: Enums.OperationEnum.optional(),
-  operatorId: External.str().optional(),
-});
-export const AuditLogRelationProjection = z.union([
-  External.bool(),
-  z.object({
-    select: AuditLogOwnProjection.optional(),
-    where: AuditLogOwnWhere.optional(),
-  }),
-]);
-export const AuditLogRelationManyProjection = z.union([
-  External.bool(),
-  z.object({
-    select: AuditLogOwnProjection.optional(),
-    where: AuditLogOwnWhere.optional(),
-    orderBy: AuditLogOwnOrder.optional(),
-    take: External.int().min(0).optional(),
-    skip: External.int().min(0).optional(),
-  }),
-]);
-export const AuditLogRelationManyWhere = z.union([
-  z.object({ some: AuditLogOwnWhere }),
-  z.object({ every: AuditLogOwnWhere }),
-  z.object({ none: AuditLogOwnWhere }),
-]);
-export const AuditLogRelationCreate = z.union([
-  External.connect(),
-  z.object({
-    create: AuditLogOwnCreate,
-  }),
-]);
-export const AuditLogRelationManyCreate = z.union([
-  External.connectMany(),
-  z.object({
-    createMany: z.object({
-      data: AuditLogOwnCreate.array(),
-    }),
-  }),
-]);
 export const AppOwnProjection = z.object({
   id: External.bool().optional(),
   uuid: External.bool().optional(),
@@ -80,6 +7,8 @@ export const AppOwnProjection = z.object({
   updatedAt: External.bool().optional(),
   deletedAt: External.bool().optional(),
   name: External.bool().optional(),
+  version: External.bool().optional(),
+  description: External.bool().optional(),
 });
 export const AppOwnOrder = z.object({
   id: External.dir().optional(),
@@ -88,6 +17,8 @@ export const AppOwnOrder = z.object({
   updatedAt: External.dir().optional(),
   deletedAt: External.dir().optional(),
   name: External.dir().optional(),
+  version: External.dir().optional(),
+  description: External.dir().optional(),
 });
 export const AppOwnWhere = z.object({
   id: External.IntegerFilter.optional(),
@@ -96,9 +27,19 @@ export const AppOwnWhere = z.object({
   updatedAt: External.DateTimeFilter.optional(),
   deletedAt: External.DateTimeFilter.optional(),
   name: External.StringFilter.optional(),
+  version: External.StringFilter.optional(),
+  description: External.StringFilter.optional(),
 });
-export const AppOwnCreate = z.object({ name: External.name() });
-export const AppOwnUpdate = z.object({ name: External.name().optional() });
+export const AppOwnCreate = z.object({
+  name: External.name(),
+  version: External.str().optional(),
+  description: External.desc().optional(),
+});
+export const AppOwnUpdate = z.object({
+  name: External.name().optional(),
+  version: External.str().optional(),
+  description: External.desc().optional(),
+});
 export const AppRelationProjection = z.union([
   External.bool(),
   z.object({
@@ -138,23 +79,23 @@ export const AppRelationManyCreate = z.union([
 export const ResourceOwnProjection = z.object({
   id: External.bool().optional(),
   createdAt: External.bool().optional(),
-  updatedAt: External.bool().optional(),
-  deletedAt: External.bool().optional(),
   name: External.bool().optional(),
+  appName: External.bool().optional(),
+  appId: External.bool().optional(),
 });
 export const ResourceOwnOrder = z.object({
   id: External.dir().optional(),
   createdAt: External.dir().optional(),
-  updatedAt: External.dir().optional(),
-  deletedAt: External.dir().optional(),
   name: External.dir().optional(),
+  appName: External.dir().optional(),
+  appId: External.dir().optional(),
 });
 export const ResourceOwnWhere = z.object({
   id: External.IntegerFilter.optional(),
   createdAt: External.DateTimeFilter.optional(),
-  updatedAt: External.DateTimeFilter.optional(),
-  deletedAt: External.DateTimeFilter.optional(),
   name: External.StringFilter.optional(),
+  appName: External.StringFilter.optional(),
+  appId: External.IntegerFilter.optional(),
 });
 export const ResourceOwnCreate = z.object({ name: External.name() });
 export const ResourceOwnUpdate = z.object({ name: External.name().optional() });
@@ -256,25 +197,37 @@ export const RoleRelationManyCreate = z.union([
 export const RolePermissionsOwnProjection = z.object({
   id: External.bool().optional(),
   createdAt: External.bool().optional(),
-  updatedAt: External.bool().optional(),
-  deletedAt: External.bool().optional(),
+  appName: External.bool().optional(),
+  appId: External.bool().optional(),
+  roleName: External.bool().optional(),
   roleId: External.bool().optional(),
+  resourceName: External.bool().optional(),
+  resourceId: External.bool().optional(),
+  operationName: External.bool().optional(),
   permissionId: External.bool().optional(),
 });
 export const RolePermissionsOwnOrder = z.object({
   id: External.dir().optional(),
   createdAt: External.dir().optional(),
-  updatedAt: External.dir().optional(),
-  deletedAt: External.dir().optional(),
+  appName: External.dir().optional(),
+  appId: External.dir().optional(),
+  roleName: External.dir().optional(),
   roleId: External.dir().optional(),
+  resourceName: External.dir().optional(),
+  resourceId: External.dir().optional(),
+  operationName: External.dir().optional(),
   permissionId: External.dir().optional(),
 });
 export const RolePermissionsOwnWhere = z.object({
   id: External.IntegerFilter.optional(),
   createdAt: External.DateTimeFilter.optional(),
-  updatedAt: External.DateTimeFilter.optional(),
-  deletedAt: External.DateTimeFilter.optional(),
+  appName: External.StringFilter.optional(),
+  appId: External.IntegerFilter.optional(),
+  roleName: External.StringFilter.optional(),
   roleId: External.IntegerFilter.optional(),
+  resourceName: External.StringFilter.optional(),
+  resourceId: External.IntegerFilter.optional(),
+  operationName: External.StringFilter.optional(),
   permissionId: External.IntegerFilter.optional(),
 });
 export const RolePermissionsOwnCreate = z.object({});
@@ -318,33 +271,33 @@ export const RolePermissionsRelationManyCreate = z.union([
 export const PermissionOwnProjection = z.object({
   id: External.bool().optional(),
   createdAt: External.bool().optional(),
-  updatedAt: External.bool().optional(),
-  deletedAt: External.bool().optional(),
-  operation: External.bool().optional(),
   appId: External.bool().optional(),
   resourceId: External.bool().optional(),
+  appName: External.bool().optional(),
+  resourceName: External.bool().optional(),
+  operationName: External.bool().optional(),
 });
 export const PermissionOwnOrder = z.object({
   id: External.dir().optional(),
   createdAt: External.dir().optional(),
-  updatedAt: External.dir().optional(),
-  deletedAt: External.dir().optional(),
-  operation: External.dir().optional(),
   appId: External.dir().optional(),
   resourceId: External.dir().optional(),
+  appName: External.dir().optional(),
+  resourceName: External.dir().optional(),
+  operationName: External.dir().optional(),
 });
 export const PermissionOwnWhere = z.object({
   id: External.IntegerFilter.optional(),
   createdAt: External.DateTimeFilter.optional(),
-  updatedAt: External.DateTimeFilter.optional(),
-  deletedAt: External.DateTimeFilter.optional(),
-  operation: Enums.OperationEnumFilter.optional(),
   appId: External.IntegerFilter.optional(),
   resourceId: External.IntegerFilter.optional(),
+  appName: External.StringFilter.optional(),
+  resourceName: External.StringFilter.optional(),
+  operationName: External.StringFilter.optional(),
 });
-export const PermissionOwnCreate = z.object({ operation: Enums.OperationEnum });
+export const PermissionOwnCreate = z.object({ operationName: External.str() });
 export const PermissionOwnUpdate = z.object({
-  operation: Enums.OperationEnum.optional(),
+  operationName: External.str().optional(),
 });
 export const PermissionRelationProjection = z.union([
   External.bool(),
@@ -453,204 +406,215 @@ export const UserRelationManyCreate = z.union([
     }),
   }),
 ]);
-export const UserRoleOwnProjection = z.object({
+export const UserPermissionOwnProjection = z.object({
   id: External.bool().optional(),
-  uuid: External.bool().optional(),
   createdAt: External.bool().optional(),
   updatedAt: External.bool().optional(),
   deletedAt: External.bool().optional(),
   userId: External.bool().optional(),
-  roleId: External.bool().optional(),
+  permissionId: External.bool().optional(),
 });
-export const UserRoleOwnOrder = z.object({
+export const UserPermissionOwnOrder = z.object({
   id: External.dir().optional(),
-  uuid: External.dir().optional(),
   createdAt: External.dir().optional(),
   updatedAt: External.dir().optional(),
   deletedAt: External.dir().optional(),
   userId: External.dir().optional(),
-  roleId: External.dir().optional(),
+  permissionId: External.dir().optional(),
 });
-export const UserRoleOwnWhere = z.object({
+export const UserPermissionOwnWhere = z.object({
   id: External.IntegerFilter.optional(),
-  uuid: External.StringFilter.optional(),
   createdAt: External.DateTimeFilter.optional(),
   updatedAt: External.DateTimeFilter.optional(),
   deletedAt: External.DateTimeFilter.optional(),
   userId: External.IntegerFilter.optional(),
-  roleId: External.IntegerFilter.optional(),
-});
-export const UserRoleOwnCreate = z.object({});
-export const UserRoleOwnUpdate = z.object({});
-export const UserRoleRelationProjection = z.union([
-  External.bool(),
-  z.object({
-    select: UserRoleOwnProjection.optional(),
-    where: UserRoleOwnWhere.optional(),
-  }),
-]);
-export const UserRoleRelationManyProjection = z.union([
-  External.bool(),
-  z.object({
-    select: UserRoleOwnProjection.optional(),
-    where: UserRoleOwnWhere.optional(),
-    orderBy: UserRoleOwnOrder.optional(),
-    take: External.int().min(0).optional(),
-    skip: External.int().min(0).optional(),
-  }),
-]);
-export const UserRoleRelationManyWhere = z.union([
-  z.object({ some: UserRoleOwnWhere }),
-  z.object({ every: UserRoleOwnWhere }),
-  z.object({ none: UserRoleOwnWhere }),
-]);
-export const UserRoleRelationCreate = z.union([
-  External.connect(),
-  z.object({
-    create: UserRoleOwnCreate,
-  }),
-]);
-export const UserRoleRelationManyCreate = z.union([
-  External.connectMany(),
-  z.object({
-    createMany: z.object({
-      data: UserRoleOwnCreate.array(),
-    }),
-  }),
-]);
-export const AccessTokenOwnProjection = z.object({
-  id: External.bool().optional(),
-  uuid: External.bool().optional(),
-  createdAt: External.bool().optional(),
-  updatedAt: External.bool().optional(),
-  deletedAt: External.bool().optional(),
-  name: External.bool().optional(),
-  token: External.bool().optional(),
-});
-export const AccessTokenOwnOrder = z.object({
-  id: External.dir().optional(),
-  uuid: External.dir().optional(),
-  createdAt: External.dir().optional(),
-  updatedAt: External.dir().optional(),
-  deletedAt: External.dir().optional(),
-  name: External.dir().optional(),
-  token: External.dir().optional(),
-});
-export const AccessTokenOwnWhere = z.object({
-  id: External.IntegerFilter.optional(),
-  uuid: External.StringFilter.optional(),
-  createdAt: External.DateTimeFilter.optional(),
-  updatedAt: External.DateTimeFilter.optional(),
-  deletedAt: External.DateTimeFilter.optional(),
-  name: External.StringFilter.optional(),
-  token: External.StringFilter.optional(),
-});
-export const AccessTokenOwnCreate = z.object({
-  name: External.name(),
-  token: External.str(),
-});
-export const AccessTokenOwnUpdate = z.object({
-  name: External.name().optional(),
-  token: External.str().optional(),
-});
-export const AccessTokenRelationProjection = z.union([
-  External.bool(),
-  z.object({
-    select: AccessTokenOwnProjection.optional(),
-    where: AccessTokenOwnWhere.optional(),
-  }),
-]);
-export const AccessTokenRelationManyProjection = z.union([
-  External.bool(),
-  z.object({
-    select: AccessTokenOwnProjection.optional(),
-    where: AccessTokenOwnWhere.optional(),
-    orderBy: AccessTokenOwnOrder.optional(),
-    take: External.int().min(0).optional(),
-    skip: External.int().min(0).optional(),
-  }),
-]);
-export const AccessTokenRelationManyWhere = z.union([
-  z.object({ some: AccessTokenOwnWhere }),
-  z.object({ every: AccessTokenOwnWhere }),
-  z.object({ none: AccessTokenOwnWhere }),
-]);
-export const AccessTokenRelationCreate = z.union([
-  External.connect(),
-  z.object({
-    create: AccessTokenOwnCreate,
-  }),
-]);
-export const AccessTokenRelationManyCreate = z.union([
-  External.connectMany(),
-  z.object({
-    createMany: z.object({
-      data: AccessTokenOwnCreate.array(),
-    }),
-  }),
-]);
-export const AccessTokenPermissionsOwnProjection = z.object({
-  id: External.bool().optional(),
-  uuid: External.bool().optional(),
-  createdAt: External.bool().optional(),
-  updatedAt: External.bool().optional(),
-  deletedAt: External.bool().optional(),
-  accessTokenId: External.bool().optional(),
-  permissionId: External.bool().optional(),
-});
-export const AccessTokenPermissionsOwnOrder = z.object({
-  id: External.dir().optional(),
-  uuid: External.dir().optional(),
-  createdAt: External.dir().optional(),
-  updatedAt: External.dir().optional(),
-  deletedAt: External.dir().optional(),
-  accessTokenId: External.dir().optional(),
-  permissionId: External.dir().optional(),
-});
-export const AccessTokenPermissionsOwnWhere = z.object({
-  id: External.IntegerFilter.optional(),
-  uuid: External.StringFilter.optional(),
-  createdAt: External.DateTimeFilter.optional(),
-  updatedAt: External.DateTimeFilter.optional(),
-  deletedAt: External.DateTimeFilter.optional(),
-  accessTokenId: External.IntegerFilter.optional(),
   permissionId: External.IntegerFilter.optional(),
 });
-export const AccessTokenPermissionsOwnCreate = z.object({});
-export const AccessTokenPermissionsOwnUpdate = z.object({});
-export const AccessTokenPermissionsRelationProjection = z.union([
+export const UserPermissionOwnCreate = z.object({});
+export const UserPermissionOwnUpdate = z.object({});
+export const UserPermissionRelationProjection = z.union([
   External.bool(),
   z.object({
-    select: AccessTokenPermissionsOwnProjection.optional(),
-    where: AccessTokenPermissionsOwnWhere.optional(),
+    select: UserPermissionOwnProjection.optional(),
+    where: UserPermissionOwnWhere.optional(),
   }),
 ]);
-export const AccessTokenPermissionsRelationManyProjection = z.union([
+export const UserPermissionRelationManyProjection = z.union([
   External.bool(),
   z.object({
-    select: AccessTokenPermissionsOwnProjection.optional(),
-    where: AccessTokenPermissionsOwnWhere.optional(),
-    orderBy: AccessTokenPermissionsOwnOrder.optional(),
+    select: UserPermissionOwnProjection.optional(),
+    where: UserPermissionOwnWhere.optional(),
+    orderBy: UserPermissionOwnOrder.optional(),
     take: External.int().min(0).optional(),
     skip: External.int().min(0).optional(),
   }),
 ]);
-export const AccessTokenPermissionsRelationManyWhere = z.union([
-  z.object({ some: AccessTokenPermissionsOwnWhere }),
-  z.object({ every: AccessTokenPermissionsOwnWhere }),
-  z.object({ none: AccessTokenPermissionsOwnWhere }),
+export const UserPermissionRelationManyWhere = z.union([
+  z.object({ some: UserPermissionOwnWhere }),
+  z.object({ every: UserPermissionOwnWhere }),
+  z.object({ none: UserPermissionOwnWhere }),
 ]);
-export const AccessTokenPermissionsRelationCreate = z.union([
+export const UserPermissionRelationCreate = z.union([
   External.connect(),
   z.object({
-    create: AccessTokenPermissionsOwnCreate,
+    create: UserPermissionOwnCreate,
   }),
 ]);
-export const AccessTokenPermissionsRelationManyCreate = z.union([
+export const UserPermissionRelationManyCreate = z.union([
   External.connectMany(),
   z.object({
     createMany: z.object({
-      data: AccessTokenPermissionsOwnCreate.array(),
+      data: UserPermissionOwnCreate.array(),
+    }),
+  }),
+]);
+export const SessionOwnProjection = z.object({
+  id: External.bool().optional(),
+  createdAt: External.bool().optional(),
+  username: External.bool().optional(),
+  token: External.bool().optional(),
+  version: External.bool().optional(),
+  deviceId: External.bool().optional(),
+  deviceType: External.bool().optional(),
+  longitude: External.bool().optional(),
+  latitude: External.bool().optional(),
+});
+export const SessionOwnOrder = z.object({
+  id: External.dir().optional(),
+  createdAt: External.dir().optional(),
+  username: External.dir().optional(),
+  token: External.dir().optional(),
+  version: External.dir().optional(),
+  deviceId: External.dir().optional(),
+  deviceType: External.dir().optional(),
+  longitude: External.dir().optional(),
+  latitude: External.dir().optional(),
+});
+export const SessionOwnWhere = z.object({
+  id: External.IntegerFilter.optional(),
+  createdAt: External.DateTimeFilter.optional(),
+  username: External.StringFilter.optional(),
+  token: External.StringFilter.optional(),
+  version: External.IntegerFilter.optional(),
+  deviceId: External.StringFilter.optional(),
+  deviceType: External.StringFilter.optional(),
+  longitude: External.StringFilter.optional(),
+  latitude: External.StringFilter.optional(),
+});
+export const SessionOwnCreate = z.object({
+  token: External.str(),
+  version: External.int().optional(),
+  deviceId: External.str().optional(),
+  deviceType: External.str().optional(),
+  longitude: External.str().optional(),
+  latitude: External.str().optional(),
+});
+export const SessionOwnUpdate = z.object({
+  token: External.str().optional(),
+  version: External.int().optional(),
+  deviceId: External.str().optional(),
+  deviceType: External.str().optional(),
+  longitude: External.str().optional(),
+  latitude: External.str().optional(),
+});
+export const SessionRelationProjection = z.union([
+  External.bool(),
+  z.object({
+    select: SessionOwnProjection.optional(),
+    where: SessionOwnWhere.optional(),
+  }),
+]);
+export const SessionRelationManyProjection = z.union([
+  External.bool(),
+  z.object({
+    select: SessionOwnProjection.optional(),
+    where: SessionOwnWhere.optional(),
+    orderBy: SessionOwnOrder.optional(),
+    take: External.int().min(0).optional(),
+    skip: External.int().min(0).optional(),
+  }),
+]);
+export const SessionRelationManyWhere = z.union([
+  z.object({ some: SessionOwnWhere }),
+  z.object({ every: SessionOwnWhere }),
+  z.object({ none: SessionOwnWhere }),
+]);
+export const SessionRelationCreate = z.union([
+  External.connect(),
+  z.object({
+    create: SessionOwnCreate,
+  }),
+]);
+export const SessionRelationManyCreate = z.union([
+  External.connectMany(),
+  z.object({
+    createMany: z.object({
+      data: SessionOwnCreate.array(),
+    }),
+  }),
+]);
+export const SessionPermissionOwnProjection = z.object({
+  id: External.bool().optional(),
+  createdAt: External.bool().optional(),
+  sessionId: External.bool().optional(),
+  permissionId: External.bool().optional(),
+  appName: External.bool().optional(),
+  operationName: External.bool().optional(),
+  resourceName: External.bool().optional(),
+});
+export const SessionPermissionOwnOrder = z.object({
+  id: External.dir().optional(),
+  createdAt: External.dir().optional(),
+  sessionId: External.dir().optional(),
+  permissionId: External.dir().optional(),
+  appName: External.dir().optional(),
+  operationName: External.dir().optional(),
+  resourceName: External.dir().optional(),
+});
+export const SessionPermissionOwnWhere = z.object({
+  id: External.IntegerFilter.optional(),
+  createdAt: External.DateTimeFilter.optional(),
+  sessionId: External.IntegerFilter.optional(),
+  permissionId: External.IntegerFilter.optional(),
+  appName: External.StringFilter.optional(),
+  operationName: External.StringFilter.optional(),
+  resourceName: External.StringFilter.optional(),
+});
+export const SessionPermissionOwnCreate = z.object({});
+export const SessionPermissionOwnUpdate = z.object({});
+export const SessionPermissionRelationProjection = z.union([
+  External.bool(),
+  z.object({
+    select: SessionPermissionOwnProjection.optional(),
+    where: SessionPermissionOwnWhere.optional(),
+  }),
+]);
+export const SessionPermissionRelationManyProjection = z.union([
+  External.bool(),
+  z.object({
+    select: SessionPermissionOwnProjection.optional(),
+    where: SessionPermissionOwnWhere.optional(),
+    orderBy: SessionPermissionOwnOrder.optional(),
+    take: External.int().min(0).optional(),
+    skip: External.int().min(0).optional(),
+  }),
+]);
+export const SessionPermissionRelationManyWhere = z.union([
+  z.object({ some: SessionPermissionOwnWhere }),
+  z.object({ every: SessionPermissionOwnWhere }),
+  z.object({ none: SessionPermissionOwnWhere }),
+]);
+export const SessionPermissionRelationCreate = z.union([
+  External.connect(),
+  z.object({
+    create: SessionPermissionOwnCreate,
+  }),
+]);
+export const SessionPermissionRelationManyCreate = z.union([
+  External.connectMany(),
+  z.object({
+    createMany: z.object({
+      data: SessionPermissionOwnCreate.array(),
     }),
   }),
 ]);

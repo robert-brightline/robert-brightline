@@ -8,5 +8,6 @@ export const UserOrder = z.object({
   deletedAt: External.dir().optional(),
   username: External.dir().optional(),
   password: External.dir().optional(),
-  userRoles: External.orderByCount().optional(),
+  userPermissions: External.orderByCount().optional(),
+  sessions: External.orderByCount().optional(),
 });

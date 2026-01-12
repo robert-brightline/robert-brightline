@@ -8,5 +8,4 @@ export const RoleWhere = z.object({
   deletedAt: External.DateTimeFilter.optional(),
   name: External.StringFilter.optional(),
   rolePermissions: Internal.RolePermissionsRelationManyWhere.optional(),
-  userRoles: Internal.UserRoleRelationManyWhere.optional(),
 });

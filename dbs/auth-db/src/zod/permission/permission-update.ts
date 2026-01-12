@@ -1,11 +1,12 @@
 import { z } from 'zod';
 import * as Internal from '../internals.js';
-import * as Enums from '../enums.js';
+import * as External from '@robert-brightline/zod';
 export const PermissionUpdate = z.object({
-  operation: Enums.OperationEnum.optional(),
+  operationName: External.str().optional(),
   app: Internal.AppRelationCreate.optional(),
   resource: Internal.ResourceRelationCreate.optional(),
   rolePermissions: Internal.RolePermissionsRelationManyCreate.optional(),
   accessTokenPermissions:
-    Internal.AccessTokenPermissionsRelationManyCreate.optional(),
+    Internal.SessionPermissionRelationManyCreate.optional(),
+  userPermissions: Internal.UserPermissionRelationManyCreate.optional(),
 });

@@ -4,10 +4,14 @@ import * as External from '@robert-brightline/zod';
 export const RolePermissionsProjection = z.object({
   id: External.bool().optional(),
   createdAt: External.bool().optional(),
-  updatedAt: External.bool().optional(),
-  deletedAt: External.bool().optional(),
-  role: Internal.RoleRelationProjection,
+  appName: External.bool().optional(),
+  appId: External.bool().optional(),
+  roleName: External.bool().optional(),
   roleId: External.bool().optional(),
-  permission: Internal.PermissionRelationProjection,
+  resourceName: External.bool().optional(),
+  resourceId: External.bool().optional(),
+  operationName: External.bool().optional(),
   permissionId: External.bool().optional(),
+  role: Internal.RoleRelationProjection,
+  permission: Internal.PermissionRelationProjection,
 });

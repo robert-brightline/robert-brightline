@@ -8,5 +8,8 @@ export const AppWhere = z.object({
   updatedAt: External.DateTimeFilter.optional(),
   deletedAt: External.DateTimeFilter.optional(),
   name: External.StringFilter.optional(),
+  version: External.StringFilter.optional(),
+  description: External.StringFilter.optional(),
   permissions: Internal.PermissionRelationManyWhere.optional(),
+  resources: Internal.ResourceRelationManyWhere.optional(),
 });
